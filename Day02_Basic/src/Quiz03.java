@@ -10,6 +10,10 @@ public class Quiz03 {
 
         //3-3
         char c = 'A', d = 'B';
+        System.out.println(Character.toString(c) + d);
         System.out.println("" + c + d);
     }
 }
+// 관계 연산자와 논리 연산자는 모두 true | false를 출력한다.
+// & = ampersand, | = [vertical bar, pipeline]
+// 논리연산자는 short cut 연산이 적용된다.
