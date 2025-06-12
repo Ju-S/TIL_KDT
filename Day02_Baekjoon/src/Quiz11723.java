@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+//TODO: 11723번 백준 미완.
+
 public class Quiz11723 {
     private static final int MAX_NUMBER = 20;
     private static final Set<Integer> numbers = new HashSet<>();
