@@ -16,7 +16,7 @@ public class Quiz03 {
             System.out.println("두번째 입력한 값이 더 크다.");
         } else if(num1 > num2) {
             System.out.println("첫번째 입력한 값이 더 크다.");
-        } else if(num1 == num2) {
+        } else {
             System.out.println("입력한 값이 같다.");
         }
     }
