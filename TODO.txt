@@ -1,0 +1,4 @@
+1. Spring Security (?) - 인증/인가
+2. JPA로 구현된 Native Query , MyBatis Migration 해보기 또는, Native Query -> JPA로 변경해보기
+3. React 에서 상태관리 도구 적용해보기
+4. 컨트롤러는 Restful API 를 적용해보기
