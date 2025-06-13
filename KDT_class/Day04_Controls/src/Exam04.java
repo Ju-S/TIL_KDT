@@ -66,14 +66,16 @@ public class Exam04 {
                 // colaHas, ciderHas, maesilHas가 해당됨.
                 System.out.println("=====소지품=====");
                 System.out.println("소지금 : " + balance + "원");
-                System.out.println("콜라   : " + colaHas + "개");
+                System.out.println("콜라 : " + colaHas + "개");
                 System.out.println("사이다 : " + ciderHas + "개");
                 System.out.println("매실차 : " + maesilHas + "개");
                 System.out.println("===============");
             } else if (selectedMenu == 9) {
                 // 입력된 번호가 종료(9) 일 때,
-                break;
-                //(line:17)의 while(true)에서 탈출하여 프로그램 종료
+                //break;
+                ////(line:17)의 while(true)에서 탈출하여 프로그램 종료
+                System.exit(0);
+                // 현재 실행중인 프로그램을 즉시 종료시키는 명령
             } else {
                 // 입력된 번호가 메뉴에 없는 번호일 경우, 안내문과 함께 메뉴 다시 제시
                 System.out.println("알수없는 번호입니다.\n다시 입력해주세요.");
