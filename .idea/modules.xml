@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Day01_Basic/Day01_Basic.iml" filepath="$PROJECT_DIR$/Day01_Basic/Day01_Basic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Day01_Basic2/Day01_Basic2.iml" filepath="$PROJECT_DIR$/Day01_Basic2/Day01_Basic2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Day02_Baekjoon/Day02_Baekjoon.iml" filepath="$PROJECT_DIR$/Day02_Baekjoon/Day02_Baekjoon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Day02_Basic/Day02_Basic.iml" filepath="$PROJECT_DIR$/Day02_Basic/Day02_Basic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Day03_Baekjoon/Day03_Baekjoon.iml" filepath="$PROJECT_DIR$/Day03_Baekjoon/Day03_Baekjoon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Day03_Input/Day03_Input.iml" filepath="$PROJECT_DIR$/Day03_Input/Day03_Input.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day01_Basic/Day01_Basic.iml" filepath="$PROJECT_DIR$/KDT_class/Day01_Basic/Day01_Basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day01_Basic2/Day01_Basic2.iml" filepath="$PROJECT_DIR$/KDT_class/Day01_Basic2/Day01_Basic2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day02_Baekjoon/Day02_Baekjoon.iml" filepath="$PROJECT_DIR$/KDT_class/Day02_Baekjoon/Day02_Baekjoon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day02_Basic/Day02_Basic.iml" filepath="$PROJECT_DIR$/KDT_class/Day02_Basic/Day02_Basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day03_Baekjoon/Day03_Baekjoon.iml" filepath="$PROJECT_DIR$/KDT_class/Day03_Baekjoon/Day03_Baekjoon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day03_Input/Day03_Input.iml" filepath="$PROJECT_DIR$/KDT_class/Day03_Input/Day03_Input.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day04_Baekjoon/Day04_Baekjoon.iml" filepath="$PROJECT_DIR$/KDT_class/Day04_Baekjoon/Day04_Baekjoon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KDT_class/Day04_Controls/Day04_Controls.iml" filepath="$PROJECT_DIR$/KDT_class/Day04_Controls/Day04_Controls.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trivista/trivista_backend/trivista_backend.iml" filepath="$PROJECT_DIR$/trivista/trivista_backend/trivista_backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trivista/trivista_frontend/trivista_frontend.iml" filepath="$PROJECT_DIR$/trivista/trivista_frontend/trivista_frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/workspace01_java_intellij.iml" filepath="$PROJECT_DIR$/.idea/workspace01_java_intellij.iml" />
     </modules>
   </component>
