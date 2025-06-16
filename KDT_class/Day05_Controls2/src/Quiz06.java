@@ -22,9 +22,6 @@ public class Quiz06 {
 
                     int predictMin = 1, predictMax = 99;
                     // 컴퓨터의 예측범위를 지정할 수 있도록 하는 현재기준 예측범위
-                    boolean upFlag = false;
-                    // false인 경우 직전 predict는 answer보다 DOWN
-                    // true인 경우 직전 predict는 answer보다 UP
 
                     System.out.println("<< Game Start >>");
 
