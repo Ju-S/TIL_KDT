@@ -10,7 +10,7 @@ public class Quiz01 {
         int num1, num2;
         // 연산이 될 정수 변수
 
-        int result = 0;
+        // int result = 0;
         // 연산 결과값 저장용
 
         while (true) {
@@ -38,24 +38,25 @@ public class Quiz01 {
 
                 System.out.println("\n======= 결과 =======\n");
 
+                System.out.print(num1 + operator + num2 + "=");
                 switch (operator) {
                     case "+":
-                        result = num1 + num2;
+                        System.out.println(num1 + num2);
                         break;
                     case "-":
-                        result = num1 - num2;
+                        System.out.println(num1 - num2);
                         break;
                     case "*":
-                        result = num1 * num2;
+                        System.out.println(num1 * num2);
                         break;
                     case "/":
-                        result = num1 / num2;
-                        break;
-                    default:
+                        System.out.println((double)num1 / num2);
                         break;
                 }
+                System.out.println();
 
-                System.out.println(num1 + operator + num2 + "=" + result + "\n");
+                // System.out.println(num1 + operator + num2 + "=" + result + "\n");
+                // int형으로 선언된 result하나로는 소수점까지 표현이 어렵기 때문에 switch-case문 안에서 출력으로 변경
             }
         }
     }
