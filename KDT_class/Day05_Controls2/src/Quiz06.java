@@ -46,7 +46,7 @@ public class Quiz06 {
                         } else {  // 플레이어, 컴퓨터가 정답을 맞춘 경우
                             System.out.println("<<    정답!    >>");
                             if(predictionCnt % 2 == 1) {  // 차례가 홀수인 경우(플레이어 차례)
-                                if (predictionCnt < bestScore) {  // 플레이어의 기록이 기존의 최단기록보다 적은 경우
+                                if (predictionCnt / 2 + 1 < bestScore) {  // 플레이어의 기록이 기존의 최단기록보다 적은 경우
                                     System.out.println("축하합니다! 최단기록을 갱신하였습니다!");
                                     bestScore = predictionCnt / 2 + 1;  // 플레이어의 기록을 최단기록에 대입
                                     // 컴퓨터와의 차례를 설정하기 위해 사용되었으므로 2를 나누고 홀수차례 시작이기 때문에 1을 더한다.
