@@ -72,7 +72,7 @@ public class Exam04 {
                 System.out.println("===============");
             } else if (selectedMenu == 9) {
                 // 입력된 번호가 종료(9) 일 때,
-                //break;
+                ////break;
                 ////(line:17)의 while(true)에서 탈출하여 프로그램 종료
                 System.exit(0);
                 // 현재 실행중인 프로그램을 즉시 종료시키는 명령
