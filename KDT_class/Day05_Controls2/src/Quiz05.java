@@ -11,7 +11,7 @@ public class Quiz05 {
             System.out.println("1. Game Start");
             System.out.println("2. Game Score");
             System.out.println("3. End Game\n");
-            System.out.print(">");
+            System.out.print("> ");
             int selectedMenu = Integer.parseInt(sc.nextLine());  // 사용자가 선택한 메뉴
 
             switch (selectedMenu) {
