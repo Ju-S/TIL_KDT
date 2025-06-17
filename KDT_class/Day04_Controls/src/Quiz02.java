@@ -14,9 +14,9 @@ public class Quiz02 {
             System.out.println("3. 출금하기");
             System.out.println("4. 종료하기");
             System.out.print(">> ");
-            selectedMenu = Integer.parseInt(sc.nextLine());
 
             try {
+                selectedMenu = Integer.parseInt(sc.nextLine());
                 if (selectedMenu == 1) {
                     System.out.println("현재 잔액은 " + balance + "원 입니다.");
                 } else if (selectedMenu == 2) {
@@ -38,7 +38,7 @@ public class Quiz02 {
                     System.out.println("선택된 번호는 없는 항목 입니다.");
                 }
                 System.out.println();
-            } catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("오류가 발생하였습니다.\n다시 시도해주세요.");
             }
         }

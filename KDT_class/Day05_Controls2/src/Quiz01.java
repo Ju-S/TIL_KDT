@@ -19,7 +19,7 @@ public class Quiz01 {
             System.out.print("연산자 입력(+,-,*,/)(q:종료) : ");
             operator = sc.nextLine();
             // 사용자 입력 연산자
-            
+
             if (operator.equals("q")) {
                 System.exit(0);
                 // 사용자 입력이 q인 경우, 프로그램 종료
@@ -31,10 +31,24 @@ public class Quiz01 {
                 // 없는 연산자의 경우, 수를 받는 과정을 생략한다
             } else {
                 // 사용자 입력이 +, -, *, / 인 경우에만 연산할 수를 입력할 수 있도록 조건
-                System.out.print("첫 번째 숫자 입력 : ");
-                num1 = Integer.parseInt(sc.nextLine());
-                System.out.print("두 번째 숫자 입력 : ");
-                num2 = Integer.parseInt(sc.nextLine());
+                while (true) {
+                    try {
+                        System.out.print("첫 번째 숫자 입력 : ");
+                        num1 = Integer.parseInt(sc.nextLine());
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("숫자를 입력해주세요.");
+                    }
+                }
+                while (true) {
+                    try {
+                        System.out.print("두 번째 숫자 입력 : ");
+                        num2 = Integer.parseInt(sc.nextLine());
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("숫자를 입력해주세요.");
+                    }
+                }
 
                 System.out.println("\n======= 결과 =======\n");
 
@@ -50,7 +64,7 @@ public class Quiz01 {
                         System.out.println(num1 * num2);
                         break;
                     case "/":
-                        System.out.println((double)num1 / num2);
+                        System.out.println((double) num1 / num2);
                         break;
                 }
                 System.out.println();
