@@ -6,11 +6,11 @@ public class Exam01 {
         int[] arr = new int[4];
 
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = i + i;
+            arr[i] = (i + 1) * 10;
         }
 
-        for (int i : arr) {
-            System.out.println(i);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
         }
     }
 }
