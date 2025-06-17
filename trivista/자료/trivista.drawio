@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.5">
   <diagram name="페이지-1" id="xlSTUdJ6euZ118amHcdL">
-    <mxGraphModel dx="1678" dy="924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1426" dy="785" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -124,7 +124,7 @@
         <mxCell id="14An4wD3YVZFSYwKmjBG-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="14An4wD3YVZFSYwKmjBG-48" target="14An4wD3YVZFSYwKmjBG-90" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="14An4wD3YVZFSYwKmjBG-48">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="14An4wD3YVZFSYwKmjBG-48" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1219.9999999999995" y="220" as="targetPoint" />
           </mxGeometry>
@@ -162,10 +162,10 @@
         <mxCell id="14An4wD3YVZFSYwKmjBG-72" value="특정 pin 선택" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="570" y="240" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="14An4wD3YVZFSYwKmjBG-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="14An4wD3YVZFSYwKmjBG-74" target="14An4wD3YVZFSYwKmjBG-78" edge="1">
+        <mxCell id="14An4wD3YVZFSYwKmjBG-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="14An4wD3YVZFSYwKmjBG-74" target="14An4wD3YVZFSYwKmjBG-36" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="14An4wD3YVZFSYwKmjBG-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="14An4wD3YVZFSYwKmjBG-74" target="14An4wD3YVZFSYwKmjBG-36" edge="1">
+        <mxCell id="2QtVmUvo0_SWr5nwH7OX-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="14An4wD3YVZFSYwKmjBG-74" target="2QtVmUvo0_SWr5nwH7OX-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="14An4wD3YVZFSYwKmjBG-74" value="AI API&lt;div&gt;해당 지역 정보 검색&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
@@ -265,7 +265,7 @@
         <mxCell id="14An4wD3YVZFSYwKmjBG-118" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="1" source="14An4wD3YVZFSYwKmjBG-117" target="14An4wD3YVZFSYwKmjBG-78" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="14An4wD3YVZFSYwKmjBG-117" value="일정표, 길 찾기 및&lt;div&gt;상세 일정 탭 나누어 제공&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="14An4wD3YVZFSYwKmjBG-117" value="일정표, 관광지,&lt;div&gt;숙소, 길 찾기 및&lt;div&gt;상세 일정 탭 나누어 제공&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="369" y="550" width="141" height="60" as="geometry" />
         </mxCell>
         <mxCell id="14An4wD3YVZFSYwKmjBG-120" value="DB" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
@@ -286,22 +286,39 @@
         <mxCell id="14An4wD3YVZFSYwKmjBG-123" value="자동 탐지 역시 지도에서&lt;div&gt;상세 위치 수정할 수 있도록 다시 확인&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="890" y="510" width="150" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3QUzfAhAEX4O2czbKLDQ-1" target="3QUzfAhAEX4O2czbKLDQ-3">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3QUzfAhAEX4O2czbKLDQ-1" target="3QUzfAhAEX4O2czbKLDQ-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-1" value="여행 일정 공유" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-1" value="여행 일정 공유" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1170" y="221.25" width="100" height="32.5" as="geometry" />
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="3QUzfAhAEX4O2czbKLDQ-3">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="3QUzfAhAEX4O2czbKLDQ-3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1219.6470588235293" y="329.9999999999998" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-3" value="여행 일정 선택" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-3" value="여행 일정 선택" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
           <mxGeometry x="1170" y="280" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="3QUzfAhAEX4O2czbKLDQ-5" value="UUID기반&lt;div&gt;url로 공유&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3QUzfAhAEX4O2czbKLDQ-5" value="UUID기반&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;공유&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1175" y="335" width="90" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="2QtVmUvo0_SWr5nwH7OX-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="2QtVmUvo0_SWr5nwH7OX-2" target="14An4wD3YVZFSYwKmjBG-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2QtVmUvo0_SWr5nwH7OX-2" value="관광지, 숙소 등&lt;div&gt;정보 추출&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="560" y="410" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="2QtVmUvo0_SWr5nwH7OX-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="2QtVmUvo0_SWr5nwH7OX-5" target="2QtVmUvo0_SWr5nwH7OX-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="450" />
+              <mxPoint x="680" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2QtVmUvo0_SWr5nwH7OX-5" value="DB에 같은 관광지 및&lt;div&gt;숙소가 있다면&lt;/div&gt;&lt;div&gt;해당 내용으로 대체(일관성)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="620" y="460" width="150" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
