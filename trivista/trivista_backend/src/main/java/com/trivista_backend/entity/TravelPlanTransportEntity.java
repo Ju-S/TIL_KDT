@@ -3,6 +3,7 @@ package com.trivista_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -27,4 +28,14 @@ public class TravelPlanTransportEntity {
 
     @Column
     private LocalTime travel_time;
+    // 총 소요 시간
+
+    @Column
+    private LocalDateTime start_time;
+
+    @Column
+    private LocalDateTime end_time;
+
+    @Column
+    private long approx_budget;
 }

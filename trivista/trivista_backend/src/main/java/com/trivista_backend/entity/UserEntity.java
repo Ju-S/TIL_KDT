@@ -24,9 +24,6 @@ public class UserEntity {
     @Column
     private String password;
 
-    @Column
-    private String address;
-
     @OneToMany(mappedBy = "user")
     private List<UserTravelPlanEntity> user_travel_plan_list = new ArrayList<>();
 }
