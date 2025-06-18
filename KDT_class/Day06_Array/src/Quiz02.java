@@ -25,7 +25,7 @@ public class Quiz02 {
             System.out.print(kor[i] + "   ");
             System.out.print(eng[i] + "   ");
             System.out.print((kor[i] + eng[i]) + "  ");
-            System.out.println((double) (kor[i] + eng[i]) / 2);
+            System.out.println((kor[i] + eng[i]) / 2.0);
         }
     }
 }
