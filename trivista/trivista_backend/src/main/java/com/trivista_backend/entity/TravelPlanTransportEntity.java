@@ -3,6 +3,8 @@ package com.trivista_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -22,4 +24,7 @@ public class TravelPlanTransportEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "transport_id")
     private TransportEntity transport;
+
+    @Column
+    private LocalTime travel_time;
 }

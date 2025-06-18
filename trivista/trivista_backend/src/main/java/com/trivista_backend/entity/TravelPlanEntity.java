@@ -38,6 +38,7 @@ public class TravelPlanEntity {
     @Column
     private int status;
     // 여행일정의 상태 표시
+    // TODO: enum, converter 작성
     // 1: 계획중, 2: 계획완료, 3: 계획종료
 
     @Column(nullable = false)

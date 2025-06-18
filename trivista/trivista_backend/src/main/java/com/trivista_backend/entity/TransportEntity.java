@@ -3,8 +3,6 @@ package com.trivista_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalTime;
-
 @Entity
 @Getter
 @Setter
@@ -22,9 +20,6 @@ public class TransportEntity {
 
     @Column
     private String goal_address;
-
-    @Column
-    private LocalTime travel_time;
 
     @Column
     private String type;
