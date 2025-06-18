@@ -29,4 +29,7 @@ public class AccomodationEntity {
 
     @OneToMany(mappedBy = "accomodation")
     private List<TravelPlanAccomodationEntity> travel_plan_accomodation = new ArrayList<>();
+
+    @OneToMany(mappedBy = "accomodation")
+    private List<TransportEntity> transport = new ArrayList<>();
 }

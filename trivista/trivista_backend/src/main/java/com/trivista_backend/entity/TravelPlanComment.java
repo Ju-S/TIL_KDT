@@ -22,8 +22,8 @@ public class TravelPlanComment {
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_travel_plan_id")
-    private ;
+    @JoinColumn(name = "travel_plan_id")
+    private TravelPlanEntity travel_plan;
 
     @Column
     private String comment;
