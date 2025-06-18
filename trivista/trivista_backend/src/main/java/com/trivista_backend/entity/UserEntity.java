@@ -8,4 +8,10 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @Column
+    long password;
+
+    @Column
+    String address;
 }

@@ -8,4 +8,13 @@ public class AttractionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @Column
+    String name;
+
+    @Column
+    String description;
+
+    @Column
+    String address;
 }

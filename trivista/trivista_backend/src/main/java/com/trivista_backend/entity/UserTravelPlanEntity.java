@@ -8,4 +8,10 @@ public class UserTravelPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @Column
+    long travel_plan_id;
+
+    @Column
+    long user_id;
 }
