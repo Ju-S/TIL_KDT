@@ -9,23 +9,23 @@ import java.time.LocalDate;
 public class TravelPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column
-    long UUID;
+    private long UUID;
 
     @Column
-    LocalDate from_date = LocalDate.now();
+    private LocalDate from_date = LocalDate.now();
 
     @Column
-    LocalDate to_date = LocalDate.now();
+    private LocalDate to_date = LocalDate.now();
 
     @Column
-    long budget_limit;
+    private long budget_limit;
 
     @Column
-    int status;
+    private int status;
 
     @Column
-    String start_address;
+    private String start_address;
 }

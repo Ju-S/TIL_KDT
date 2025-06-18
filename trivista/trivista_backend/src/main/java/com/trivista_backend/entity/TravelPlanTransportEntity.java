@@ -7,11 +7,11 @@ import jakarta.persistence.*;
 public class TravelPlanTransportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column
-    long travel_plan_id;
+    private long travel_plan_id;
 
     @Column
-    long transport_id;
+    private long transport_id;
 }

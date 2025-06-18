@@ -9,20 +9,20 @@ import java.time.LocalTime;
 public class TravelPlanAttractionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column
-    long travel_plan_id;
+    private long travel_plan_id;
 
     @Column
-    long attraction_id;
+    private long attraction_id;
 
     @Column
-    LocalTime start_time;
+    private LocalTime start_time;
 
     @Column
-    LocalTime end_time;
+    private LocalTime end_time;
 
     @Column
-    long approx_budget;
+    private long approx_budget;
 }

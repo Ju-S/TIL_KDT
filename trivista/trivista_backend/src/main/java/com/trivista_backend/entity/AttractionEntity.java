@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 public class AttractionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column
-    String name;
+    private String name;
 
     @Column
-    String description;
+    private String description;
 
     @Column
-    String address;
+    private String address;
 }

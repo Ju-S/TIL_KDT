@@ -1,22 +1,33 @@
 package com.trivista_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "travel_plan_comment")
 public class TravelPlanComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_travel_plan_id")
+    private ;
 
     @Column
-    long user_travel_plan_id;
+    private String comment;
 
     @Column
-    String comment;
-
-    @Column
-    LocalDateTime created_at = LocalDateTime.now();
+    private LocalDateTime created_at = LocalDateTime.now();
 }

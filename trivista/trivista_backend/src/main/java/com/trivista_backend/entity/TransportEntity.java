@@ -9,14 +9,14 @@ import java.time.LocalTime;
 public class TransportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @Column
-    String start_address;
+    private String start_address;
 
     @Column
-    String goal_address;
+    private String goal_address;
 
     @Column
-    LocalTime travel_time;
+    private LocalTime travel_time;
 }
