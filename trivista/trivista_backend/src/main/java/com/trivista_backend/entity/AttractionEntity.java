@@ -2,6 +2,8 @@ package com.trivista_backend.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "attraction")
 public class AttractionEntity {

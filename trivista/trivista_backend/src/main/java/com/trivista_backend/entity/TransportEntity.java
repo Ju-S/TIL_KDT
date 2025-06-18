@@ -19,4 +19,8 @@ public class TransportEntity {
 
     @Column
     private LocalTime travel_time;
+
+    @Column
+    private String type;
+    // 교통 타입(자가용, 기차, 버스 등)
 }

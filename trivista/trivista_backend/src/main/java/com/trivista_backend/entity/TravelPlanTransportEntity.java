@@ -9,9 +9,11 @@ public class TravelPlanTransportEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
-    private long travel_plan_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "travel_plan_id")
+    private TravelPlanEntity travel_plan;
 
-    @Column
-    private long transport_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "transport_id")
+    private TransportEntity transport;
 }

@@ -3,9 +3,6 @@ package com.trivista_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -13,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "accomodation")
-public class AccomodationEntity {
+public class AccommodationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,10 +23,4 @@ public class AccomodationEntity {
 
     @Column
     private String address;
-
-    @OneToMany(mappedBy = "accomodation")
-    private List<TravelPlanAccomodationEntity> travel_plan_accomodation = new ArrayList<>();
-
-    @OneToMany(mappedBy = "accomodation")
-    private List<TransportEntity> transport = new ArrayList<>();
 }

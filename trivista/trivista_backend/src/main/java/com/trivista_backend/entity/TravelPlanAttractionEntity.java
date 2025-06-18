@@ -11,11 +11,13 @@ public class TravelPlanAttractionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
-    private long travel_plan_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "travel_plan_id")
+    private TravelPlanEntity travel_plan;
 
-    @Column
-    private long attraction_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "attraction_id")
+    private AttractionEntity attraction;
 
     @Column
     private LocalTime start_time;
