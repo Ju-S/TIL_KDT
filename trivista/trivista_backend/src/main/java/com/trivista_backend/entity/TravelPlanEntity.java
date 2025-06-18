@@ -1,6 +1,7 @@
 package com.trivista_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,6 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "travel_plan")
 public class TravelPlanEntity {
     @Id

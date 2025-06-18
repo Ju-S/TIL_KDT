@@ -1,10 +1,16 @@
 package com.trivista_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "attraction")
 public class AttractionEntity {
     @Id

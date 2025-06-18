@@ -1,8 +1,14 @@
 package com.trivista_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "user_travel_plan")
 public class UserTravelPlanEntity {
     @Id
