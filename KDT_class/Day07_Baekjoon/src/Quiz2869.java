@@ -9,17 +9,12 @@ public class Quiz2869 {
         int B = Integer.parseInt(str.split(" ")[1]);
         int V = Integer.parseInt(str.split(" ")[2]);
 
-        int currentHeight = 0;
-        int spendDays = 0;
-
-        while(currentHeight < V){
-            if(currentHeight > 0){
-                currentHeight -= B;
-            }
-            currentHeight += A;
-            spendDays++;
+        if (A == V) {
+            System.out.println(1);
+        } else if ((V - A) / (A - B) == 0) {
+            System.out.println(2);
+        } else {
+            System.out.println((V - A) / (A - B) + 1);
         }
-
-        System.out.println(spendDays);
     }
 }

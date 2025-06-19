@@ -9,9 +9,10 @@
 - 맑은 날씨(비/눈이 아닌 날씨)만 필터링하여 추천 대상으로 설정
 - 사용 API 예시: `OpenWeatherMap`, `WeatherAPI`
 
-## 3. KakaoMap API로 여행지 추천 핀 표시
+## 3. KakaoMap API로 여행지 추천 지역 표시
 - 맑은 날씨 지역에 기반하여 KakaoMap에 마커(핀) 표시
 - 기술 스택: `KakaoMap JavaScript SDK`
+- https://github.com/southkorea/southkorea-maps?tab=readme-ov-file
 
 ## 4. 핀 클릭 시 관광정보 목록 AI 추천
 - 선택된 위치를 기반으로 다음 정보 목록을 AI가 생성:
@@ -24,7 +25,7 @@
 - 추천된 장소들을 기반으로 이동 시간과 위치를 고려한 일정 자동 구성
 - 기술 스택:
     - `ChatGPT API` (일정 생성 로직)
-    - `Google Maps API` (거리/이동 시간 계산)
+    - `KaKao Maps API` (거리/이동 시간 계산)
 
 ## 6. 일정 커스터마이징 (수정/삭제/추가)
 - 생성된 일정을 사용자가 편집 가능 (추가, 삭제, 순서 변경 등)
@@ -34,8 +35,7 @@
 - 최종 일정 정보를 DB에 저장
 - 기술 스택:
     - `PostgreSQL`
-    - 백엔드 프레임워크: `Express.js`, `FastAPI`, `Django` 등
-    - ORM: `Prisma`, `SQLAlchemy` 등
+    - 백엔드 프레임워크: `Spring Boot`
 
 ## 8. 일정 공유 기능
 - 생성된 일정을 링크로 공유 가능 (`/share/:schedule_id`)

@@ -1,6 +1,17 @@
 import java.util.Scanner;
 
 public class Quiz01 {
+    public static int getValidNum(String print) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print(print);
+                return Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                System.out.println("숫자를 입력해주세요.");
+            }
+        }
+    }
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -31,24 +42,8 @@ public class Quiz01 {
                 // 없는 연산자의 경우, 수를 받는 과정을 생략한다
             } else {
                 // 사용자 입력이 +, -, *, / 인 경우에만 연산할 수를 입력할 수 있도록 조건
-                while (true) {
-                    try {
-                        System.out.print("첫 번째 숫자 입력 : ");
-                        num1 = Integer.parseInt(sc.nextLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("숫자를 입력해주세요.");
-                    }
-                }
-                while (true) {
-                    try {
-                        System.out.print("두 번째 숫자 입력 : ");
-                        num2 = Integer.parseInt(sc.nextLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("숫자를 입력해주세요.");
-                    }
-                }
+                num1 = getValidNum("첫 번째 숫자 입력 : ");
+                num2 = getValidNum("두 번째 숫자 입력 : ");
 
                 System.out.println("\n======= 결과 =======\n");
 
