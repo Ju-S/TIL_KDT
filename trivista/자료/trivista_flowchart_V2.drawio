@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.6">
   <diagram name="페이지-1" id="KC9K6V9RFWCrXQrwUP0L">
-    <mxGraphModel dx="1501" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1783" dy="981" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -468,6 +468,27 @@
         </mxCell>
         <mxCell id="-Fq_AieIOcF5O3jOlMvn-32" value="설정된 기간" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontStyle=0;startSize=23;" vertex="1" parent="1">
           <mxGeometry x="1770" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-34" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1790" y="700" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-40" value="날씨 예보 추출(미정)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2030" y="790" width="170" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="-Fq_AieIOcF5O3jOlMvn-40" source="-Fq_AieIOcF5O3jOlMvn-35" target="-Fq_AieIOcF5O3jOlMvn-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-35" value="선택 기간 날씨 추출" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="-Fq_AieIOcF5O3jOlMvn-40">
+          <mxGeometry x="25" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="-Fq_AieIOcF5O3jOlMvn-40" source="-Fq_AieIOcF5O3jOlMvn-36" target="-Fq_AieIOcF5O3jOlMvn-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-36" value="기상청 API&lt;div&gt;중기 예보 데이터&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="-Fq_AieIOcF5O3jOlMvn-40">
+          <mxGeometry x="25" y="135" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-Fq_AieIOcF5O3jOlMvn-38" value="선택한 지역의&lt;div&gt;날씨가&lt;/div&gt;&lt;div&gt;나쁨인가?&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="-Fq_AieIOcF5O3jOlMvn-40">
+          <mxGeometry x="30" y="252" width="110" height="113" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
