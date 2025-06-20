@@ -40,7 +40,15 @@ public class Quiz03 {
                 "Iava:Java:Jalv:Java:Jiva:Iava:Jiva:Jiva:Jalv:Jalv:Jiva:Jalv:Jova:Jalv:Jiva:Jova:Jiva:Ivaj:Jalv:Java:Jiva:Ivaj:Ivaj:Jvaa:Jiva:Ivaj:" +
                 "Jova:Jvaa:Jeva:Java:Ivaj:Ivaj:Jeva:Jvaa:Jvaa:Jova:Jiva:Jeva:Ivaj";
 
-        int result = countWord3(str, "Java");
+        str = "AlkejflsdjfaweoifjdaslfiohwefqieffaewifjdalfaEILFJDLJlwfjLDJfqlfijSLDIfjleIFJDSLJflEIJowfjiSDLfkJlwfjidlSIEjfdiSLIDj" +
+                "flEIfjldskjlEJFLQlfjdLASDFJEILAlkejflsdjfaweoifjdaslfiohwefqieffaewifjdalfaEILFJDLJlwfjLDJfqlfijSLDIfjleIFJDSLJflE" +
+                "IJowfjiSDLfkJlwfjidlSIEjfdiSLIDjflEIfjldskjlEJFLQlfjdLASDFJEILAlkejflsdjfaweoifjdaslfiohwefqieffaewifjdalfaEILFJDL" +
+                "JlwfjLDJfqlfijSLDIfjleIFJDSLJflEIJowfjiSDLfkJlwfjidlSIEjfdiSLIDjflEIfjldsjjavakjlEjjjavaJFLQlfjdLASDFJEILAlkejflsdjfaweoifjda" +
+                "slfiohwefqieffaewifjdalfaEIjjjavaLFJDLJlwfjLDJfqlfijSLDIfjleIFJDSLJflEIJowfjiSDLfkJlwfjidlSIEjfdiSLIDjflEIfjldskjlEJFLQl" +
+                "fjdLASDFJEILAlkejflsdjfaweoifjdajjavaslfiohwefqieffaewifjdalfaEILFJDLJlwfjLDJfqlfijSLDIfjleIFJDSLJflEIJowfjiSDLfkJlwfji" +
+                "dlSIEjfdiSLIDjflEIfjldskjlEJFLQlfjdLASDFJEIL";
+
+        int result = countWord3(str, "jjava");
         System.out.println(result);
     }
 
@@ -68,10 +76,10 @@ public class Quiz03 {
         for (int i = 0; i < strArray.length - regexArray.length + 1; i++) {
             for (int j = 0; j < regexArray.length; j++) {
                 if (strArray[i + j] != regexArray[j]) {
-                    i += j;
                     break;
                 }
                 if (j == regexArray.length - 1) {
+                    i += j;
                     cnt++;
                 }
             }
