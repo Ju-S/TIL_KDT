@@ -90,7 +90,7 @@ public class Quiz02 {
         File uploadDirectory, uploadFile;
 
         try{
-            System.out.println("업로드할 파일의 경로를 입력하세요.( e.g, C\\Users\\Download )");
+            System.out.println("업로드할 파일의 경로를 입력하세요.( e.g, C:\\Users\\Download )");
             System.out.print(">>>");
             uploadDirectory = new File(inputToString());
 
