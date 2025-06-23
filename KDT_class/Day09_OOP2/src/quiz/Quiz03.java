@@ -27,15 +27,15 @@ public class Quiz03 {
         }
 
         // 3. 입력이 전부 끝나면, 학생 정보들을 취합하여
-        // 이름, 국어, 영서, 수학, 합계, 평균을 화면에 출력할 것
+        // 이름, 국어, 영어, 수학, 합계, 평균을 화면에 출력할 것
         for(Student student : students) {
             int total, totalSubject = 3;
             System.out.println("이름 : " + student.getName() +
-                                "  국어: " + student.getKor() +
-                                "  영어: " + student.getEng() +
-                                "  수학: " + student.getMath() +
-                                "  합계: " + (total = student.getKor() + student.getEng() + student.getMath()) +
-                                "  평균: " + ((double)total / totalSubject));
+                                "  국어 : " + student.getKor() +
+                                "  영어 : " + student.getEng() +
+                                "  수학 : " + student.getMath() +
+                                "  합계 : " + (total = student.getKor() + student.getEng() + student.getMath()) +
+                                "  평균 : " + ((double)total / totalSubject));
         }
     }
 }
