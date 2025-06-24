@@ -11,35 +11,62 @@ public class Quiz03 {
         Scanner sc = new Scanner(System.in);
 
         Rental[] rentalList = new Rental[3];
-        int regRentalCnt = 0;
+        int currentRentalId = 1001;
 
         while (true) {
             System.out.println("<< 렌트카 관리 시스템 >>");
             System.out.println("1. 신규 예약 등록");
             System.out.println("2. 예약 목록 출력");
             System.out.println("3. 예약 검색 ( 예약자 이름으로 검색)");
+            System.out.println("4. 예약 삭제");
+            System.out.println("5. 예약 수정");
             System.out.println("0. 시스템 종료");
             System.out.print(">> ");
             int selectedMenu = inputToInt(sc, "숫자로 입력해주세요.\n>> ");
 
             switch (selectedMenu) {
                 case 1:
-                    if(regRentalCnt < 3) {
-                        rentalList[regRentalCnt++] = regRental(sc, regRentalCnt);
-                        System.out.println("예약 성공.");
-                    } else {
-                        System.out.println("최대 3건의 예약을 등록할 수 있습니다.");
+                    // 등록
+                    for (int i = 0; i < rentalList.length; i++) {
+                        if (rentalList[i] == null) {
+                            rentalList[i] = regRental(sc, currentRentalId++);
+                            System.out.println("예약 성공.");
+                            break;
+                        } else if (i == rentalList.length - 1) {
+                            System.out.println("최대 3건의 예약을 등록할 수 있습니다.");
+                        }
                     }
                     break;
                 case 2:
+                    // 출력
                     printRentalList(rentalList, selectedMenu);
                     break;
                 case 3:
+                    // 검색
                     System.out.print("검색할 예약자 이름: ");
                     Rental[] result = findRentalByName(rentalList, sc.nextLine());
                     printRentalList(result, selectedMenu);
                     break;
+                case 4:
+                    // 삭제
+                    printRentalList(rentalList, selectedMenu);
+                    if (!isEmptyRentalArray(rentalList)) {
+                        System.out.print("삭제할 예약 번호: ");
+                        rentalList = removeRental(rentalList,
+                                inputToInt(sc, "숫자로 입력해주세요.\n삭제할 예약 번호: "));
+                    }
+                    break;
+                case 5:
+                    // 수정
+                    printRentalList(rentalList, selectedMenu);
+                    if (!isEmptyRentalArray(rentalList)) {
+                        System.out.print("수정할 예약 번호: ");
+                        rentalList = modifyRental(sc, rentalList,
+                                inputToInt(sc, "숫자로 입력해주세요.\n수정할 예약 번호: "));
+                    }
+                    break;
                 case 0:
+                    // 종료
                     System.out.println("시스템을 종료합니다.");
                     System.exit(0);
                 default:
@@ -51,9 +78,7 @@ public class Quiz03 {
 
     //-----------시스템 기능-----------
 
-    public static Rental regRental(Scanner sc, int regRentalCnt) {
-        int id = 1000 + regRentalCnt;
-
+    public static Rental regRental(Scanner sc, int currentRentalId) {
         System.out.print("예약자 이름: ");
         String name = sc.nextLine();
 
@@ -71,12 +96,69 @@ public class Quiz03 {
             }
         }
 
-        return new Rental(id, carId, name, rentalStartDate);
+        return new Rental(currentRentalId, carId, name, rentalStartDate);
+    }
+
+    public static Rental[] removeRental(Rental[] rentalList, int removeRentalId) {
+        Rental[] result = rentalList;
+        for (int i = 0; i < rentalList.length; i++) {
+            if (rentalList[i] != null && rentalList[i].getId() == removeRentalId) {
+                result[i] = null;
+                System.out.println("삭제 성공.");
+                break;
+            } else if (i == rentalList.length - 1) {
+                System.out.println("존재하지 않는 예약번호 입니다.");
+            }
+        }
+        return result;
+    }
+
+    public static Rental[] modifyRental(Scanner sc, Rental[] rentalList, int modifyRentalId) {
+        Rental[] result = rentalList;
+        for (int i = 0; i < rentalList.length; i++) {
+            if (rentalList[i] != null && rentalList[i].getId() == modifyRentalId) {
+
+                System.out.print("예약자 이름(현재: " + rentalList[i].getName() + "): ");
+                String name = sc.nextLine();
+                if(name.isEmpty()) {
+                    name = rentalList[i].getName();
+                }
+
+                System.out.print("차번호(현재: " + rentalList[i].getCarId() + "): ");
+                int carId = inputToInt(sc, "숫자로 입력해주세요.\n차번호(현재: " +
+                                                        rentalList[i].getCarId() + "): ");
+
+                Date rentalStartDate;
+                while (true) {
+                    try {
+                        System.out.print("대여 시작일(yyyy년MM월dd일)(현재: " +
+                                dateToString(rentalList[i].getRentalStartDate()) +
+                                "): ");
+                        String date = sc.nextLine();
+                        if(date.isEmpty()) {
+                            rentalStartDate = rentalList[i].getRentalStartDate();
+                        } else {
+                            rentalStartDate = stringToDate(date);
+                        }
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("날짜형식에 맞춰 입력해주세요.");
+                    }
+                }
+
+                result[i] = new Rental(modifyRentalId, carId, name, rentalStartDate);
+                System.out.println("수정 성공.");
+                break;
+            } else if (i == rentalList.length - 1) {
+                System.out.println("존재하지 않는 예약번호 입니다.");
+            }
+        }
+        return result;
     }
 
     public static void printRentalList(Rental[] rentalList, int menuType) {
         System.out.println("===========================================");
-        if (rentalList[0] != null) {
+        if (!isEmptyRentalArray(rentalList)) {
             System.out.println("예약번호\t예약자\t차번호\t시작일\t반환일");
             System.out.println("===========================================");
             for (int i = 0; i < rentalList.length; i++) {
@@ -89,8 +171,8 @@ public class Quiz03 {
                 }
             }
         } else {
-            switch(menuType){
-                case 2:
+            switch (menuType) {
+                case 2, 4, 5:
                     System.out.println("예약된 차량이 없습니다.");
                     break;
                 case 3:
@@ -104,15 +186,24 @@ public class Quiz03 {
     public static Rental[] findRentalByName(Rental[] rentalList, String name) {
         Rental[] result = new Rental[3];
 
-        for(int i = 0; i < rentalList.length; i++) {
-            if(rentalList[i] != null) {
-                if(rentalList[i].getName().contains(name)){
+        for (int i = 0; i < rentalList.length; i++) {
+            if (rentalList[i] != null) {
+                if (rentalList[i].getName().contains(name)) {
                     result[i] = rentalList[i];
                 }
             }
         }
 
         return result;
+    }
+
+    public static boolean isEmptyRentalArray(Rental[] rentalList) {
+        for (int j = 0; j < rentalList.length; j++) {
+            if (rentalList[j] != null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     //-----------Date <-> String-----------
