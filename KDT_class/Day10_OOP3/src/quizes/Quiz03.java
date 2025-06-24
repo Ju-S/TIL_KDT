@@ -33,7 +33,7 @@ public class Quiz03 {
                             System.out.println("예약 성공.");
                             break;
                         } else if (i == rentalList.length - 1) {
-                            System.out.println("최대 3건의 예약을 등록할 수 있습니다.");
+                            System.out.println("최대 " + rentalList.length + "건의 예약을 등록할 수 있습니다.");
                         }
                     }
                     break;
@@ -77,7 +77,6 @@ public class Quiz03 {
     }
 
     //-----------시스템 기능-----------
-
     public static Rental regRental(Scanner sc, int currentRentalId) {
         System.out.print("예약자 이름: ");
         String name = sc.nextLine();
@@ -120,13 +119,13 @@ public class Quiz03 {
 
                 System.out.print("예약자 이름(현재: " + rentalList[i].getName() + "): ");
                 String name = sc.nextLine();
-                if(name.isEmpty()) {
+                if (name.isEmpty()) {
                     name = rentalList[i].getName();
                 }
 
                 System.out.print("차번호(현재: " + rentalList[i].getCarId() + "): ");
                 int carId = inputToInt(sc, "숫자로 입력해주세요.\n차번호(현재: " +
-                                                        rentalList[i].getCarId() + "): ");
+                        rentalList[i].getCarId() + "): ");
 
                 Date rentalStartDate;
                 while (true) {
@@ -135,7 +134,7 @@ public class Quiz03 {
                                 dateToString(rentalList[i].getRentalStartDate()) +
                                 "): ");
                         String date = sc.nextLine();
-                        if(date.isEmpty()) {
+                        if (date.isEmpty()) {
                             rentalStartDate = rentalList[i].getRentalStartDate();
                         } else {
                             rentalStartDate = stringToDate(date);
