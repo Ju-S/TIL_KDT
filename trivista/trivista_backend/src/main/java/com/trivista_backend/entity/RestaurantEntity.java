@@ -12,18 +12,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
-public class UserEntity {
+@Table(name = "restaurant")
+public class RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true, nullable = false, updatable = false)
-    private String userId;
+    @Column
+    private String name;
 
     @Column
-    private String password;
+    private String description;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserTravelPlanEntity> userTravelPlanList = new ArrayList<>();
+    @Column
+    private String address;
 }

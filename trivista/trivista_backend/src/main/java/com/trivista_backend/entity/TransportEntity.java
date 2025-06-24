@@ -16,10 +16,10 @@ public class TransportEntity {
     private long id;
 
     @Column
-    private String start_address;
+    private String startAddress;
 
     @Column
-    private String goal_address;
+    private String goalAddress;
 
     @Column
     private String type;

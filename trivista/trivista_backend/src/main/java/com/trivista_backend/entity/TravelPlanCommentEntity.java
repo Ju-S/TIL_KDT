@@ -23,11 +23,11 @@ public class TravelPlanCommentEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "travel_plan_id")
-    private TravelPlanEntity travel_plan;
+    private TravelPlanEntity travelPlan;
 
     @Column
     private String comment;
 
     @Column
-    private LocalDateTime created_at = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

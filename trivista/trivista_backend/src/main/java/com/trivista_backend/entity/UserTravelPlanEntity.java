@@ -17,7 +17,7 @@ public class UserTravelPlanEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "travel_plan_id")
-    private TravelPlanEntity travel_plan;
+    private TravelPlanEntity travelPlan;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

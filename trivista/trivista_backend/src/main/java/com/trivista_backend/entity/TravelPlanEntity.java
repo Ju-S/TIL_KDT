@@ -21,19 +21,19 @@ public class TravelPlanEntity {
     private long id;
 
     @Column(unique = true, nullable = false, updatable = false)
-    private UUID share_uuid = UUID.randomUUID();
+    private UUID shareUuid = UUID.randomUUID();
 
     @Column(nullable = false)
     private String name;
 
     @Column
-    private LocalDate from_date;
+    private LocalDate fromDate;
 
     @Column
-    private LocalDate to_date;
+    private LocalDate toDate;
 
     @Column
-    private long budget_limit;
+    private long budgetLimit;
 
     @Column
     private int status;
@@ -45,17 +45,8 @@ public class TravelPlanEntity {
     private boolean visibility;
 
     @Column
-    private String start_address;
+    private String startAddress;;
 
     @OneToMany(mappedBy = "travel_plan")
-    private List<TravelPlanTransportEntity> travel_plan_transport_list = new ArrayList<>();
-
-    @OneToMany(mappedBy = "travel_plan")
-    private List<TravelPlanAccommodationEntity> travel_plan_accommodation_list = new ArrayList<>();
-
-    @OneToMany(mappedBy = "travel_plan")
-    private List<TravelPlanCommentEntity> travel_plan_comment_list = new ArrayList<>();
-
-    @OneToMany(mappedBy = "travel_plan")
-    private List<TravelPlanAttractionEntity> travel_plan_attraction_list = new ArrayList<>();
+    private List<TravelPlanCommentEntity> travelPlanCommentList = new ArrayList<>();
 }
