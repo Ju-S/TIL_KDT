@@ -1,9 +1,8 @@
 package classes;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Rental {
+public class RentalDTO {
     private int id;
     private int carId;
 
@@ -12,9 +11,8 @@ public class Rental {
     private Date rentalStartDate;
     private Date rentalEndDate;
 
-    public Rental() {}
-    public Rental(int id, int carId, String name, Date rentalStartDate) {
-        this.id = id;
+    public RentalDTO() {}
+    public RentalDTO(int carId, String name, Date rentalStartDate) {
         this.carId = carId;
         this.name = name;
 

@@ -19,10 +19,14 @@ public class UserEntity {
     private long id;
 
     @Column(unique = true, nullable = false, updatable = false)
-    private String userId;
+    private long userId;
 
     @Column
-    private String password;
+    private String nickname;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private ProviderType provider = ProviderType.KAKAO;
 
     @OneToMany(mappedBy = "user")
     private List<UserTravelPlanEntity> userTravelPlanList = new ArrayList<>();

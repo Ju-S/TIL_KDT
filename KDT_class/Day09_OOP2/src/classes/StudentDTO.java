@@ -1,12 +1,13 @@
 package classes;
 
-public class Student {
-    String name;
-    int kor;
-    int eng;
-    int math;
+public class StudentDTO {
+    private String name;
+    private int kor;
+    private int eng;
+    private int math;
+    private double totalSubject = 3.0;
 
-    public Student(String name, int kor, int eng, int math) {
+    public StudentDTO(String name, int kor, int eng, int math) {
         this.name = name;
         this.kor = kor;
         this.eng = eng;
@@ -43,5 +44,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTotal() {
+        return kor + eng + math;
+    }
+
+    public double getAvg() {
+        return getTotal() / totalSubject;
     }
 }

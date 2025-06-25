@@ -1,6 +1,7 @@
 package quizes;
 
-import classes.Rental;
+import classes.RentalDTO;
+import models.RentalDAO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,9 +10,7 @@ import java.util.Scanner;
 public class Quiz03 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        Rental[] rentalList = new Rental[3];
-        int currentRentalId = 1001;
+        RentalDAO rentalDAO = new RentalDAO();
 
         while (true) {
             System.out.println("<< 렌트카 관리 시스템 >>");
@@ -24,45 +23,51 @@ public class Quiz03 {
             System.out.print(">> ");
             int selectedMenu = inputToInt(sc, "숫자로 입력해주세요.\n>> ");
 
+            RentalDTO[] rentalDTOList = rentalDAO.getRentalDTOList();
+
             switch (selectedMenu) {
                 case 1:
                     // 등록
-                    for (int i = 0; i < rentalList.length; i++) {
-                        if (rentalList[i] == null) {
-                            rentalList[i] = regRental(sc, currentRentalId++);
+                    for (int i = 0; i < rentalDTOList.length; i++) {
+                        if (rentalDTOList[i] == null) {
+                            rentalDAO.addRentalDTOToIndex(InputRegRentalInfo(sc), i);
                             System.out.println("예약 성공.");
                             break;
-                        } else if (i == rentalList.length - 1) {
-                            System.out.println("최대 " + rentalList.length + "건의 예약을 등록할 수 있습니다.");
+                        } else if (i == rentalDTOList.length - 1) {
+                            System.out.println("최대 " + rentalDTOList.length + "건의 예약을 등록할 수 있습니다.");
                         }
                     }
                     break;
                 case 2:
                     // 출력
-                    printRentalList(rentalList, selectedMenu);
+                    printRentalList(rentalDAO, selectedMenu);
                     break;
                 case 3:
                     // 검색
                     System.out.print("검색할 예약자 이름: ");
-                    Rental[] result = findRentalByName(rentalList, sc.nextLine());
-                    printRentalList(result, selectedMenu);
+                    RentalDTO[] result = rentalDAO.findRentalByName(sc.nextLine());
+                    RentalDAO resultDAO = new RentalDAO();
+                    resultDAO.setRentalDTOList(result);
+                    printRentalList(resultDAO, selectedMenu);
                     break;
                 case 4:
                     // 삭제
-                    printRentalList(rentalList, selectedMenu);
-                    if (!isEmptyRentalArray(rentalList)) {
+                    printRentalList(rentalDAO, selectedMenu);
+                    if (!rentalDAO.isEmptyRentalArray(rentalDTOList)) {
                         System.out.print("삭제할 예약 번호: ");
-                        rentalList = removeRental(rentalList,
-                                inputToInt(sc, "숫자로 입력해주세요.\n삭제할 예약 번호: "));
+                        if(rentalDAO.removeRentalDTO(rentalDAO.findRentalById(inputToInt(sc, "숫자로 입력해주세요.\n삭제할 예약 번호: ")))) {
+                            System.out.println("삭제 성공.");
+                        } else {
+                            System.out.println("존재하지 않는 예약번호 입니다.");
+                        }
                     }
                     break;
                 case 5:
                     // 수정
-                    printRentalList(rentalList, selectedMenu);
-                    if (!isEmptyRentalArray(rentalList)) {
+                    printRentalList(rentalDAO, selectedMenu);
+                    if (!rentalDAO.isEmptyRentalArray(rentalDTOList)) {
                         System.out.print("수정할 예약 번호: ");
-                        rentalList = modifyRental(sc, rentalList,
-                                inputToInt(sc, "숫자로 입력해주세요.\n수정할 예약 번호: "));
+                        inputModifyRentalInfo(sc, rentalDAO, inputToInt(sc, "숫자로 입력해주세요.\n수정할 예약 번호: "));
                     }
                     break;
                 case 0:
@@ -77,7 +82,7 @@ public class Quiz03 {
     }
 
     //-----------시스템 기능-----------
-    public static Rental regRental(Scanner sc, int currentRentalId) {
+    public static RentalDTO InputRegRentalInfo(Scanner sc) {
         System.out.print("예약자 이름: ");
         String name = sc.nextLine();
 
@@ -95,78 +100,61 @@ public class Quiz03 {
             }
         }
 
-        return new Rental(currentRentalId, carId, name, rentalStartDate);
+        return new RentalDTO(carId, name, rentalStartDate);
     }
 
-    public static Rental[] removeRental(Rental[] rentalList, int removeRentalId) {
-        Rental[] result = rentalList;
-        for (int i = 0; i < rentalList.length; i++) {
-            if (rentalList[i] != null && rentalList[i].getId() == removeRentalId) {
-                result[i] = null;
-                System.out.println("삭제 성공.");
+    public static void inputModifyRentalInfo(Scanner sc, RentalDAO rentalDAO, int modifyRentalId) {
+        RentalDTO targetRentalDTO = rentalDAO.getRentalDTOList()[rentalDAO.findRentalById(modifyRentalId)];
+
+        System.out.print("예약자 이름(현재: " + targetRentalDTO.getName() + "): ");
+        String name = sc.nextLine();
+        if (name.isEmpty()) {
+            name = targetRentalDTO.getName();
+        }
+
+        System.out.print("차번호(현재: " + targetRentalDTO.getCarId() + "): ");
+        int carId = inputToInt(sc, "숫자로 입력해주세요.\n차번호(현재: " +
+                targetRentalDTO.getCarId() + "): ");
+
+        Date rentalStartDate;
+        while (true) {
+            try {
+                System.out.print("대여 시작일(yyyy년MM월dd일)(현재: " +
+                        dateToString(targetRentalDTO.getRentalStartDate()) +
+                        "): ");
+                String date = sc.nextLine();
+                if (date.isEmpty()) {
+                    rentalStartDate = targetRentalDTO.getRentalStartDate();
+                } else {
+                    rentalStartDate = stringToDate(date);
+                }
                 break;
-            } else if (i == rentalList.length - 1) {
-                System.out.println("존재하지 않는 예약번호 입니다.");
+            } catch (Exception e) {
+                System.out.println("날짜형식에 맞춰 입력해주세요.");
             }
         }
-        return result;
-    }
 
-    public static Rental[] modifyRental(Scanner sc, Rental[] rentalList, int modifyRentalId) {
-        Rental[] result = rentalList;
-        for (int i = 0; i < rentalList.length; i++) {
-            if (rentalList[i] != null && rentalList[i].getId() == modifyRentalId) {
-
-                System.out.print("예약자 이름(현재: " + rentalList[i].getName() + "): ");
-                String name = sc.nextLine();
-                if (name.isEmpty()) {
-                    name = rentalList[i].getName();
-                }
-
-                System.out.print("차번호(현재: " + rentalList[i].getCarId() + "): ");
-                int carId = inputToInt(sc, "숫자로 입력해주세요.\n차번호(현재: " +
-                        rentalList[i].getCarId() + "): ");
-
-                Date rentalStartDate;
-                while (true) {
-                    try {
-                        System.out.print("대여 시작일(yyyy년MM월dd일)(현재: " +
-                                dateToString(rentalList[i].getRentalStartDate()) +
-                                "): ");
-                        String date = sc.nextLine();
-                        if (date.isEmpty()) {
-                            rentalStartDate = rentalList[i].getRentalStartDate();
-                        } else {
-                            rentalStartDate = stringToDate(date);
-                        }
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("날짜형식에 맞춰 입력해주세요.");
-                    }
-                }
-
-                result[i] = new Rental(modifyRentalId, carId, name, rentalStartDate);
-                System.out.println("수정 성공.");
-                break;
-            } else if (i == rentalList.length - 1) {
-                System.out.println("존재하지 않는 예약번호 입니다.");
-            }
+        if (rentalDAO.modifyRentalDTOById(new RentalDTO(carId, name, rentalStartDate), modifyRentalId)) {
+            System.out.println("수정 성공.");
+        } else {
+            System.out.println("존재하지 않는 예약번호 입니다.");
         }
-        return result;
     }
 
-    public static void printRentalList(Rental[] rentalList, int menuType) {
+    public static void printRentalList(RentalDAO rentalDAO, int menuType) {
+        RentalDTO[] rentalDTOList = rentalDAO.getRentalDTOList();
+
         System.out.println("===========================================");
-        if (!isEmptyRentalArray(rentalList)) {
+        if (!rentalDAO.isEmptyRentalArray(rentalDTOList)) {
             System.out.println("예약번호\t예약자\t차번호\t시작일\t반환일");
             System.out.println("===========================================");
-            for (int i = 0; i < rentalList.length; i++) {
-                if (rentalList[i] != null) {
-                    System.out.println(rentalList[i].getId() + "\t" +
-                            rentalList[i].getName() + "\t" +
-                            rentalList[i].getCarId() + "\t" +
-                            dateToString(rentalList[i].getRentalStartDate()) + "\t" +
-                            dateToString(rentalList[i].getRentalEndDate()));
+            for (int i = 0; i < rentalDTOList.length; i++) {
+                if (rentalDTOList[i] != null) {
+                    System.out.println(rentalDTOList[i].getId() + "\t" +
+                            rentalDTOList[i].getName() + "\t" +
+                            rentalDTOList[i].getCarId() + "\t" +
+                            dateToString(rentalDTOList[i].getRentalStartDate()) + "\t" +
+                            dateToString(rentalDTOList[i].getRentalEndDate()));
                 }
             }
         } else {
@@ -180,29 +168,6 @@ public class Quiz03 {
             }
         }
         System.out.println("===========================================");
-    }
-
-    public static Rental[] findRentalByName(Rental[] rentalList, String name) {
-        Rental[] result = new Rental[3];
-
-        for (int i = 0; i < rentalList.length; i++) {
-            if (rentalList[i] != null) {
-                if (rentalList[i].getName().contains(name)) {
-                    result[i] = rentalList[i];
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public static boolean isEmptyRentalArray(Rental[] rentalList) {
-        for (int j = 0; j < rentalList.length; j++) {
-            if (rentalList[j] != null) {
-                return false;
-            }
-        }
-        return true;
     }
 
     //-----------Date <-> String-----------

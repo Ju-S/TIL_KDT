@@ -1,12 +1,12 @@
 package classes;
 
-public class Movie {
+public class MovieDTO {
     private int id;
     private String title;
     private String genre;
 
-    public Movie() {}
-    public Movie(int id, String title, String genre) {
+    public MovieDTO() {}
+    public MovieDTO(int id, String title, String genre) {
         this.id = id;
         this.title = title;
         this.genre = genre;

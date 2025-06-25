@@ -28,7 +28,7 @@ public class TravelPlanTimetableEntity {
     private PlanType planType;
 
     @Column
-    private long approx_budget;
+    private long approxBudget;
 
     @Column
     private LocalDateTime startTime;
