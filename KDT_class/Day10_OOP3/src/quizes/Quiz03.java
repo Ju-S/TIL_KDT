@@ -30,7 +30,7 @@ public class Quiz03 {
                     // 등록
                     for (int i = 0; i < rentalDTOList.length; i++) {
                         if (rentalDTOList[i] == null) {
-                            rentalDAO.addRentalDTOToIndex(InputRegRentalInfo(sc), i);
+                            rentalDAO.addRentalDTOToIndex(inputRegRentalInfo(sc), i);
                             System.out.println("예약 성공.");
                             break;
                         } else if (i == rentalDTOList.length - 1) {
@@ -82,7 +82,7 @@ public class Quiz03 {
     }
 
     //-----------시스템 기능-----------
-    public static RentalDTO InputRegRentalInfo(Scanner sc) {
+    public static RentalDTO inputRegRentalInfo(Scanner sc) {
         System.out.print("예약자 이름: ");
         String name = sc.nextLine();
 
