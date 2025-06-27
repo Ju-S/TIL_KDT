@@ -2,30 +2,27 @@ package models;
 
 import classes.MovieDTO;
 
+import java.util.ArrayList;
+
 // DAO: (Data Access Object)
 // 데이터의 CRUD를 담당
 public class MovieDAO {
-    private MovieDTO[] movieDTOS = new MovieDTO[5];
-    private int regMovieCnt = 0;
+    private ArrayList<MovieDTO> movieDTOS = new ArrayList<>();
     // 현재 등록된 영화의 수
 
     public void addMovie(MovieDTO movieDTO) {
-        movieDTOS[regMovieCnt++] = movieDTO;
+        movieDTOS.add(movieDTO);
     }
 
-    public int getRegMovieCnt() {
-        return regMovieCnt;
-    }
-
-    public MovieDTO[] getMovies() {
+    public ArrayList<MovieDTO> getMovies() {
         return movieDTOS;
     }
 
     // id 중복 확인(중복이라면 true, 아니라면 false)
     public boolean checkIdDuplicated(int id) {
-        for(int i = 0; i < regMovieCnt; i++) {
+        for (int i = 0; i < movieDTOS.size(); i++) {
             // 등록된 영화의 ID중 매개변수 id와 중복되는 값이 있다면 true
-            if(movieDTOS[i].getId() == id) {
+            if (movieDTOS.get(i).getId() == id) {
                 return true;
             }
         }

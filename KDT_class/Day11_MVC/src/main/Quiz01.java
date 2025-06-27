@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Quiz01 {
     static Scanner sc = new Scanner(System.in);
     static MovieDAO movieDAO = new MovieDAO();
+
     // MVC ( Model / View / Controller )
     // Model : 비즈니스 로직과 데이터 작업
     // View : 사용자가 보게 될 UI
@@ -25,13 +26,8 @@ public class Quiz01 {
 
             switch (selectedMenu) {
                 case 1:
-                    // 신규영화등록은 최대 5개까지만 입력 가능하게 제한
-                    if (movieDAO.getRegMovieCnt() < movieDAO.getMovies().length) {
-                        regMovie();  // 신규 영화 등록
-                        System.out.println("영화 등록 성공.");
-                    } else {
-                        System.out.println("최대 5개까지 등록 가능합니다.");
-                    }
+                    regMovie();  // 신규 영화 등록
+                    System.out.println("영화 등록 성공.");
                     break;
                 case 2:
                     printMovieList();  // 영화 목록 출력
@@ -82,7 +78,7 @@ public class Quiz01 {
     // 영화 목록 출력
     // ID(identification)   제목  장르
     public static void printMovieList() {
-        if (movieDAO.getRegMovieCnt() == 0) {
+        if (movieDAO.getMovies().isEmpty()) {
             // 첫번째 칸이 null 이라면 movies는 비어있는 배열 이므로
             System.out.println("============================");
             System.out.println("출력할 수 있는 영화 정보가 없습니다.\n신규 영화 등록 후 다시 시도해주세요.");
@@ -93,10 +89,8 @@ public class Quiz01 {
             System.out.println("ID\t제목\t장르");
             System.out.println("============================");
             // 등록된 영화의 수 만큼 정보 출력
-            for (int i = 0; i < movieDAO.getRegMovieCnt(); i++) {
-                System.out.println(movieDAO.getMovies()[i].getId() + "\t" +
-                        movieDAO.getMovies()[i].getTitle() + "\t" +
-                        movieDAO.getMovies()[i].getGenre());
+            for (int i = 0; i < movieDAO.getMovies().size(); i++) {
+                System.out.println(movieDAO.getMovies().get(i).getId() + "\t" + movieDAO.getMovies().get(i).getTitle() + "\t" + movieDAO.getMovies().get(i).getGenre());
             }
             System.out.println("============================");
         }
