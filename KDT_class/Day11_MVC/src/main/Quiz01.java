@@ -89,8 +89,8 @@ public class Quiz01 {
             System.out.println("ID\t제목\t장르");
             System.out.println("============================");
             // 등록된 영화의 수 만큼 정보 출력
-            for (int i = 0; i < movieDAO.getMovies().size(); i++) {
-                System.out.println(movieDAO.getMovies().get(i).getId() + "\t" + movieDAO.getMovies().get(i).getTitle() + "\t" + movieDAO.getMovies().get(i).getGenre());
+            for (MovieDTO movie : movieDAO.getMovies()) {
+                System.out.println(movie.getId() + "\t" + movie.getTitle() + "\t" + movie.getGenre());
             }
             System.out.println("============================");
         }
