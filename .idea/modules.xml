@@ -21,7 +21,6 @@
       <module fileurl="file://$PROJECT_DIR$/KDT_class/Day11_MVC/Day11_MVC.iml" filepath="$PROJECT_DIR$/KDT_class/Day11_MVC/Day11_MVC.iml" />
       <module fileurl="file://$PROJECT_DIR$/KDT_class/Day11_MVC2/Day11_MVC2.iml" filepath="$PROJECT_DIR$/KDT_class/Day11_MVC2/Day11_MVC2.iml" />
       <module fileurl="file://$PROJECT_DIR$/KDT_class/Day12_MVC3/Day12_MVC3.iml" filepath="$PROJECT_DIR$/KDT_class/Day12_MVC3/Day12_MVC3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/trivista_backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/trivista_backend.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/trivista/trivista_frontend/trivista_frontend.iml" filepath="$PROJECT_DIR$/trivista/trivista_frontend/trivista_frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/workspace01_java_intellij.iml" filepath="$PROJECT_DIR$/.idea/workspace01_java_intellij.iml" />
     </modules>
