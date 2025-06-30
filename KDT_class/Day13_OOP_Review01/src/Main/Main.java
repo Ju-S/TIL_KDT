@@ -4,8 +4,8 @@ import DAO.MovieDAO;
 import DTO.MovieDTO;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -27,8 +27,10 @@ public class Main {
 
             switch (selectedMenu) {
                 case 1:
+                    printDash();
                     movieDAO.regMovie(inputMovieInfo(sc));
                     System.out.println("등록이 완료되었습니다.");
+                    printDash();
                     break;
                 case 2:
                     printMovieList(movieDAO.getMovieList());
@@ -151,7 +153,7 @@ public class Main {
 
     //------------출력-------------
     // 파라미터로 받은 movieList의 정보 출력(false 반환시, 출력한 값이 없음.)
-    public static boolean printMovieList(ArrayList<MovieDTO> movieList) {
+    public static boolean printMovieList(List<MovieDTO> movieList) {
         printDash();
         if(!movieList.isEmpty()) {
             System.out.println("ID\tTitle\tGenre\tpub_date");
@@ -176,10 +178,10 @@ public class Main {
     //----------------------------
 
     //------------검색------------
-    public static ArrayList<MovieDTO> searchSwitch(Scanner sc, MovieDAO movieDAO) {
+    public static List<MovieDTO> searchSwitch(Scanner sc, MovieDAO movieDAO) {
         while(true) {
             int searchTitleOrGenre = inputToInt(sc, "1. 제목\n2. 장르\n>> ");
-            System.out.println("검색할 키워드: ");
+            System.out.print("검색할 키워드: ");
             String searchStr = sc.nextLine();
             switch (searchTitleOrGenre) {
                 case 1:
@@ -194,7 +196,7 @@ public class Main {
     }
     //---------------------------
 
-    //-------------날짜변환-------------
+    //-------------utils-------------
     // String -> Date 날짜 변환
     public static Date stringToDate(String dateStr) throws Exception {
         SimpleDateFormat parseSdf = new SimpleDateFormat("yy/MM/dd");

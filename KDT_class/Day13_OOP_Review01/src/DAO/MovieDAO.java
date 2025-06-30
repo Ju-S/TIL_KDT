@@ -3,9 +3,10 @@ package DAO;
 import DTO.MovieDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MovieDAO {
-    ArrayList<MovieDTO> movieList = new ArrayList<MovieDTO>();
+    List<MovieDTO> movieList = new ArrayList<MovieDTO>();
     int movieId = 1001;
     // movieDTO의 id 초기값
 
@@ -18,13 +19,13 @@ public class MovieDAO {
     }
 
     // 영화 목록 반환
-    public ArrayList<MovieDTO> getMovieList() {
+    public List<MovieDTO> getMovieList() {
         return movieList;
     }
 
     //-----------검색-------------
     // 영화 검색(제목)(resultList.isEmpty()로 검색결과가 있는지 확인)
-    public ArrayList<MovieDTO> findMoviesByTitle(String title) {
+    public List<MovieDTO> findMoviesByTitle(String title) {
         ArrayList<MovieDTO> resultList = new ArrayList<>();
 
         for(MovieDTO movie : movieList) {
@@ -37,7 +38,7 @@ public class MovieDAO {
     }
 
     // 영화 검색(장르)(resultList.isEmpty()로 검색결과가 있는지 확인)
-    public ArrayList<MovieDTO> findMoviesByGenre(String genre) {
+    public List<MovieDTO> findMoviesByGenre(String genre) {
         ArrayList<MovieDTO> resultList = new ArrayList<>();
 
         for(MovieDTO movie : movieList) {
