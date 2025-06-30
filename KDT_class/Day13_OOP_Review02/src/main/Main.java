@@ -157,8 +157,8 @@ public class Main {
         return new StudentDTO(targetId, name, kor, eng, math, publishDate);
     }
 
+    // modify 점수 입력 예외처리(inputMsg: 입력 콘솔 안내 문구)
     public static int inputStudentScore(Scanner sc, String inputMsg) {
-        int kor;
         while(true) {
             try {
                 System.out.print(inputMsg);
@@ -203,7 +203,7 @@ public class Main {
                         student.getMath() + "\t" +
                         student.getTotal() + "\t" +
                         student.getAvg() + "\t" +
-                        dateToString(student.getEvaluatedDate(), "MM월 dd일 hh:mm"));
+                        dateToString(student.getEvaluatedDate(), "MM월 dd일"));
             }
             printDash();
             return true;
