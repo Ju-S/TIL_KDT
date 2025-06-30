@@ -11,11 +11,6 @@
         <module name="trivista_backend.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="trivista_backend" target="21" />
-      <module name="trivista_backend.main" target="21" />
-      <module name="trivista_backend.test" target="21" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
