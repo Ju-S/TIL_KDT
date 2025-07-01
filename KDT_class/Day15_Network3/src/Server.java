@@ -9,7 +9,7 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) throws Exception{
         int port = 24563;
-        ServerSocket server = new ServerSocket(24563);
+        ServerSocket server = new ServerSocket(port);
 
         Socket client = server.accept();
 
