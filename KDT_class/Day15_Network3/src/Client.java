@@ -68,14 +68,6 @@ public class Client {
                     int targetId = Integer.parseInt(sc.nextLine());
                     dataOutputStream.writeInt(targetId);
                     dataOutputStream.flush();
-
-//                    boolean removeResult = dataInputStream.readBoolean();
-//
-//                    if(removeResult) {
-//                        System.out.println("삭제 성공.");
-//                    } else {
-//                        System.out.println("삭제 실패.");
-//                    }
                     break;
                 default:
                     System.out.println("메뉴에 없는 번호입니다.");
