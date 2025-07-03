@@ -7,6 +7,7 @@ class Multie2 extends Thread {
 
     private DataOutputStream dos;
 
+    public Multie2 (){}
     public Multie2 (DataOutputStream dos) {
         this.dos=dos;
     }
@@ -29,10 +30,10 @@ class Multie2 extends Thread {
 public class Client {
     public static void main(String[] args) throws Exception {
         String ip = "10.10.55.121";
-        ip = "10.5.5.0";
+        //ip = "10.5.5.0";
 
         int port = 24563;
-        port = 30000;
+        //port = 40000;
 
         System.out.println("서버에 접속중..");
         Socket client = new Socket(ip, port);
