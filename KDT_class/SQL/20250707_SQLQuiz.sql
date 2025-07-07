@@ -73,3 +73,21 @@ select
     end 야근유무
 from employee
 order by dept_code asc;
+
+-- 11.
+select
+    dept_code 부서코드,
+    emp_name 사원명,
+    case
+        when dept_code in ('D5') then '10%'
+        when dept_code in ('D2') then '20%'
+        when dept_code in ('D9') then '30%'
+        else '없음'
+    end 보너스율,
+    case
+        when dept_code in ('D5') then salary * 0.1
+        when dept_code in ('D2') then salary * 0.2
+        when dept_code in ('D9') then salary * 0.3
+        else 0
+    end "특별 보너스액"
+from employee;
