@@ -49,13 +49,18 @@ from employee;
 
 -- 8.
 select
+    count(*) || '명'
+from employee
+where dept_code in ('D5', 'D9') and extract(year from hire_date) = 2004;
+
+
+select
     emp_id 사번,
     emp_name 사원명,
     dept_code 부서코드,
     hire_date 입사일
 from employee
-where dept_code in ('D5', 'D9') and extract(year from hire_date) = 2004;
-
+where dept_code in ('D5', 'D9') and substr(hire_date, 1, 2) = 04;
 -- 9.
 select
     emp_name 사원명,
