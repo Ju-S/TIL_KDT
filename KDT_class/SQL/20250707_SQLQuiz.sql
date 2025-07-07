@@ -91,3 +91,15 @@ select
         else 0
     end "특별 보너스액"
 from employee;
+
+-- 12.
+select
+    emp_name 사원명,
+    floor((sysdate - hire_date) / 365) + 1 년차,
+    case
+        when floor((sysdate - hire_date) / 365) + 1 < 10 then 'Junior'
+        when floor((sysdate - hire_date) / 365) + 1 < 20 then 'Intermediate'
+        when floor((sysdate - hire_date) / 365) + 1 >= 20 then 'Senior'
+    end 직급레벨
+from employee
+order by floor((sysdate - hire_date) / 365) + 1;
