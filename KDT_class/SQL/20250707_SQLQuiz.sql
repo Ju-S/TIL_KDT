@@ -76,7 +76,7 @@ order by dept_code asc;
 
 -- 11.
 select
-    dept_code 부서코드,
+    nvl(dept_code, '인턴') 부서코드,
     emp_name 사원명,
     case
         when dept_code in ('D5') then '10%'
