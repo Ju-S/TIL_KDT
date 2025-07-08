@@ -12,7 +12,7 @@ from employee e
     left join department d on e.dept_code = d.dept_id
     left join job j on e.job_code = j.job_code
 where
-    substr(emp_no, 1, 8) like ('7%2');
+    substr(emp_no, 1, 8) like ('7%2') and emp_name like ('전%');
 
 -- 3. 보너스 포인트를 받지 않는 직원들의 사원명, 부서명, 근무지역명 ( LOCAL NAME ) 을 출력
 select
