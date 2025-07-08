@@ -1,0 +1,2 @@
+-- select
+-- from. where. group by, having, select, order by
