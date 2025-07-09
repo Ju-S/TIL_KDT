@@ -472,3 +472,50 @@ WHERE
                 nvl(dept_code,'intern')
         )
 ORDER BY 1,4 DESC;
+
+----------------------------------------------------------------
+
+-- DDL - create / alter / drop
+-- DML - insert/ update / delete / select
+-- DCL - grant / revoke
+-- TCL - commit / rollback
+-- Object - user, table, sequence, view
+
+-- DML - insert, update, delete
+create table cafe(
+    id number primary key,
+    name varchar(50) not null,
+    price number not null
+);
+desc cafe;
+
+-- insert : 테이블에 데이터 입력
+insert into cafe values (1001, 'Espresso', 2000);
+insert into cafe values (1002, 'Americano', 2500);
+insert into cafe values (1003, 'Cafe Latte', 4000);
+insert into cafe values (cafe_seq, 'Cafe Mocha', 4500);
+
+select * from cafe order by id asc;
+
+-- delete
+delete from cafe where id = 1001;
+delete from cafe where name = 'Orange Juice';
+
+-- update
+update cafe set price = 2000 where price is null;
+update cafe set name = 'Choco Mocha', price = 3500 where id = 1004;
+
+-- drop
+drop table cafe;
+
+-- sequence
+create sequence cafe_seq
+start with 1005
+increment by 1
+nomaxvalue
+nocache;
+
+drop sequence cafe_seq;
+insert into cafe values(cafe_seq.nextval, 'Orange Juice', 5000);
+
+commit;
