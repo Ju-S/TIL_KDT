@@ -436,7 +436,8 @@ where
     cls.class_type like '전공%'
 group by
     cls.class_no,
-    class_name;
+    class_name
+order by 1;
     
 -- 17.
 select
@@ -457,23 +458,108 @@ where
     
 -- 18.
 select
-    student_no,
-    student_name
+    학번,
+    학생이름
 from
-    tb_student join
     (
         select
-            max(평점),
-            student_no 학번
+            avg(point) 평점,
+            stu.student_no 학번,
+            department_name 학과명,
+            student_name 학생이름
+        from
+            tb_grade grade join tb_student stu on grade.student_no = stu.student_no
+            join tb_department dept on stu.department_no = dept.department_no
+        group by
+            department_name, stu.student_no, student_name
+        having
+            department_name = '국어국문학과'
+    )
+    join
+    (
+        select
+            max(평점) 수석점수
         from
             (
                 select
-                    avg(point) 평점,
-                    student_no
+                    avg(point) 평점
                 from
-                    tb_grade
+                    tb_grade grade join tb_student stu on grade.student_no = stu.student_no
+                    join tb_department dept on stu.department_no = dept.department_no
                 group by
-                    student_no
+                    department_name, stu.student_no, student_name
+                having
+                    department_name = '국어국문학과'
             )
-    ) on student_no = 학번;
+    ) on 평점 = 수석점수;
     
+-- 19.
+select
+    department_name 계열학과명,
+    round(avg(point), 1) 전공평점
+from
+    tb_student stu join tb_grade grade on stu.student_no = grade.student_no
+    join tb_department dept on stu.department_no = dept.department_no
+    join tb_class cls on cls.class_no = grade.class_no
+where
+    class_type like ('전공%') and
+    category =
+    (
+        select
+            category
+        from
+            tb_department
+        where
+            department_name = '환경조경학과'
+    )
+group by
+    department_name
+order by 1;
+
+-- DDL
+-- 1.
+create table tb_category(
+    name varchar2(10),
+    use_yn char(1) default 'Y'
+);
+desc tb_category;
+-- 2.
+create table tb_class_type(
+    no varchar2(5) primary key,
+    name varchar2(10)
+);
+desc tb_class_type;
+-- 3.
+alter table tb_category add primary key(name);
+
+-- 4.
+alter table tb_class_type modify(name not null);
+
+-- 5.
+alter table tb_class_type modify(no varchar2(10), name varchar2(20));
+alter table tb_category modify(name varchar2(20));
+
+-- 6.
+alter table tb_class_type rename column no to class_type_no;
+alter table tb_class_type rename column name to class_type_name;
+alter table tb_category rename column name to category_name;
+alter table tb_category rename column use_yn to category_use_yn;
+
+-- 7.
+select * from user_constraints where table_name='TB_CLASS_TYPE';
+select * from user_constraints where table_name='TB_CATEGORY';
+alter table tb_category rename column category_name to pk_category_name;
+alter table tb_class_type rename column class_type_no to pk_class_type_no;
+
+-- 8.
+insert into tb_category values('공학', 'Y');
+insert into tb_category values('자연과학', 'Y');
+insert into tb_category values('의학', 'Y');
+insert into tb_category values('예체능', 'Y');
+insert into tb_category values('인문사회', 'Y');
+commit;
+select * from tb_category;
+
+-- 9.
+alter table tb_department add (fk_department_category references tb_category(pk_category_name));
+select * from tb_department;
