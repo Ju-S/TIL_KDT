@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class Main {
     private static Scanner sc = new Scanner(System.in);
 
+    public static boolean loginStatus = false;
+
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
         MenuDAO menuDAO = new MenuDAO();
@@ -17,13 +19,11 @@ public class Main {
         AuthView authView = new AuthView(userDAO);
         CafeMenuView cafeMenuView = new CafeMenuView(menuDAO);
 
-        boolean loginStatus = false;
-
         while(true) {
             if(!loginStatus) {
-                loginStatus = authView.printView();
+                authView.printView();
             } else {
-                loginStatus = cafeMenuView.printView();
+                cafeMenuView.printView();
             }
         }
     }

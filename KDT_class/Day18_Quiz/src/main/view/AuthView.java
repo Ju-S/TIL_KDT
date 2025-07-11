@@ -11,7 +11,7 @@ public class AuthView {
         this.userDAO = userDAO;
     }
 
-    public boolean printView() {
+    public void printView() {
         System.out.println("<<< 인증 >>>");
         System.out.println("1. 로그인");
         System.out.println("2. 회원가입");
@@ -19,19 +19,21 @@ public class AuthView {
 
         switch(Main.inputToInt(">> ")) {
             case 1:
-                return signIn();
+                signIn();
+                break;
             case 2:
-                return signUp();
+                signUp();
+                break;
             case 0:
                 System.out.println("시스템을 종료합니다...");
                 System.exit(0);
             default:
                 System.out.println("없는 메뉴 입니다.");
-                return false;
+                break;
         }
     }
 
-    public boolean signIn() {
+    public void signIn() {
         System.out.print("ID: ");
         String id = Main.inputToString();
 
@@ -43,10 +45,11 @@ public class AuthView {
         } else {
             System.out.println("아이디 또는 비밀번호가 맞지 않습니다.");
         }
-        return userDAO.signIn(id, password);
+        userDAO.signIn(id, password);
+        Main.loginStatus = true;
     }
 
-    public boolean signUp() {
+    public void signUp() {
         String id = "";
         while(id.isEmpty()) {
             System.out.print("ID: ");
@@ -62,6 +65,5 @@ public class AuthView {
 
         userDAO.signUp(id, password);
         System.out.println("회원가입 성공...");
-        return false;
     }
 }

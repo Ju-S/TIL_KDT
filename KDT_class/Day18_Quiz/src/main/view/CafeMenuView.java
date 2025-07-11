@@ -16,7 +16,7 @@ public class CafeMenuView {
         this.menuDAO = menuDAO;
     }
 
-    public boolean printView() {
+    public void printView() {
         System.out.println("<<< 카페 메뉴 관리 시스템 >>>");
         System.out.println("1. 신규 메뉴 등록");
         System.out.println("2. 메뉴 목록 출력");
@@ -27,42 +27,48 @@ public class CafeMenuView {
 
         switch(Main.inputToInt(">> ")) {
             case 1:
-                return registerMenu();
+                registerMenu();
+                break;
             case 2:
-                return printMenu(menuDAO.getMenuList());
+                printMenu(menuDAO.getMenuList());
+                break;
             case 3:
-                return printMenu(findMenuByName());
+                printMenu(findMenuByName());
+                break;
             case 4:
                 printMenu(menuDAO.getMenuList());
-                return modifyMenu(Main.inputToInt("수정할 메뉴의 ID를 입력하세요."));
+                modifyMenu(Main.inputToInt("수정할 메뉴의 ID를 입력하세요."));
+                break;
             case 5:
                 printMenu(menuDAO.getMenuList());
-                return removeMenu(Main.inputToInt("삭제할 메뉴의 ID를 입력하세요."));
+                removeMenu(Main.inputToInt("삭제할 메뉴의 ID를 입력하세요."));
+                break;
             case 0:
                 System.out.println("로그아웃 하였습니다..");
-                return false;
+                Main.loginStatus = false;
+                break;
             default:
                 System.out.println("없는 메뉴 입니다.");
-                return true;
+                break;
         }
     }
 
-    public boolean printMenu(Map<Integer, MenuDTO> menuList) {
+    public void printMenu(Map<Integer, MenuDTO> menuList) {
         Main.printDash();
         if(!menuList.isEmpty()) {
             System.out.println("ID\t\t이름\t\t\t가격\t\t출시일");
             Main.printDash();
             for (int key : menuList.keySet()) {
+                MenuDTO menu = menuList.get(key);
                 System.out.println(key + "\t" +
-                                    menuList.get(key).getName() + "\t" +
-                                    menuList.get(key).getPrice() + "\t" +
-                                    dateToString(menuList.get(key).getLaunchingDate()));
+                                    menu.getName() + "\t" +
+                                    menu.getPrice() + "\t" +
+                                    dateToString(menu.getLaunchingDate()));
             }
         } else {
             System.out.println("등록된 메뉴가 없습니다.");
         }
         Main.printDash();
-        return true;
     }
 
     public Map<Integer, MenuDTO> findMenuByName() {
@@ -71,29 +77,27 @@ public class CafeMenuView {
         return menuDAO.findMenuByName(name);
     }
 
-    public boolean removeMenu(int id) {
+    public void removeMenu(int id) {
         if(menuDAO.isExistMenu(id)) {
             menuDAO.removeMenu(id);
             System.out.println("메뉴가 삭제되었습니다.");
         } else {
             System.out.println("없는 메뉴입니다.");
         }
-        return true;
     }
 
-    public boolean modifyMenu(int id) {
+    public void modifyMenu(int id) {
         if(menuDAO.isExistMenu(id)) {
             menuDAO.modifyingMenu(id, inputMenuDTO());
             System.out.println("메뉴가 수정되었습니다.");
         } else {
             System.out.println("없는 메뉴입니다.");
         }
-        return true;
     }
 
-    public boolean registerMenu() {
+    public void registerMenu() {
         menuDAO.addMenu(inputMenuDTO());
-        return true;
+        System.out.println("신규 메뉴 등록...");
     }
 
     private MenuDTO inputMenuDTO() {
