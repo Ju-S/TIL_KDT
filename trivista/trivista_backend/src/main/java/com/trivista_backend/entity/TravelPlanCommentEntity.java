@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Table(name = "travel_plan_comment")
@@ -21,10 +20,11 @@ public class TravelPlanCommentEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "travel_plan_id")
     private TravelPlanEntity travelPlan;
 
+    @Setter
     @Column
     private String comment;
 

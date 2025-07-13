@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-@Table(name = "user_travel_plan")
-public class UserTravelPlanEntity {
+@Table(name = "user_liked_travel_plan")
+public class UserLikedTravelPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -5,22 +5,24 @@ import lombok.*;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-@Table(name = "accomodation")
+@Table(name = "accommodation")
 public class AccommodationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String description;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String address;
 }

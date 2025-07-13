@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Table(name = "restaurant")
@@ -18,12 +17,15 @@ public class RestaurantEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String description;
 
-    @Column
+    @Setter
+    @Column(nullable = false)
     private String address;
 }
