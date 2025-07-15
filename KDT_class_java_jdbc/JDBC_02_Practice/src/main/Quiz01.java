@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Quiz01 {
     static Scanner sc = new Scanner(System.in);
-    static MovieDAO movieDAO = new MovieDAO();
 
     // MVC ( Model / View / Controller )
     // Model : 비즈니스 로직과 데이터 작업
@@ -28,7 +27,7 @@ public class Quiz01 {
             try {
                 switch (selectedMenu) {
                     case 1 -> regMovie();  // 신규 영화 등록
-                    case 2 -> printMovieList(movieDAO.getAllMovies());  // 영화 목록 출력
+                    case 2 -> printMovieList(MovieDAO.getInstance().getAllMovies());  // 영화 목록 출력
                     case 3 -> searchMovies(); // 검색
                     case 4 -> updateMovie(); // 수정
                     case 5 -> removeMovie(); // 삭제
@@ -49,7 +48,7 @@ public class Quiz01 {
     // 영화 신규 등록
     public static void regMovie() {
         try {
-            movieDAO.addMovie(inputMovieInfo());
+            MovieDAO.getInstance().addMovie(inputMovieInfo());
             System.out.println("영화 등록 성공.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,15 +58,16 @@ public class Quiz01 {
 
     public static void updateMovie() {
         try {
-            printMovieList(movieDAO.getAllMovies());
+            printMovieList(MovieDAO.getInstance().getAllMovies());
             int targetId = inputToInt("수정할 영화 ID: ");
-            if (movieDAO.findMovieByID(targetId) != null) {
+            if (MovieDAO.getInstance().findMovieByID(targetId) != null) {
                 MovieDTO modifiedMovie = inputMovieInfo();
                 modifiedMovie.setId(targetId);
-                movieDAO.updateMovie(modifiedMovie);
+                MovieDAO.getInstance().updateMovie(modifiedMovie);
                 System.out.println("수정 성공..");
+            } else {
+                System.out.println("수정 실패..");
             }
-            System.out.println("수정 실패..");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("수정 실패..");
@@ -86,13 +86,14 @@ public class Quiz01 {
 
     public static void removeMovie() {
         try {
-            printMovieList(movieDAO.getAllMovies());
+            printMovieList(MovieDAO.getInstance().getAllMovies());
             int targetId = inputToInt("삭제할 영화 ID: ");
-            if (movieDAO.findMovieByID(targetId) != null) {
-                movieDAO.deleteMovieById(targetId);
+            if (MovieDAO.getInstance().findMovieByID(targetId) != null) {
+                MovieDAO.getInstance().deleteMovieById(targetId);
                 System.out.println("삭제 성공..");
+            } else {
+                System.out.println("삭제 실패..");
             }
-            System.out.println("삭제 실패..");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("삭제 실패..");
@@ -107,11 +108,11 @@ public class Quiz01 {
             switch (inputToInt(">> ")) {
                 case 1:
                     System.out.print("검색할 제목: ");
-                    printMovieList(movieDAO.findMoviesByTitle(sc.nextLine()));
+                    printMovieList(MovieDAO.getInstance().findMoviesByTitle(sc.nextLine()));
                     break outer;
                 case 2:
                     System.out.print("검색할 장르: ");
-                    printMovieList(movieDAO.findMoviesByGenre(sc.nextLine()));
+                    printMovieList(MovieDAO.getInstance().findMoviesByGenre(sc.nextLine()));
                     break outer;
                 default:
                     System.out.println("없는 메뉴입니다.\n다시 선택하세요.");
