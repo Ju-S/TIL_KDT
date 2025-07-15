@@ -20,4 +20,4 @@ Thumbs.db
 *.log
 
 # iml 파일 무시
-/*/*/.iml
+*.iml
