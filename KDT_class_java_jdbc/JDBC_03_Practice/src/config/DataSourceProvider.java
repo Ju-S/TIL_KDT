@@ -4,7 +4,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
 
-public class DataSourceProvider {
+public final class DataSourceProvider {
     // db연결
     private static BasicDataSource bds;
 
