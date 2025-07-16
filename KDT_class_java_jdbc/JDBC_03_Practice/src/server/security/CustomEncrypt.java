@@ -1,4 +1,4 @@
-package security;
+package server.security;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public final class CustomEncrypt {
     public static String encrypt(String original) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] bytes = original.getBytes(StandardCharsets.UTF_8);
             byte[] digest = md.digest(bytes);
 
@@ -18,7 +18,7 @@ public final class CustomEncrypt {
             return builder.toString();
 
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 암호화 실패", e);
+            throw new RuntimeException("SHA-512 암호화 실패", e);
         }
     }
 }

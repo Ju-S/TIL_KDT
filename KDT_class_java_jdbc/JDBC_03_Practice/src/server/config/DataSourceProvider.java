@@ -1,4 +1,4 @@
-package config;
+package server.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

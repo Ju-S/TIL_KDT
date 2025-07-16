@@ -1,4 +1,4 @@
-package dto;
+package server.dto;
 
 public class MemberDTO {
     private String id;
