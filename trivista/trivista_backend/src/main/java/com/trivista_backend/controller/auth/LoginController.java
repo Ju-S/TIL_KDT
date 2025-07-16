@@ -8,4 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class LoginController {
+    // 소셜 로그인 기능
+
+    // 일반 로그인 기능
 }
