@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            color: navy;
+        }
+
+        h3 {
+            color: tomato;
+        }
+
+        h3,
+        body>div>div {
+            margin: auto;
+        }
+
+        body>div {
+            border: 2px ridge #A0D9CE;
+            margin-top: 10px;
+            padding-left: 10px;
+            text-align: center;
+        }
+
+        body>div:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3 id="a">첫 번째 기사</h3>
+        <div>오늘의 주요 뉴스 요약입니다.</div>
+    </div>
+    <div>
+        <h3>기술 혁신</h3>
+        <div>최신 AI 기술 동향을 알아보세요.</div>
+    </div>
+    <div>
+        <h3>문화 소식</h3>
+        <div>새로운 전시회가 열렸습니다.</div>
+    </div>
+    <div>
+        <h3>스포츠 하이라이트</h3>
+        <div>어제의 경기 결과를 확인하세요.</div>
+    </div>
+
+    <!-- 1. article 에 border 주기 -->
+    <!-- 2. 각 article 에 마우스 올리면 pointer 커서에 배경색 gray -->
+    <!-- 3. 모든 제목은 글씨 색깔 tomato -->
+    <!-- 4. 모든 내용은 글씨 색깔 navy -->
+</body>
+
+</html>

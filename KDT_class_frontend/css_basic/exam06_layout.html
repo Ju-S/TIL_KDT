@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <style>
+        /* div {
+            border: 1px solid black;
+            margin-bottom: 10px;
+            display: inline;
+        } */
+        /* .box {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            float: left;
+        } */
+        .container{
+            width: 500px;
+            border: 2px solid red;
+            margin: auto;
+        }
+
+        div{
+            border: 1px solid black;
+        }
+
+        .box{
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML의 Layout 구성 역사 -->
+    <!-- 1. Table 태그를 활용한 구성 -->
+    <!-- 2. position 속성 -->
+    <!-- 3. div + float // span + display:inline -->
+    <!-- 4. display:flex <-- layout 구성 전용 문법 -->
+
+    <!-- div를 활용한 세로 3단 구성 및 가로 3단 구성 -->
+
+    <!-- normal flow layer -->
+    <!-- HTML에 존재하는 모든 태그는 display:inline 또는 display:block 둘 중 하나를 기본값으로 가진다. -->
+
+    <!-- display 속성이 inline 인 요소의 특성 -->
+    <!-- 가진 내용만큼의 넒이를 가지며 혼자 한 라인을 독점하지 않음 -->
+    <!-- 넒이와 높이 조절이 불가 -->
+
+    <!-- <input type="text"> -->
+    <!-- <span>Test1</span>
+    <span>Test2</span>
+    <span>Test3</span>
+    <span>Test4</span> -->
+
+    <!-- display속성이 block 인 요소의 특성 -->
+    <!-- 내용이 없으면 높이가 없음, 내용을 넣으면 내용만큼의 높이를 가짐 -->
+    <!-- 내용과 상관없이 넒이면에서 한줄을 독점하려는 성질을 가짐 -->
+    <!-- 넓이와 높이 조절이 가능 -->
+
+    <!-- 세로 3단 구성 -->
+    <div class="container">
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+    </div>
+</body>
+
+</html>

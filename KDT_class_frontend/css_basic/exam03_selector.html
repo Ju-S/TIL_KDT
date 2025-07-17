@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            color: #F2E3D5;
+            background-color: #012E40 !important;
+        }
+
+        p{
+            background-color: #012E40;
+        }
+
+        #p1{ /* # - id selector */
+            background-color: #024959;
+        }
+
+        .p2{ /* . - class selector */
+            background-color: #026773;
+        }
+
+        div{
+            background-color: #3CA6A6;
+        }
+
+        #custom{
+            background-color: #024959;
+        }
+    </style>
+</head>
+<body>
+    <!-- 태그의 ID값은 절대 중첩되지 않게 작성. -->
+    <!-- selector priority - 선택 범위가 좁을수록 우선순위가 높음 -->
+    <!-- '!important' > 'Inline Style' > '#' > '.' > '<tag>' > '*' -->
+    <!-- 같은 우선순위일 경우 나중에 작성된 style로 덮어진다. -->
+    <p id="p1">첫 번째 파라그래프</p>
+    <p class="p2">두 번째 파라그래프</p>
+    <div>DIV 태그</div><br>
+    <div class="p2" id="custom" style="background-color: #3CA6A6;">DIV 태그2</div>
+    <!-- inline style -->
+</body>
+</html>

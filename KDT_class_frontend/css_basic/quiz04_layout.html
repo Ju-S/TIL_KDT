@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .container{
+            overflow: hidden;
+            width: 600px;
+            margin: auto;
+            /* border: 3px solid red; */
+        }
+
+        .line{
+            height: 100px;
+            width: 100%;
+            /* border: 2px solid green; */
+            background-color: #F2CA7E;
+        }
+
+        .box{
+            float: left;
+            height: 100%;
+            /* border: 1px solid blue; */
+        }
+
+        #box1{
+            width: 20%;
+            background-color: #F2E4D8;
+        }
+
+        #box2{
+            width: 65%;
+            background-color: #A0D9CE;
+        }
+
+        #box3{
+            width: 15%;
+            background-color: #69BFB7;
+        }
+    </style>
+</head>
+<body>
+    <!-- 20% 65% 15% -->
+    <!--    100%     -->
+    <!-- height: 200px -->
+    <!-- width: 600px -->
+
+    <div class="container">
+        <div class="line">
+            <div class="box" id="box1">Box1</div>
+            <div class="box" id="box2">Box2</div>
+            <div class="box" id="box3">Box3</div>
+        </div>
+        <div class="line">Line2</div>
+    </div>
+</body>
+</html>

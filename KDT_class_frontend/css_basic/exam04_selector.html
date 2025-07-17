@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ' ' - Descendant Combinator(태그 아래 모든 타겟태그) */
+        /* '>' - Child Combinator(태그 바로 아래에 있는 타겟태그만) */
+        /* '+' - Next Sibling Combinator(태그 다음으로 선언된 첫번째 태그가 타겟태그인 경우) */
+        /* '~' - Subsequent-sibling Combinator(태그 다음으로 선언된 태그들이 타겟태그인 경우) */
+
+        div ~ p{
+            background-color: #026773;
+            color: #F2E3D5;
+        }
+
+        div + p{
+            background-color: #012E40;
+            color: #F2E3D5;
+        }
+
+        div p{
+            background-color: #024959;
+            color: #F2E3D5;
+        }
+
+        div > p{
+            background-color: #3CA6A6;
+            color: #F2E3D5;
+        }
+
+        p.temp{
+            background-color: #012E40;
+            color: #F2E3D5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 자손 선택자(child combinator) -->
+    <!-- 특정 태그 바로 아래 존재하는 대상을 선택할 때 사용 -->
+    <!-- 선택자의 우선순위는 서로 동일하다. -->
+    <div class="temp">
+        <p>DIV 내부 P 태그</p>
+        <span>
+            <p>DIV 내부 SPAN 내부 P 태그</p>
+        </span>
+    </div>
+
+    <p>DIV 외부 P 태그1</p>
+    <p>DIV 외부 P 태그2</p>
+    <p class="temp">DIV 외부 P 태그3</p>
+</body>
+</html>
