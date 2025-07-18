@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin: auto;
+            overflow: hidden;
+            width: 500px;
+            height: 600px;
+        }
+
+        .contents {
+            height: 90%;
+        }
+
+        .line {
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+
+        .box1 {
+            background-color: #3868A6;
+            height: 40%;
+        }
+
+        .box2 {
+            background-color: #C5D0D9;
+            height: 60%;
+        }
+
+        .box3 {
+            background-color: #4F6273;
+            height: 60%;
+        }
+
+        .box4 {
+            background-color: #F28729;
+            height: 40%;
+        }
+
+        .header {
+            overflow: hidden;
+            font-size: 30px;
+
+            background-color: #0D0D0D;
+            color: #C5D0D9;
+
+            height: 10%;
+        }
+
+        .nav {
+            /* display: flex가 적용된 요소에 사용 가능한 속성들도 있고, (justify-content, align-items 등..) */
+            /* display: flex가 적용된 parent 아래 child 요소들에게 사용 가능한 속성들도 있음.(flex) */
+            float: left;
+
+            width: 33.333333333333333333%;
+            height: 100%;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav:hover {
+            background-color: #C5D0D9;
+            color: #0D0D0D;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav" id="navMenu1">CSS</div>
+            <div class="nav" id="navMenu2">Layout</div>
+            <div class="nav" id="navMenu3">Practice</div>
+        </div>
+        <div contents class="contents">
+            <div class="line">
+                <div class="box box1"></div>
+                <div class="box box2"></div>
+            </div>
+            <div class="line">
+                <div class="box box3"></div>
+                <div class="box box4"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

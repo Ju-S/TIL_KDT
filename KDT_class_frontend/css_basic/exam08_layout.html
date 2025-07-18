@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        ul, li{
+            border: 1px solid #4F6273;
+        }
+
+        ul{
+            overflow: hidden;
+
+            padding: 0px;
+            margin: 0px;
+
+            width: 100%;
+            height: 40px;
+        }
+
+        li{
+            list-style-type: none;
+            float: left;
+            width: 25%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #4F6273;
+            color: #C5D0D9;
+
+            transition-duration: 200ms;
+        }
+
+        li:hover{
+            cursor: pointer;
+            background-color: #C5D0D9;
+            color: #4F6273;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="navItem">Home</li>
+        <li class="navItem">About</li>
+        <li class="navItem">Portfolio</li>
+        <li class="navItem">Contact Us</li>
+    </ul>
+</body>
+
+</html>

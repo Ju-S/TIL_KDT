@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 전체 container */
+        .container {
+            margin: auto;
+            width: 800px;
+            height: 600px;
+        }
+
+        /* 헤더 */
+        .header {
+            border: 1px solid #403023;
+            overflow: hidden;
+            height: 20%;
+        }
+
+        .header>.menu {
+            border: 1px solid #403023;
+            float: left;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        .header>.logo {
+            width: 20%;
+        }
+
+        .header>.title {
+            width: 65%;
+        }
+
+        .header>.reserved {
+            width: 15%;
+        }
+
+        /* 네비게이션 */
+        .navCon {
+            height: 5%;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul,
+        li {
+            border: 1px solid #8C6A56;
+        }
+
+        ul {
+            overflow: hidden;
+
+            padding: 0px;
+            margin: 0px;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        li {
+            list-style-type: none;
+            float: left;
+            width: 25%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #8C6A56;
+            color: #F2EAD0;
+
+            transition-duration: 200ms;
+        }
+
+        li:hover {
+            cursor: pointer;
+            background-color: #F2EAD0;
+            color: #8C6A56;
+        }
+
+        /* 컨텐츠 */
+        .contents {
+            border: 1px solid #403023;
+            overflow: hidden;
+            height: 60%;
+        }
+
+        .contents>.content {
+            border: 1px solid #403023;
+            float: left;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        /* 메인 컨텐츠 */
+        .contents>.mainContent {
+            width: 70%;
+        }
+
+        /* 사이드 컨텐츠 */
+        .contents>.side {
+            display: block;
+            width: 30%;
+        }
+
+        /* 로그인박스 */
+        .loginBox {
+            width: 100%;
+            height: 30%;
+
+            overflow: hidden;
+        }
+
+        .loginHeader {
+            
+            border: 1px solid #403023;
+            width: 100%;
+            height: 25%;
+
+            background-color: #d8955e;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loginInput {
+            border: 1px solid #403023;
+            width: 100%;
+            height: 50%;
+        }
+
+        .loginInput>.loginInputText {
+            float: left;
+            width: 70%;
+            height: 100%;
+        }
+
+        .loginInput>.loginInputText>input {
+            border: 1px solid #403023;
+            width: 100%;
+            height: 50%;
+
+            background-color: #f1eee3;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loginInput>.loginSubmit {
+            border: 1px solid #403023;
+            width: 30%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loginInput>.loginSubmit>button {
+            width: 100%;
+            height: 100%;
+
+            background-color: #F2EAD0;
+            color: #26250F;
+            border: none;
+        }
+
+        .loginInput>.loginSubmit>button:hover {
+            background-color: #8C6A56;
+            color: #F2EAD0;
+
+            transition-duration: 200ms;
+        }
+
+        .loginFooter {
+            border: 1px solid #403023;
+            width: 100%;
+            height: 25%;
+
+            background-color: #d8955e;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loginFooter>a{
+            color: #26250F;
+            text-decoration-line: none;
+        }
+
+        /* 이메일박스 */
+        .contents>.side>.emailBox {
+            border: 1px solid #403023;
+            width: 100%;
+            height: 70%;
+        }
+
+        /* 푸터 */
+        .footer {
+            border: 1px solid #403023;
+            height: 15%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="menu logo"><img src="../html_basic/giphy.gif" style="width: 100%;"></div>
+            <div class="menu title">Title</div>
+            <div class="menu reserved">Reserved</div>
+        </div>
+
+        <div class="navCon">
+            <ul class="nav">
+                <li class="navItem">Home</li>
+                <li class="navItem">About</li>
+                <li class="navItem">Portfolio</li>
+                <li class="navItem">Contact Us</li>
+            </ul>
+        </div>
+
+        <div class="contents">
+            <div class="content mainContent">Contents</div>
+            <div class="content side">
+                <div class="loginBox">
+                    <div class="loginHeader">Login</div>
+                    <div class="loginInput">
+                        <div class="loginInputText">
+                            <input type="text" placeholder="input your ID">
+                            <input type="password" placeholder="input your PW">
+                        </div>
+                        <div class="loginSubmit">
+                            <button type="submit">로그인</button>
+                        </div>
+                    </div>
+                    <div class="loginFooter">
+                        <a href="#">회원가입</a>
+                        /
+                        <a href="#">비밀번호찾기</a>
+                    </div>
+                </div>
+                <div class="emailBox">EmailBox</div>
+            </div>
+        </div>
+
+        <div class="footer">Footer</div>
+    </div>
+</body>
+
+</html>
