@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}
+        .container{
+            border: 1px solid black;
+
+            width: 500px;
+            height: 2000px;
+
+            margin: auto;
+        }
+
+        .sideBar {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+
+            overflow: hidden;
+            
+            position: fixed;
+
+            background-color: #3CA6A6;
+            
+            width: 150px;
+            height: 400px;
+
+            display: flex;
+            flex-direction: column;
+
+            top: 200px;
+            left: -120px;
+
+            transition-duration: 300ms;
+        }
+
+        .sideBar:hover {
+            transform: translate(120px, 0px);
+        }
+
+        .menu {
+            width: 100%;
+
+            color: #F2E3D5;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex: 1;
+        }
+
+        .menu:hover {
+            background-color: #026773;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sideBar">
+        <div class="menu">Home</div>
+        <div class="menu">AboutMe</div>
+        <div class="menu">Portfolio</div>
+        <div class="menu">Contact</div>
+    </div>
+    <div class="container"></div>
+</body>
+</html>

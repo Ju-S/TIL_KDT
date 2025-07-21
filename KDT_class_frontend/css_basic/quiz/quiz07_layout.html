@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LayoutQuiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             box-sizing: border-box;
@@ -19,13 +22,11 @@
 
         /* 헤더 */
         .header {
-            border: 1px solid #403023;
             overflow: hidden;
             height: 20%;
         }
 
         .header>.menu {
-            border: 1px solid #403023;
             float: left;
 
             display: flex;
@@ -97,13 +98,11 @@
 
         /* 컨텐츠 */
         .contents {
-            border: 1px solid #403023;
             overflow: hidden;
             height: 60%;
         }
 
         .contents>.content {
-            border: 1px solid #403023;
             float: left;
 
             display: flex;
@@ -116,6 +115,51 @@
         /* 메인 컨텐츠 */
         .contents>.mainContent {
             width: 70%;
+            height: 100%;
+
+            display: block;
+
+            overflow: hidden;
+        }
+
+        /* 큰 이미지 */
+        .mainContent>.mainImageContainer {
+
+            width: 70%;
+            height: 100%;
+
+            float: left;
+        }
+
+        .mainImageContainer>img {
+            margin: 2.5%;
+
+            border-radius: 5px;
+
+            width: 95%;
+            height: auto;
+        }
+
+        /* 작은 이미지 */
+        .mainContent>.smImageContainer {
+            width: 30%;
+            height: 100%;
+
+            float: left;
+        }
+
+        .smImageContainer>.smImg {
+            width: 100%;
+            height: 33.33333333333333333333333333%;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .smImageContainer>.smImg>img {
+            margin: auto;
+            border-radius: 5px;
+            width: 90%;
         }
 
         /* 사이드 컨텐츠 */
@@ -133,7 +177,6 @@
         }
 
         .loginHeader {
-            
             border: 1px solid #403023;
             width: 100%;
             height: 25%;
@@ -144,7 +187,6 @@
         }
 
         .loginInput {
-            border: 1px solid #403023;
             width: 100%;
             height: 50%;
         }
@@ -201,7 +243,7 @@
             align-items: center;
         }
 
-        .loginFooter>a{
+        .loginFooter>a {
             color: #26250F;
             text-decoration-line: none;
         }
@@ -211,15 +253,47 @@
             border: 1px solid #403023;
             width: 100%;
             height: 70%;
+
+            margin: auto;
+
+        }
+
+        .emailBox>.emailList>table {
+            width: 100%;
+            height: 100%;
+        }
+
+        .emailBox>.emailList {
+            width: 100%;
+            height: 90%;
+            overflow: auto;
+        }
+
+        .emailBox>.emailTitle>img {
+            width: 10%;
+        }
+
+        .emailBox>.emailTitle>p {
+            margin: 0px;
+        }
+
+        .emailBox>.emailTitle {
+            background-color: #F2EAD0;
+            width: 100%;
+            height: 10%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* 푸터 */
         .footer {
-            border: 1px solid #403023;
+            padding: 10px;
             height: 15%;
 
             display: flex;
-            justify-content: center;
+            justify-content: left;
             align-items: center;
         }
     </style>
@@ -228,8 +302,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="menu logo"><img src="../html_basic/giphy.gif" style="width: 100%;"></div>
-            <div class="menu title"><img src="title.png" style="width: 100%;"></div>
+            <div class="menu logo"><img src="../../html_basic/giphy.gif" style="width: 100%;"></div>
+            <div class="menu title"><img src="img/title.png" style="width: 100%;"></div>
             <div class="menu reserved">Reserved</div>
         </div>
 
@@ -244,16 +318,18 @@
 
         <div class="contents">
             <div class="content mainContent">
-                <div class="mainImageContainer"><img></div>
+                <div class="mainImageContainer">
+                    <img src="img/mainImg1.jpg">
+                </div>
                 <div class="smImageContainer">
-                    <div class="smImage"><img></div>
-                    <div class="smImage"><img></div>
-                    <div class="smImage"><img></div>
+                    <div class="smImg"><img src="img/smImg1.jpg"></div>
+                    <div class="smImg"><img src="img/smImg2.jpg"></div>
+                    <div class="smImg"><img src="img/smImg3.jpg"></div>
                 </div>
             </div>
             <div class="content side">
                 <div class="loginBox">
-                    <div class="loginHeader">Login</div>
+                    <div class="loginHeader"><i class="fa-solid fa-user" style="margin-right: 3px;"></i>Login</div>
                     <div class="loginInput">
                         <div class="loginInputText">
                             <input type="text" placeholder="input your ID">
@@ -269,11 +345,73 @@
                         <a href="#">비밀번호찾기</a>
                     </div>
                 </div>
-                <div class="emailBox">EmailBox</div>
+                <div class="emailBox">
+                    <div class="emailTitle">
+                        <i class="fa-solid fa-envelope fa-fade" style="margin-right: 3px;"></i>
+                        MailBox
+                    </div>
+                    <div class="emailList">
+                        <table border="1">
+                            <tr>
+                                <td>1</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>tester</td>
+                                <td>testMsg</td>
+                                <td>2025.07.18</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="footer">Footer</div>
+        <div class="footer">©KDT Corp.</div>
     </div>
 </body>
 

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: relative;
+            border: 3px solid black;
+            margin: auto;
+
+            width: 600px;
+            height: 600px;
+
+            overflow: hidden;
+        }
+
+        .image {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            z-index: 0;
+        }
+
+        .blur {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            z-index: 1;
+
+            background-color: #00000000;
+
+            transition-duration: 400ms;
+
+            color: #ffffff00;
+        }
+
+        .blur:hover {
+            background-color: #00000070;
+            color: #ffffff;
+        }
+
+        .title{
+            width: 100%;
+            height: 50%;
+            font-size: 52px;
+            margin:0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .detail{
+            width: 100%;
+            height: 50%;
+            font-size: 16px;
+            margin:0px;
+
+            text-align: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: top;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="blur">
+            <p class="title">Lizard</p>
+            <p class="detail">Lizard is the common name used for all squamate reptiles other than snakes<br>
+                (and to a lesser extent amphisbaenians),<br>
+                encompassing over 7,000 species,[1] ranging across all continents except Antarctica,<br>
+                as well as most oceanic island chains.<br>
+                The grouping is paraphyletic as some lizards are more closely<br>
+                related to snakes than they are to other lizards.<br>
+                Lizards range in size from chameleons and geckos<br>
+                a few centimeters long to the 3-meter-long Komodo dragon.
+            </p>
+        </div>
+        <div class="image"><img src="img/mainImg1.jpg"></div>
+    </div>
+</body>
+
+</html>

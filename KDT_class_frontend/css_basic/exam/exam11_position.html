@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}
+        div{border: 1px solid black;}
+        .container{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            /* absolute가 적용된 요소의 부모 요소 중, static이 아닌 처음 만나는 parent 요소를 기준 */
+            position: absolute;
+            left: 150px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>exam10</title>
+    <style>
+        *{box-sizing: border-box;}
+        div{border:1px solid black;}
+        .container{
+            width: 300px;
+            height:300px;
+        }
+        .box{
+            width:100px;
+            height: 100px;
+        }
+
+        #box1{
+            background-color: #ff0000;
+            position: relative;
+            left: 50px;
+            top: 50px;
+        }
+        /* position:static요소가 붙어있으면 static이 붙지않은 요소위에 올라올 수 없다. */
+        /* position은 기본 static이다. */
+
+        #box2 {
+            background-color: #0000ff;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- Position 속성 -->
+    <!-- 특정 지은 요소의 위치를 조정하기 위한 속성 값 -->
+    <!-- 대표적으로 satic ,relative, absolute, fixed) -->
+    
+    <div class="container">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+    </div>
+</body>
+</html>
