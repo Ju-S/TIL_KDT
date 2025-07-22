@@ -1,0 +1,97 @@
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.mainImg {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+
+    top: 120px;
+    left: 760px;
+}
+
+.mainImg>img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 20%;
+    /* border: 1px solid #23260F; */
+    border-radius: 5px;
+}
+
+.subImgContainer {
+    position: absolute;
+    width: 920px;
+    height: 250px;
+
+    top: 590px;
+    left: 505px;
+
+    display: flex;
+}
+
+.subImgContainer>.subImg {
+    flex: 1;
+    height: auto;
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+    float: left;
+}
+
+.subImgContainer>.subImg>img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 30%;
+    /* border: 1px solid #23260F; */
+    border-radius: 5px;
+}
+
+#subImg2 {
+    position: relative;
+    /* top: 40px; */
+}
+
+.description {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: #f5f4ee00;
+    font-size: 24px;
+
+    transition-duration: 300ms;
+    border-radius: 5px;
+}
+
+.description>span>a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #f5f4ee00;
+
+    transition-duration: 300ms;
+}
+
+.description:hover{
+    background: #23260fab;
+    color: #f5f4ee;
+}
+
+.description:hover a{
+    color: #9BA7BF;
+}
+
+#subImg1>.description, #subImg3>.description {
+    width: 266px;
+}

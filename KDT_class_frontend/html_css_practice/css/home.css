@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.mainNMK {
+    width: 100%;
+    height: 920px;
+
+    overflow: hidden;
+}
+
+.mainNMK>img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.mainLouvre {
+    width: 100%;
+    height: 850px;
+
+    overflow: hidden;
+}
+
+.mainLouvre>img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+}
+
+.description {
+    width: 100%;
+    height: 10%;
+  
+    color: #23260F;
+
+    text-align: center;
+    font-size: 16px;
+
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow {
+    width: 100%;
+    height: 10%;
+    
+    color: #23260F;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow>img {
+    width: 100px;
+    height: 50%;
+}
+
+.footer{
+    width: 100%;
+    height: 100px;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 32px;
+
+    white-space: pre;
+}
+
+.footer>a{
+    color: #23260F;
+    text-decoration: none;
+}

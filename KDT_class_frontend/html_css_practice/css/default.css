@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'MaruburyFont';
+    src: url('../font/MaruBuri-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MaruburyFontBold';
+    src: url('../font/MaruBuri-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-color: #f5f4ee;
+    color: #23260F;
+    font-family: 'MaruburyFont', serif;
+}
