@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+
+        .container {
+            width: 200px;
+            height: 150px;
+
+            background-color: white;
+
+            transition-duration: 0.5s;
+        }
+
+        @media (min-width: 601px) {
+            .container {
+                width: 400px;
+                height: 250px;
+
+                background-color: gray;
+            }
+        }
+
+        @media (min-width: 801px) {
+            .container {
+                width: 600px;
+                height: 400px;
+
+                background-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive Web (반응형 웹) -->
+    <!-- 사용자가 사용하는 장치 display의 크기에 따라 웹 구성이 반응하는 기술 -->
+    <!-- 기본적으로 media-query가 핵심 기술 -> bootstrap / mui 등등.. -->
+    <div class="container">
+
+    </div>
+</body>
+</html>
