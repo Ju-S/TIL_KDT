@@ -1,0 +1,159 @@
+.container-fluid {
+    overflow: hidden;
+}
+
+.description {
+    width: 100%;
+    height: 10%;
+
+    color: #23260F;
+
+    text-align: center;
+    font-size: 16px;
+
+    margin-top: 10px;
+}
+
+.arrow>img {
+    width: 100px;
+    height: 50%;
+    color: #23260F;
+}
+
+.footer {
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 32px;
+
+    white-space: pre;
+}
+
+.footer>a {
+    color: #23260F;
+    text-decoration: none;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 30px;
+    border-top: 0px;
+    border-bottom: 0px;
+
+    transition: all 500ms ease-in-out;
+}
+
+.carousel-indicators .active {
+    width: 30px;
+    height: 10px;
+
+    background-color: #23260F;
+}
+
+.carousel-inner .carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center 10%;
+}
+
+.nmk-inner .carousel-item {
+    width: 100%;
+    padding-top: 97.8%;
+    position: relative;
+    overflow: hidden;
+}
+
+.louvre-inner .carousel-item {
+    width: 100%;
+    padding-top: 116.7%;
+    position: relative;
+    overflow: hidden;
+}
+
+.louvreHomeImg{
+    width: 100%;
+    padding-top: 58.8%;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.louvreHomeImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center 10%;
+}
+
+.nmkHomeImg{
+    margin-top: 52px;
+    width: 100%;
+    padding-top: 49.3%;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.nmkHomeImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center 10%;
+}
+
+.mainNMK>.col>.row>.col-md-4 {
+    margin-top: 56px;
+}
+
+.mainLouvre>.col>.row>.col-md-4 {
+    margin-top: 4px;
+}
+
+.carousel {
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .mainNMK>.nmkImg {
+        width: 100%;
+    }
+
+    .mainNMK>.nmkImg>.row>.col>img {
+        object-fit: cover;
+        aspect-ratio: 0.7;
+        object-position: 10% center;
+    }
+
+    .mainLouvre>.louvreImg {
+        width: 100%;
+    }
+
+    .mainLouvre>.louvreImg>.row>.col>img {
+        object-fit: cover;
+        aspect-ratio: 0.7;
+        object-position: 10% center;
+    }
+
+    .mainNMK>.col>.row>.col-md-4 {
+        margin-top: 0px;
+    }
+
+    .mainLouvre>.col>.row>.col-md-4 {
+        margin-top: 0px;
+    }
+}

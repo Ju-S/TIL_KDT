@@ -1,0 +1,32 @@
+.dropdown-menu {
+    border: none;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.dropdown-item:active {
+    color: var(--bs-dropdown-link-hover-color);
+    background-color: var(--bs-dropdown-link-hover-bg);
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+
+    background-color: #f5f4ee;
+}
+
+@font-face {
+    font-family: 'MaruburyFontBold';
+    src: url('../font/MaruBuri-Bold.otf');
+}
+
+.nav-link.active {
+    font-family: 'MaruburyFontBold';
+}
