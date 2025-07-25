@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 600px;
+            height: 300px;
+
+            margin: auto;
+        }
+
+        .container div {
+            width: 100%;
+            height: 100px;
+
+            border: 1px solid black;
+
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container div input,
+        .result {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input"><input type="text" id="password1" placeholder="PW입력"></div>
+        <div class="input"><input type="text" id="password2" placeholder="PW확인"></div>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        let pw1 = document.getElementById("password1");
+        let pw2 = document.getElementById("password2");
+
+        let result = document.getElementById("result");
+
+        pw2.onkeyup = () => {
+            if(pw1.value == pw2.value) {
+                result.innerHTML = "패스워드가 일치합니다.";
+                result.className = "correct";
+            } else {
+                result.innerHTML = "패스워드가 일치하지 않습니다.";
+                result.className = "fail";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 함수 선언은 hoisting 에 의해 자동으로 최상위로 이동 되므로 선언 위치 무관
+        function plus(num1, num2) {
+            return num1 + num2;
+        }
+
+        let minus = function (num1, num2) { return num1 - num2; }
+
+        a = plus;
+
+        console.log(a(3, 2));
+
+        // First Class Function - 자바스크립트의 함수는 일반 자료형의 값들과 마찬가지로 값으로 취급할 수 있음
+        // ()가 붙으면 함수 콜, 안붙으면 함수의 주소 값을 리턴한다
+
+        function test(func, num1, num2) {
+            return func(num1, num2);
+        }
+
+        console.log(test((num1, num2) => num1 - num2, 15, 20)); // callback function: 함수가 인자로 전달되어 사용되어지는 함수
+
+        console.log(test(plus, 10, 5));
+
+        function test2(){
+            return function (num1, num2) {
+                return num1 / num2;
+            }
+        }
+
+        let result = test2()(10, 5);
+        console.log(result);
+    </script>
+</body>
+
+</html>

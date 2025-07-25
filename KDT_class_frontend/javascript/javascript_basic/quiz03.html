@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let row = prompt("행");
+        let col = prompt("열");
+
+        document.write("<table border=\"1\">" );
+        for (let i = 0; i < row; i++) {
+            document.write("<tr>");
+            for (let j = 0; j < col; j++) {
+                document.write("<td>" + (i * col + j + 1) + "</td>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+    </script>
+</body>
+
+</html>

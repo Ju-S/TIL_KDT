@@ -1,5 +1,6 @@
-.dropdown-menu {
+.dropdown-menu.show {
     border: none;
+    z-index: 1050;
 }
 
 .navbar-toggler {
@@ -21,7 +22,7 @@
 
     background-color: #f5f4ee;
 
-    z-index: 1000;
+    z-index: 1050;
 }
 
 @font-face {

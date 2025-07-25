@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 좋아하는 과일을 선택하세요.
+        // 1. 사과 / 2. 포도 / 3. 바나나
+        // -> '과일이름'은 영어로 '과일이름영어로'입니다.
+
+        let fruitEng = '';
+        let fruit = '';
+
+        let selectedMenu = prompt("좋아하는 과일을 선택하세요.\n1.사과 / 2.포도 / 3.바나나")
+
+        if (selectedMenu == 1) {
+            fruitEng = 'Apple';
+            fruit = '사과';
+        } else if (selectedMenu == 2) {
+            fruitEng = 'Grape';
+            fruit = '포도';
+        } else if (selectedMenu == 3) {
+            fruitEng = 'Banana';
+            fruit = '바나나';
+        }
+        // switch (selectedMenu) {
+        //     case 1:
+        //         fruitEng = 'Apple';
+        //         fruit = '사과';
+        //         break;
+        //     case 2:
+        //         fruitEng = 'Grape';
+        //         fruit = '포도';
+        //         break;
+        //     case 3:
+        //         fruitEng = 'Banana';
+        //         fruit = '바나나';
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        document.write(fruit + "은 영어로 " + fruitEng + "입니다.");
+
+    </script>
+</body>
+
+</html>

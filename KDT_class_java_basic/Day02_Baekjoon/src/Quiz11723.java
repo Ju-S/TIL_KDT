@@ -22,22 +22,22 @@ public class Quiz11723 {
     private static void processCommand(StringTokenizer st) {
         String command = st.nextToken();
         switch (command) {
-            case "add" :
+            case "add":
                 add(Integer.parseInt(st.nextToken()));
                 break;
-            case "remove" :
+            case "remove":
                 remove(Integer.parseInt(st.nextToken()));
                 break;
-            case "check" :
+            case "check":
                 check(Integer.parseInt(st.nextToken()));
                 break;
-            case "toggle" :
+            case "toggle":
                 toggle(Integer.parseInt(st.nextToken()));
                 break;
-            case "all" :
+            case "all":
                 all();
                 break;
-            case "empty" :
+            case "empty":
                 empty();
                 break;
         }

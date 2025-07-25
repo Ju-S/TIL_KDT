@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 1px solid black;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="inputText">
+    <button id="btn">Apply</button>
+
+    <div class="container" id="textBox">
+    </div>
+
+    <script>
+        // 자바스크립트 이벤트
+        // 이벤트: 브라우저 상에서 발생하는 모든 종류의 사용자 행동
+        // Event Source: 이벤트를 유발시킨 주체 요소
+        // Event Listener: 이벤트 감시자(이벤트 발생여부를 감시하는 시스템)
+
+        let btn = document.getElementById("btn");
+        let inputText = document.getElementById("inputText");
+        let textBox = document.getElementById("textBox");
+
+        btn.onclick = () => {
+            textBox.innerHTML = inputText.value;
+            inputText.value = null;
+        }
+    </script>
+</body>
+
+</html>
