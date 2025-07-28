@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>목록</legend>
+        <div id="box"></div>
+    </fieldset>
+
+    <div class="insert">
+        <input type="text" id="insertText" placeholder="추가할 단어를 입력하세요.">
+        <button id="insertBtn">추가하기</button>
+    </div>
+
+    <div class="delete">
+        <input type="text" id="deleteText" placeholder="삭제할 단어를 입력하세요.">
+        <button id="deleteBtn">삭제하기</button>
+    </div>
+
+    <script>
+        let box = document.getElementById("box");
+
+        let insertText = document.getElementById("insertText");
+        let insertBtn = document.getElementById("insertBtn");
+
+        let deleteText = document.getElementById("deleteText");
+        let deleteBtn = document.getElementById("deleteBtn");
+
+        let list = [];
+
+        insertBtn.onclick = function () {
+            if (valueIsValid(insertText)) {
+                list.push(insertText.value);
+                insertText.value = null;
+                renderList();
+            }
+        }
+
+        deleteBtn.onclick = function () {
+            if (valueIsValid(deleteText)) {
+                let targetIndex = list.indexOf(deleteText.value);
+
+                targetIndex != -1 ?
+                    list.splice(targetIndex, 1) :
+                    alert("삭제할 단어를 찾지 못하였습니다.");
+
+                deleteText.value = null;
+                renderList();
+            }
+        }
+
+        function renderList() {
+            box.innerHTML = list.join(", ");
+        }
+
+        function valueIsValid(element) {
+            return element.value ?
+                true :
+                (() => { alert("값을 입력해주세요."); return false; })();
+        }
+    </script>
+</body>
+
+</html>

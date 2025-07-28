@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        // slice: 배열 내에서 특정 범위내 요소들을 추출하는 기능 ( 원본 수정 x )
+        // 첫 번째 파라미터 : 시작 위치 (Inclusive - 첫 번째 요소 포함)
+        // 두 번째 파라미터 : 끝 위치 (Exclusive - 끝 요소는 포함 x)
+
+        console.log(arr.slice(1, 4));
+
+        // splice: 배열 내에서 특정 시작점부터 특정개수만큼의 데이터를 삭제하거나, 데이터를 끼워넣는 함수 (원본 수정 o)
+        // 첫 번째 파라미터 : 시작 Index (Inclusive)
+        // 두 번째 파라미터 : 삭제 할 item 개수
+        // 세 번째 파라미터 : 시작 Index 지점에 추가 또는 교체할 데이터
+
+        // console.log(arr.splice(1, 0, 4, 3, 2));
+        arr.splice(4, 0, 10);
+        console.log(arr);
+
+        
+    </script>
+</body>
+
+</html>

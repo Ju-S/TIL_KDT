@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="zonecode" placeholder="우편번호 입력" readonly><button id="search">우편번호 검색</button><br>
+    <input type="text" id="address1" placeholder="상세주소1" readonly><br>
+    <input type="text" id="address2" placeholder="상세주소2">
+    <script>
+        let post = new daum.Postcode({
+            oncomplete: function (data) {
+                let zonecode = document.getElementById("zonecode");
+                let address1 = document.getElementById("address1");
+
+                zonecode.value = data.zonecode;
+                address1.value = data.address;
+            }
+        });
+
+        let searchBtn = document.getElementById("search");
+
+        searchBtn.onclick = () => { post.open() };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let person = {
+            name: "Jack",
+            contact: "01012344321",
+            hello: function () {
+                console.log("Hello My name is " + this.name);
+            },
+            hobby: ["Java", "Guitar", "Book"],
+            score: {
+                kor: 100,
+                eng: 80,
+                math: 90
+            },
+            favoriteFruits: function () {
+                return ["Apple", "Stawberry", "Blueberry"];
+            },
+            abilities: function () {
+                return {
+                    java: function () { return 100; },
+                    css: function () { return 90; },
+                    js: function () { return 70; }
+                }
+            },
+            helloTo: function (friends) {
+                console.log("Hello " + friends[0].name);
+            },
+            Drone: function () {
+                this.brand = "Samsung";
+                this.price = 200000;
+            }
+        };
+        // 취미 중 2번째 취미를 출력해보세요.
+        console.log(person.hobby[1]);
+
+        // 영어 점수를 출력해보세요.
+        console.log(person.score.eng);
+
+        // Jack이 좋아하는 3번째 과일을 출력
+        console.log(person.favoriteFruits()[2]);
+
+        // Jack CSS 점수를 출력해보세요.
+        console.log(person.abilities().css());
+
+        let friends = [];
+        friends[0] = {};
+        friends[0].name = "James";
+        person.helloTo(friends); // Hello James 가 출력되게 파라미터를 전달해보세요.
+
+        let drone = new person.Drone();
+        console.log(drone.brand + " : " + drone.price);
+
+        let shop = {
+            menu: {
+                bread: ["Muffin", "Tart", "Morning Bread"],
+                beverage: ["Americano", "Cafe Latte", "Orange Juice"]
+            },
+            employee: [
+                function () {
+                    return { name: "jack", age: 25, contact: "01012344321" };
+                },
+                {
+                    name: "susan",
+                    age: 22,
+                    contact: "01043211234"
+                }
+            ]
+        };
+        // 가게 메뉴 중 빵 종류 출력해보기.
+
+        // 가게 메뉴 중 음료수 종류 출력해보기.
+
+        // 가게 직원 중 Susan 직원의 나이 출력해보기
+
+        // 가게 직원 중 jack 직원의 연락처 출력해보기.
+
+
+    </script>
+</body>
+
+</html>

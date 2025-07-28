@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 자바스크립트 배열
+        // [] - 자바스크립트 배열 표현
+
+        let arr = ["Apple", "Orange", "Mango"];
+        arr[3] = 30;
+        arr[4] = (text) => {
+            console.log(text);
+        }
+        arr[5] = [1, 2, 3];
+        arr[5][3] = "hello";
+        arr[5][4] = [6, 7, 8];
+        arr[6] = document.getElementById("box");
+
+        arr.forEach(item => {
+            console.log(item);
+        });
+        arr[4]("Hello, World!");
+        arr[6].innerHTML = arr[5];
+        arr[7] = () => {
+
+        }
+
+        // 화살표 함수 () => {}는 콜백함수(e.g, foreach, map, list등...)에서 사용하면 간결하게 정의 가능하다.
+        // 다만, this의 범위가 자신의 외부 컨텍스트의 this를 고정한다.(생성자로 사용 불가)
+        // function(){}은 this가 호출 시점에 따라 동적으로 바인딩됨.(콜러의 this를 뜻함)
+
+    </script>
+</body>
+
+</html>

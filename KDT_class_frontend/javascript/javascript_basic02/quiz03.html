@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let shop = {
+            menu: {
+                bread: ["Muffin", "Tart", "Morning Bread"],
+                beverage: ["Americano", "Cafe Latte", "Orange Juice"]
+            },
+            employee: [
+                function () {
+                    return { name: "jack", age: 25, contact: "01012344321" };
+                },
+                {
+                    name: "susan",
+                    age: 22,
+                    contact: "01043211234"
+                }
+            ]
+        };
+        // 가게 메뉴 중 빵 종류 출력해보기.
+        console.log(shop.menu.bread.join(", "));
+
+        // 가게 메뉴 중 음료수 종류 출력해보기.
+        console.log(shop.menu.beverage.join(", "));
+
+        // 가게 직원 중 Susan 직원의 나이 출력해보기
+        console.log(shop.employee[1].age);
+
+        // 가게 직원 중 jack 직원의 연락처 출력해보기.
+        console.log(shop.employee[0]().contact);
+    </script>
+
+</body>
+
+</html>

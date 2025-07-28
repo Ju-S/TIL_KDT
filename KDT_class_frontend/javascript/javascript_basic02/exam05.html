@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트 객체
+        // 1. 기본객체 Object를 사용하는 방법 ( 사용 빈도 및 활용도 낮음 )
+        // let std = new Object();
+        // std.id = 1001;
+        // std.name = "Tom";
+        // std.kor = 100;
+        // std.eng = 90;
+        // std.math = 80;
+
+        // console.log(std.id);
+        // console.log(std.name);
+
+
+        // 2. 생성자 함수를 사용하는 방법 ( 사용 빈도는 30%, 활용도 높음 )
+        // 자바스크립트에 존재하는 함수는 함수인 동시에 생성자이기도 함.
+        // function Student(id ,name){
+        //     this.id = id;
+        //     this.name = name;
+        //     this.greeting = function() {
+        //         alert("Hello~ My name is " + this.name);
+        //     }
+        // }
+
+        // let std = new Student(1, "tom");
+        // console.log(std);
+        // std.greeting();
+
+
+        // 3. 객체 Literal을 사용하는 방법 ( 사용 빈도는 70%, 활용도 높음 )
+        // 객체: {}, 배열: [], 함수: ()
+        // JSON: JavaScript Object Notation - 경량 데이터 교환 형식
+        // 직렬화: serialization (서로 다른 언어, 플랫폼 간 데이터 교환을 위해 고유의 메모리 구조를 문자열로 변환하는 과정)
+        // XML
+        // 역직렬화: deserialization (직렬화로 문자열로 변환된 데이터를 다시 원래의 객체나 데이터 구조로 복원하는 과정)
+        // let std = {
+        //     id: 1001,
+        //     name: "tom",
+        //     kor: 100,
+        //     greeting: function() {
+        //         alert("My name is " + this.name);
+        //     },
+        //     1: "one"
+        // };
+        // std.eng = 90;
+
+        // console.log(std);
+        // // std.greeting();
+        // console.log(std["1"]);
+    </script>
+</body>
+</html>

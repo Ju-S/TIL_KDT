@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Fruits</legend>
+        <div id="box"></div>
+    </fieldset>
+    <div class="front">
+        <input type="text" id="frontText">
+        <button id="frontInsert">앞에서 추가</button>
+        <button id="frontDelete">앞에서 제거</button>
+    </div>
+    <div class="end">
+        <input type="text" id="endText">
+        <button id="endInsert">뒤에서 추가</button>
+        <button id="endDelete">뒤에서 제거</button>
+    </div>
+
+    <script>
+        let frontText = document.getElementById("frontText");
+        let frontInsert = document.getElementById("frontInsert");
+        let frontDelete = document.getElementById("frontDelete");
+
+        let endText = document.getElementById("endText");
+        let endInsert = document.getElementById("endInsert");
+        let endDelete = document.getElementById("endDelete");
+
+        let box = document.getElementById("box");
+
+        let fruits = [];
+
+        frontInsert.onclick = function () {
+            insertFruit([].unshift, frontText);
+            renderFruits();
+        }
+        frontDelete.onclick = function () {
+            fruits.shift();
+            renderFruits();
+        } 
+        endInsert.onclick = function () {
+            insertFruit([].push, endText);
+            renderFruits();
+        }
+        endDelete.onclick = function () {
+            fruits.pop();
+            renderFruits();
+        }
+
+        function renderFruits() {
+            box.innerHTML = fruits.join(", ");
+        }
+
+        function insertFruit(insertFunc, insertText) {
+            if (insertText.value == "") {
+                alert("값을 넣고 추가해주세요.");
+            } else {
+                insertFunc.call(fruits, insertText.value);
+                insertText.value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

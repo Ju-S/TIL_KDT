@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Fruit</legend>
+        <div id="box"></div>
+    </fieldset>
+    <script>
+        let box = document.getElementById("box");
+        let arr = ["Apple", "Orange", "Mango", "Banana"];
+        console.log(arr.length);
+        console.log(arr.indexOf("Orange", 0));
+        console.log(arr.sort());
+
+        // join: 배열을 separator를 구분자로 합침.
+        console.log(arr.join("\n"));
+
+        console.log(arr.reverse());
+
+        // stack구조. FILO, LIFO(삽입 기준으로 말함. LIFO가 일반적.)
+        arr.push("Rich");
+        console.log(arr);
+        arr.pop();
+        console.log(arr);
+
+        // 역순 입력. shift = dequeue. FIFO
+        arr.unshift("DragonFruit");
+        console.log(arr);
+        arr.shift();
+        arr.reverse();
+        console.log(arr);
+
+        box.innerHTML = arr.join("<br>");
+    </script>
+</body>
+
+</html>
