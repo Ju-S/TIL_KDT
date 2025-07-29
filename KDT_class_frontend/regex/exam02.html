@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="phoneText" placeholder="input your phone number">
+    <button id="validCheck">검사</button>
+    <div id="result">검사 결과</div>
+    <script>
+        let phoneText = document.getElementById("phoneText");
+        let validCheck = document.getElementById("validCheck");
+
+        let result = document.getElementById("result");
+
+        let regex = /^010(-?[\d]{4}){2}$/;
+
+        validCheck.onclick = function () {
+            if(phoneText.value) {
+                if(regex.test(phoneText.value)) {
+                    result.innerHTML = "올바른 번호입니다.";
+                } else {
+                    result.innerHTML = "핸드폰 번호가 아닙니다.";
+                }
+            } else {
+                alert("번호를 입력해주세요.");
+            }
+        }
+    </script>
+</body>
+
+</html>

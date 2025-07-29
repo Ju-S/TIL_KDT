@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c26ecf1cff637a40c4d999a8cd1707b&libraries=services"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c26ecf1cff637a40c4d999a8cd1707b"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        #map {
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+
+        #roadview {
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+
+        .mapContainer {
+            width: 1200px;
+            height: 600px;
+            margin: auto;
+
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="zonecode" readonly disabled>
+        <button id="search">우편번호 검색</button>
+    </div>
+    <div class="container">
+        <input type="text" id="address1" placeholder="상세주소1">
+        <input type="text" id="address2" placeholder="상세주소2">
+    </div>
+
+    <div class="mapContainer">
+        <div id="map"></div>
+        <div id="roadview"></div>
+    </div>
+
+    <script>
+        var mapContainer = document.getElementById('map'),
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667),
+                level: 3
+            };
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        var roadview = new kakao.maps.Roadview(document.getElementById('roadview')); //로드뷰 객체
+        var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        document.getElementById("search").onclick = function () {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    let zonecode = document.getElementById("zonecode");
+                    let address1 = document.getElementById("address1");
+
+                    zonecode.value = data.zonecode;
+                    address1.value = data.address;
+
+                    geocoder.addressSearch(data.address, addMarker);
+                }
+            }).open()
+        };
+
+        function addMarker(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                let position = new kakao.maps.LatLng(result[0].y, result[0].x);
+                var marker = new kakao.maps.Marker({
+                    position: position
+                });
+
+                marker.setMap(map);
+                map.setCenter(position);
+
+                roadviewClient.getNearestPanoId(position, 50, function (panoId) {
+                    roadview.setPanoId(panoId, position);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

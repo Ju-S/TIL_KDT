@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "안녕하세요, 저는 Tom입니다. 급한 일이 있다면, 010-1234-1234, 010-4321-4321로 연락주세요.";
+
+        let regex = /(010(-?\d{4}){2})/g;
+
+        let resultList = [];
+        let temp;
+
+        while ((temp = regex.exec(str)) != null) { resultList.push(temp); }
+
+        for (let result of resultList) {
+            console.log(result);
+        }
+    </script>
+</body>
+
+</html>

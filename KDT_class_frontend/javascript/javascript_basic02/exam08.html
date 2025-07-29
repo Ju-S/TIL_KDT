@@ -9,8 +9,8 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c26ecf1cff637a40c4d999a8cd1707b"></script>
     <style>
         #map {
-            width: 1000px;
-            height: 800px;
+            width: 600px;
+            height: 600px;
             margin: auto;
         }
     </style>
@@ -18,6 +18,10 @@
 
 <body>
     <div id="map"></div>
+    <div id="countingBox" style="text-align: center;">현재 마커의 수: 0</div>
+    <div style="display: flex; justify-content: center;">
+        <button id="allRemoveBtn">마커 전체 삭제</button>
+    </div>
     <script>
         var mapContainer = document.getElementById('map'),
             mapOption = {
@@ -26,12 +30,21 @@
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption);
+        var markers = [];
+
+        let countingBox = document.getElementById("countingBox");
+        let allRemoveBtn = document.getElementById("allRemoveBtn");
 
         kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
             addMarker(mouseEvent.latLng);
         });
 
-        var markers = [];
+        allRemoveBtn.onclick = function () {
+            for (let i = markers.length - 1; i >= 0; i--) {
+                removeMarker(markers[i]);
+            }
+            countingMarker();
+        }
 
         function addMarker(position) {
             var marker = new kakao.maps.Marker({
@@ -39,21 +52,24 @@
             });
 
             marker.setMap(map);
-
             markers.push(marker);
+            countingMarker();
 
             kakao.maps.event.addListener(marker, 'rightclick', function (mouseEvent) {
                 removeMarker(marker);
+                countingMarker();
             });
         }
 
         function removeMarker(targetMarker) {
             let targetMarkerIndex = markers.indexOf(targetMarker);
+
             markers.splice(targetMarkerIndex, 1);
-
             targetMarker.setMap(null);
+        }
 
-            console.log(markers);
+        function countingMarker() {
+            countingBox.innerHTML = "현재 마커의 수: " + markers.length;
         }
     </script>
 </body>
