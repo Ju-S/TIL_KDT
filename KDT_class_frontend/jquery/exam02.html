@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <input type="text" value="JQuery" id="target">
+    <div id="target2">여기는 innerHTML</div>
+    <button id="testBtn">test</button>
+
+    <script>
+        // document.getElementById("target");
+        // element.value = .val()
+        let value = $("#target").val();
+        console.log(value);
+        $("#target").val("값 변경");
+        let value3 = $("#target").attr("value");
+        
+        // innerHTML = .html()
+        let value2 = $("#target2").html();
+        console.log(value2);
+        $("#target2").html("innerHTML" + $("#target2").html());
+
+        console.log(value3);
+
+        $("#target2").css({"background-color":"red", "color":"blue"});
+
+        $("#testBtn").on("click", function() {
+            alert("test");
+        });
+    </script> 
+</body>
+
+</html>

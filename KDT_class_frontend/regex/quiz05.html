@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="success.html" id="phoneForm">
+        <input type="text" id="phone" placeholder="핸드폰 번호를 입력하세요.">
+        <input type="submit" value="전송하기">
+    </form>
+    <script>
+        document.getElementById("phoneForm").onsubmit = function () {
+            let phoneNum = document.getElementById("phone").value;
+            let regex = /^010(-?\d{4}){2}$/;
+
+            if (phoneNum) {
+                if (regex.test(phoneNum)) {
+                    return true;
+                } else {
+                    alert("올바른 형식의 번호가 아닙니다.");
+                    return false;
+                }
+            } else {
+                alert("번호를 입력해주세요.");
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

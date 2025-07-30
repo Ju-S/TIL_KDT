@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <link rel="stylesheet" href="quiz06.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">회원가입</div>
+        <form action="success.html" id="registerForm">
+            <fieldset>
+                <legend>계정 정보*</legend>
+                <input id="id" type="text" placeholder="아이디" required>
+                <input id="password" type="password" placeholder="패스워드" required>
+                <input id="passwordCheck" type="password" placeholder="패스워드 확인" required>
+                <div id="passwordDuplicate">입력된 패스워드가 서로 다릅니다.</div>
+                <div id="passwordRule">패스워드는 영문, 숫자, 특수문자를 포함해야합니다.</div>
+            </fieldset>
+            <fieldset>
+                <legend>개인 정보*</legend>
+                <input id="name" type="name" placeholder="이름" required>
+                <input id="email" type="email" placeholder="이메일" required>
+            </fieldset>
+            <fieldset>
+                <legend>주소 정보</legend>
+                <div class="zone">
+                    <input id="zonecode" type="text" placeholder="우편번호" readonly disabled>
+                    <button id="zoneSearchBtn">검색</button>
+                </div>
+                <input id="addressDetail1" type="text" placeholder="주소1">
+                <input id="addressDetail2" type="text" placeholder="주소2">
+            </fieldset>
+            <input id="registerBtn" type="submit" value="가입하기">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("zoneSearchBtn").onclick = function () {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    let zonecode = document.getElementById("zonecode");
+                    let addressDetail1 = document.getElementById("addressDetail1");
+
+                    zonecode.value = data.zonecode;
+                    addressDetail1.value = data.address;
+                }
+            }).open();
+        }
+    </script>
+
+    <script>
+        let id = document.getElementById("id");
+        let password = document.getElementById("password");
+        let passwordCheck = document.getElementById("passwordCheck");
+
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+
+        let zonecode = document.getElementById("zonecode");
+        let addressDetail1 = document.getElementById("addressDetail1");
+        let addressDetail2 = document.getElementById("addressDetail2");
+
+        let idRegex = /^[a-z\d_]{4,12}$/;
+        let passwordRegex = /([^\w\s])|([a-zA-Z])|(\d)/g;
+        let nameRegex = /^[가-힣]{2,6}$/;
+        let emailRegex = /^.+@.+(?=\.com|\.co\.kr)$/;
+
+        passwordCheck.onkeyup = function () {
+            checkPassword();
+        }
+
+        password.onkeyup = function () {
+            checkPassword();
+        }
+
+        passwordCheck.addEventListener('focus', function () {
+            document.addEventListener('keydown', handleSpacebar);;
+        });
+
+        password.addEventListener('focus', function () {
+            document.addEventListener('keydown', handleSpacebar);
+        });
+
+        passwordCheck.addEventListener('blur', function () {
+            document.removeEventListener('keydown', handleSpacebar);
+        });
+
+        password.addEventListener('blur', function () {
+            document.removeEventListener('keydown', handleSpacebar);
+        });
+
+        function handleSpacebar(event) {
+            if (event.key === ' ' || event.keyCode === 32) {
+                event.preventDefault();
+            }
+        }
+
+        function checkPassword() {
+            let passwordDuplicate = document.getElementById("passwordDuplicate");
+            let passwordRule = document.getElementById("passwordRule");
+
+            if (password.value) {
+                let temp;
+                let tempFlag = [undefined, undefined, undefined];
+
+                while ((temp = passwordRegex.exec(password.value)) != null) {
+                    for (let i = 1; i < temp.length; i++) {
+                        if (!tempFlag[i]) { tempFlag[i] = temp[i]; }
+                    }
+                }
+
+                if (tempFlag[1] && tempFlag[2] && tempFlag[3]) {
+                    passwordRule.setAttribute("style", "display: none;");
+                } else {
+                    passwordDuplicate.setAttribute("style", "display: none;");
+                    passwordRule.setAttribute("style", "display: block;");
+                    return false;
+                }
+            }
+
+            if (password.value && passwordCheck.value) {
+                if (password.value != passwordCheck.value) {
+                    passwordDuplicate.setAttribute("style", "display: block;");
+                    passwordRule.setAttribute("style", "display: none;");
+                    return false;
+                } else {
+                    passwordDuplicate.setAttribute("style", "display: none;");
+                }
+            }
+
+            if (!password.value && !passwordCheck.value) {
+                passwordDuplicate.setAttribute("style", "display: none;");
+                passwordRule.setAttribute("style", "display: none;");
+                return false;
+            }
+
+            return true;
+        }
+
+        document.getElementById("registerForm").onsubmit = function () {
+            let passwordFlag = checkPassword();
+
+            if (!(id.value &&
+                password.value &&
+                passwordCheck.value &&
+                name.value &&
+                email.value)) {
+                alert("계정 정보 및 개인 정보는 필수 입력사항 입니다.");
+                return false;
+            }
+
+            if (idRegex.test(id.value) &&
+                passwordFlag &&
+                nameRegex.test(name.value) &&
+                emailRegex.test(email.value)) {
+                console.log(id.value + name.value + passwordFlag + email.value);
+                return true;
+            } else {
+                alert("입력 정보를 다시 확인해주세요.");
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <p>P1</p>
+    <p>P2</p>
+    <p>P3</p>
+    <p>P4</p>
+    <p>P5</p>
+
+    <input id="th" type="text">
+    <input id="color" type="text">
+    <button id="colorBtn">적용</button>
+
+    <script>
+        $("#colorBtn").on("click", function () {
+            $("p:nth-child(" + $("#th").val() + ")").css({ "background-color": $("#color").val() });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 페이지 이동 방법 3가지 -->
+
+    <!-- 1. <a href="페이지 링크">Link</a> -->
+    <a href="quiz04.html">Link</a><br>
+
+    <!-- 2. location.href  -->
+    <button teyp="button" id="locationTest">Link</button><br>
+    <script>
+        document.getElementById("locationTest").onclick = () => {
+            location.href = "quiz04.html";
+        }
+    </script>
+
+    <!-- 3. form + submit -> 페이지 이동 기능이면서 동시에 데이터 전송 -->
+    <!-- 유효성 검사 로직 : 사용자가 submit으로 전송하려는 데이터가 정상적인 값(개발자가 의도한 종류의 값) 인지 검사하는 로직 -->
+    <!-- Validation : e.g,회원가입 폼 -> id, pw, name, email, phone-->
+
+    <form action="quiz04.html" id="frm">
+        <input type="text" placeholder="">
+        <input type="submit">
+        <!-- <button></button> : 기본 속성이 submit -->
+    </form>
+
+    <script>
+        document.getElementById("frm").onsubmit = function () {
+            
+        }
+    </script>
+</body>
+
+</html>

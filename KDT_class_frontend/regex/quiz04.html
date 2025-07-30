@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         table {
-            margin:auto;
+            margin: auto;
         }
 
         td {
@@ -3119,10 +3119,10 @@
 
         let regex = /thumb.*?(<img.*?>).*?title="(.*?)".*?rating_type.*?strong>(.*?)<\/strong>/gs;
 
-        let resultList = [];
+        // let resultList = [];
         let temp;
 
-        while ((temp = regex.exec(str)) != null) { resultList.push(temp); }
+        // while ((temp = regex.exec(str)) != null) { resultList.push(temp); }
 
         document.write("<table border=\"1\">");
         document.write("<tr>");
@@ -3130,15 +3130,24 @@
         document.write("<th>제목</th>");
         document.write("<th>평점</th>");
         document.write("</tr>");
-        for (let result of resultList) {
+        while ((temp = regex.exec(str)) != null) {
             document.write("<tr>");
-            for (let i = 1; i < result.length; i++) {
+            for (let i = 1; i < temp.length; i++) {
                 document.write("<td>");
-                document.write(result[i]);
+                document.write(temp[i]);
                 document.write("</td>");
             }
             document.write("</tr>");
         }
+        // for (let result of resultList) {
+        //     document.write("<tr>");
+        //     for (let i = 1; i < result.length; i++) {
+        //         document.write("<td>");
+        //         document.write(result[i]);
+        //         document.write("</td>");
+        //     }
+        //     document.write("</tr>");
+        // }
         document.write("</table>");
     </script>
 </body>
