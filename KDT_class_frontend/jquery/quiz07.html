@@ -14,15 +14,27 @@
         <legend>File List</legend>
     </fieldset>
     <script>
-        $("#addFile").on("click", function () {
-            let fileItem = $(
-                "<div class=\"fileSet\">" +
-                "<input type=\"file\" value=\"파일 선택\">" +
-                "<input type=\"button\" class=\"deleteBtn\" value=\"X\"><br>" +
-                "</div>"
-            );
+        let btnCnt = 0;
 
-            $("fieldset").append(fileItem);
+        $("#addFile").on("click", function () {
+            if ($(".fileSet").length >= 5) {
+                alert("최대 5개까지 생성 가능합니다.");
+                return;
+            }
+
+            // let fileItem = $(
+            //     "<div class=\"fileSet\">" +
+            //     "<input type=\"file\">" +
+            //     "<input type=\"button\" class=\"deleteBtn\" value=\"X\"><br>" +
+            //     "</div>"
+            // );
+
+            // $("fieldset").append(fileItem);
+
+            $("fieldset")
+                .append($("<div>").addClass("fileSet")
+                    .append($("<input>").attr("type", "file"))
+                    .append($("<button>").html("X").addClass("deleteBtn")));
 
             $(".deleteBtn").on("click", function () {
                 $(this).closest(".fileSet").remove();
