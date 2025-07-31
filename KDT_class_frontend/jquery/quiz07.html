@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    파일첨부<button id="addFile">+</button>
+    <fieldset>
+        <legend>File List</legend>
+    </fieldset>
+    <script>
+        $("#addFile").on("click", function () {
+            let fileItem = $(
+                "<div class=\"fileSet\">" +
+                "<input type=\"file\" value=\"파일 선택\">" +
+                "<input type=\"button\" class=\"deleteBtn\" value=\"X\"><br>" +
+                "</div>"
+            );
+
+            $("fieldset").append(fileItem);
+
+            $(".deleteBtn").on("click", function () {
+                $(this).closest(".fileSet").remove();
+            })
+        });
+    </script>
+</body>
+
+</html>

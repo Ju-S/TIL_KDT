@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        #box {
+            width: 400px;
+            height: 400px;
+            margin: auto;
+
+            border: 1px solid black;
+
+            overflow: auto;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <div class="buttons">
+        <button id="upsideBtn">위로 추가 하기</button>
+        <button id="downsideBtn">아래로 추가 하기</button>
+    </div>
+
+    <script>
+        let globalCnt = 1;
+
+        $("#upsideBtn").on("click", function () {
+            $("#box").prepend("Contents Message Here: " + globalCnt++ + "<br>");
+        });
+
+        $("#downsideBtn").on("click", function () {
+            $("#box").append("Contents Message Here: " + globalCnt++ + "<br>");
+        });
+    </script>
+</body>
+
+</html>

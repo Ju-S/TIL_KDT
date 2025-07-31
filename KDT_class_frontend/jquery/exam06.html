@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div id="home">
+        Home
+        <div id="grand_parent">
+            GrandParent
+            <div id="parent01">
+                Parent01
+                <div id="brother01">
+                    Brother01
+                </div>
+                <div id="me">
+                    Me
+                    <div id="sister01">
+                        Sister01
+                        <div id="baby">
+                            Baby01
+                        </div>
+                    </div>
+                    <div id="sister02">
+                        Sister02
+                        <div id="baby02">
+                            Baby02
+                        </div>
+                    </div>
+                </div>
+                <div id="brother02">
+                    Brother02
+                </div>
+            </div>
+            <div id="parent02">
+                Parent02
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // HTML 요소 검색
+        // parent() : 기준 요소의 직계 Parent 요소를 찾아 반환
+        // parent() : 함수에 선택자를 파라미터로 전달할 수 있으나, 오직 자신의 직계 Parent 요소만 지정 가능
+        console.log($("#me").parent());
+        console.log($("#me").parent("#parent01"));
+        console.log($("#me").parent("#parent02")); // 자신의 직계 Parent가 아니라 검색 안됨.
+
+        // closest() : 기준 요소의 parent 부터 모든 조상 중 선택자 조건에 맞는 요소를 반환
+        console.log($("#me").closest("#home"));
+        console.log($("#me").closest("#grand_parent"));
+
+        // children() : 기준 요소의 직계 자손을 검색하여 반환.
+        console.log($("#me").children());
+
+        // find() : 기준 요소의 후손 전체에 대해 검색
+        console.log($("#me").find());
+        console.log($("#me").find("#baby02"));
+        console.log($("#me").find("#sister02"));
+
+        //siblings() : 기준 요소의 동수준 요소를 검색하여 반환
+        console.log($("#me").siblings());
+        console.log($("#me").prev());
+        console.log($("#me").next());
+
+        // Quiz01. brother02 를 기준으로 baby02를 검색하고 background-color를 pink로 변경.
+        $("#brother02").prev().find("#baby02").css({ "background-color": "pink" });
+
+        // Quiz02. baby 를 기준으로 parent02를 찾아서 color를 green으로 변경.
+        $("#baby").closest("#parent01").next().css({ "color": "green" });
+    </script>
+</body>
+
+</html>

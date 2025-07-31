@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Input Controls</legend>
+        <input id="title" type="text" placeholder="제목 입력"><br>
+        <input id="contents" type="text" placeholder="내용 입력"><br>
+        <input id="author" type="text" placeholder="작성자 입력"><button id="postingBtn">추가하기</button><br>
+        <input id="deleteText" type="text" placeholder="삭제할 내용 입력"><button id="deleteBtn">삭제</button>
+    </fieldset>
+    <hr>
+    <table id="postingBoard" border="1">
+        <tr>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+        </tr>
+    </table>
+
+    <script>
+        $("#postingBtn").on("click", function () {
+            let post = $("<tr>" +
+                "<td>" + $("#title").val() + "</td>" +
+                "<td>" + $("#contents").val() + "</td>" +
+                "<td>" + $("#author").val() + "</td>" +
+                "</tr>");
+
+            $("#title").val("");
+            $("#contents").val("");
+            $("#author").val("");
+
+            $("#postingBoard").append(post);
+        });
+
+        $("#deleteBtn").on("click", function () {
+            // if (0 < $("#deleteNum").val() && $("#deleteNum").val() <= $("tr").length - 1) {
+            //     $("tr:nth-child(" + (parseInt($("#deleteNum").val()) + 1) + ")").remove();
+            // } else {
+            //     alert("삭제할 행이 없습니다.");
+            // }
+
+            $("#postingBoard").find("tr td:nth-child(2)").each(function (index, item) {
+                if ($(item).html() == $("#deleteText").val()) {
+                    $(item).closest("tr").remove();
+                }
+            });
+
+            $("#deleteText").val("");
+        });
+    </script>
+</body>
+
+</html>
