@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+.inputComment {
+    width: 800px;
+    height: 120px;
+    margin: auto;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+.author {
+    width: 100%;
+    height: 25%;
+}
+
+.author input {
+    width: 100%;
+    height: 100%;
+    background-color: skyblue;
+    border: 0;
+}
+
+.inputForm {
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+}
+
+.inputText {
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+
+.inputText #contents {
+    width: 100%;
+    height: 100%;
+    border: 0;
+
+    overflow: auto;
+}
+
+.replyBtn {
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.replyBtn button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.replyBtn button:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+.comments {
+    width: 800px;
+    margin: auto;
+}
+
+.comment {
+    width: 100%;
+    height: 120px;
+
+    border: 1px solid rgb(185, 185, 185);
+    overflow: hidden;
+
+    margin-bottom: 3px;
+}
+
+.comment .main {
+    width: 80%;
+    height: 100%;
+
+    float: left;
+}
+
+.comment .main .title {
+    width: 100%;
+    height: 20%;
+
+    background-color: cornflowerblue;
+    border: 0;
+}
+
+.comment .main .contents {
+    width: 100%;
+    height: 80%;
+}
+
+.comment .main .contents .contentsText {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    overflow: auto;
+}
+
+.comment .side {
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.comment .side .deleteBtn,
+.comment .side .modifyBtn,
+.comment .side .modifyCancelBtn,
+.comment .side .modifyApplyBtn {
+    width: 50%;
+    height: 100%;
+    border: 0;
+}
+
+.comment .side .deleteBtn:hover,
+.comment .side .modifyBtn:hover,
+.comment .side .modifyCancelBtn:hover,
+.comment .side .modifyApplyBtn:hover {
+    background-color: rgb(226, 226, 226);
+}

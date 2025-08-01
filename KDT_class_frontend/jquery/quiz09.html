@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="quiz09.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="chatList"></div>
+        <div class="emojiContainer" style="display: none;">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHpsaWN1aWN3YXB0bTJsMmdjam5pbHVxdndja2hscWdjdGo1cHhrcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/33zX3zllJBGY8/giphy.gif"
+                alt="">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3k2c3h2dGp1bGRxbndmYzRreG9ocmcyazdsbGJubW1hZ2Z4cWx1ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J2tNIOLEHELkY/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YWQ0eWNvMnRvYmx6cTFtZWVndXYwY2VtZjdqY29ta2hwOTYyaHZzaCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/LSFApowZ5ukHXUnbNI/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dnY4Zm0zejZlcTAydmExNTU2OGtjc2pjZnNsZHQwdDFyYXY0aXltMiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/rlkpAmX3gaLWE/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dnY4Zm0zejZlcTAydmExNTU2OGtjc2pjZnNsZHQwdDFyYXY0aXltMiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/TmVqs1EEKnFjq/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dnY4Zm0zejZlcTAydmExNTU2OGtjc2pjZnNsZHQwdDFyYXY0aXltMiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/deOKie3HCHOAo/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NXppY2o5MXNvdHhmbjBpcHl3d29vZThiY3V0YTJwZHZybmN0ZnlodiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/Ehl2Haxp48wP6/giphy.gif"
+                alt="">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3d2xpY3dtNXp2ZjZ5enN1bzJyM21ieXloN2ljdWJtOHhrM2Y3d3N5OCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/Dis5yrKgiBLKE/giphy.gif"
+                alt="">
+        </div>
+        <div class="chatInput">
+            <div contenteditable="true" id="chatText"></div>
+            <button id="icon"><i class="fa-solid fa-face-smile"></i></button>
+        </div>
+    </div>
+
+    <script>
+        $("#chatText").on("keydown", function (e) {
+            if (e.keyCode == 13 || e.key == "Enter") {
+                console.log($(this).html());
+                $(".chatList").append("<div>" + $(this).html() + "</div>");
+                $("#chatText").html("");
+                return false;
+            }
+        })
+
+        $("#icon").on("click", function () {
+            $(".emojiContainer").fadeToggle(150);
+        })
+
+        $("img").on("click", function () {
+            $("#chatText").append($(this).clone());
+        })
+    </script>
+</body>
+
+</html>

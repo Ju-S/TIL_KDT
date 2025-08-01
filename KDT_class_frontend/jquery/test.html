@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!-- cdn 방식 -->
+    
+    <style>
+        .delbtn:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    파일첨부 <button id="btn">+</button>
+
+    <fieldset>
+        <legend>
+            File List
+        </legend>
+        <div id="contentbox"></div>
+    </fieldset>
+
+
+    <script>
+        // x 버튼 누를때 마다 -> x버튼 동적으로 생겨서 동적으로 감지해야함
+        $(document).on("click",".delbtn",function(){
+            $(this).closest("div").remove();
+        })
+
+
+
+        // + 버튼 누를 때 마다
+        $("#btn").on("click", function(){
+            
+            //5개가 넘으면 반려 시키기
+            if ($("#contentbox div").length>=5){
+                alert("5개 이상의 파일을 업로드 할 수 없습니다");
+                return;
+            }
+            // 전체 담을 div 만들기
+            let box = $("<div>"); 
+
+            // input type 인스터스 만들기
+            let fileText = $("<input>"); 
+            fileText.attr("type","file");
+
+            // del버튼 만들기
+            let delbtn =$("<button>");
+            delbtn.addClass("delbtn");
+            delbtn.html("X");
+            delbtn.css({"background-color":"white","color":"blue","border":"none"});
+            delbtn.on("click")
+
+            
+            //div에 다 담기
+            box.append(fileText);
+            box.append(delbtn);
+            
+
+            $("#contentbox").append(box);
+        })
+        
+    </script>
+
+</body>
+</html>

@@ -73,6 +73,25 @@
 
         // Quiz02. baby 를 기준으로 parent02를 찾아서 color를 green으로 변경.
         $("#baby").closest("#parent01").next().css({ "color": "green" });
+
+        //         * css 는 왜 동적요소에도 적용되는가 ?
+        //  > css 는 document영역 내에 요소에 변화가 생기면
+        //     재반영 되기 때문
+
+        //             * internal styling 과, inline styling, js styling 간 우선순위
+        //                 - inline 과 js styling 은 둘다 inline styling 원리.
+
+        // * css 로 적용하는 스타일은 인라인인가 인터널인가 ?
+        //   > 인라인 스타일링으로 적용 됨.
+        //   > 기존 스타일 시트 적용 우선 순위를 그대로 적용 받음
+        //             (JS 라고 특별 대우 없음)
+
+        //             * jquery에서 hover 에 대한 css 효과 주기 ?
+        //                 - 그럼 hover 효과를 동적으로 주고 싶다면 ?
+        //    > hover 되었을 때 적용될 스타일링을 특정 클래스 부여 후
+        //       동적으로 클래스 이름을 addClass 하여 해결
+
+
     </script>
 </body>
 

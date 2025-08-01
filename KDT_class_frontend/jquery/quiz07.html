@@ -14,8 +14,6 @@
         <legend>File List</legend>
     </fieldset>
     <script>
-        let btnCnt = 0;
-
         $("#addFile").on("click", function () {
             if ($(".fileSet").length >= 5) {
                 alert("최대 5개까지 생성 가능합니다.");
@@ -34,12 +32,12 @@
             $("fieldset")
                 .append($("<div>").addClass("fileSet")
                     .append($("<input>").attr("type", "file"))
-                    .append($("<button>").html("X").addClass("deleteBtn")));
-
-            $(".deleteBtn").on("click", function () {
-                $(this).closest(".fileSet").remove();
-            })
+                    .append($("<button>").addClass("deleteBtn").html("X")));
         });
+
+        $("fieldset").on("click", ".deleteBtn", function () {
+            $(this).closest(".fileSet").remove();
+        })
     </script>
 </body>
 

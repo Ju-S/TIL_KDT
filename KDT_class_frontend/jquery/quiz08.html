@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="quiz08.css">
+</head>
+
+<body>
+    <div class="inputComment">
+        <div class="author">
+            <input type="text" id="author" placeholder="작성자명을 입력해주세요.">
+        </div>
+        <div class="inputForm">
+            <div class="inputText">
+                <div id="contents" contenteditable="true"></div>
+            </div>
+            <div class="replyBtn">
+                <button type="button" id="replyBtn">Reply</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    
+    <div class="comments"></div>
+
+    <script>
+        $("#replyBtn").on("click", function () {
+            if(!$("#author").val() || !$("#contents").html()) {
+                alert("내용 및 작성자를 입력해주세요.");
+                return;
+            }
+
+            let comment = $("<div>")
+                .attr("class", "comment");
+
+            // main--------------------------------
+            let main = $("<div>")
+                .attr("class", "main");
+
+            let title = $("<div>")
+                .attr("class", "title")
+                .html($("#author").val() + "님의 글");
+
+            let contents = $("<div>")
+                .attr("class", "contents");
+
+            let contentsText = $("<div>")
+                .html($("#contents").html())
+                .attr("class", "contentsText")
+                .attr("contenteditable", false);
+
+            contents.on("click", function() {
+                contentsText.focus();
+            });
+
+            // side--------------------------------
+            let side = $("<div>")
+                .attr("class", "side");
+
+            let deleteBtn = $("<button>")
+                .html("삭제")
+                .attr("class", "deleteBtn");
+
+            let modifyBtn = $("<button>")
+                .html("수정")
+                .attr("class", "modifyBtn");
+
+            let modifyCancelBtn = $("<button>")
+                .html("취소")
+                .attr("class", "modifyCancelBtn")
+                .css("display", "none");
+
+            let modifyApplyBtn = $("<button>")
+                .html("수정완료")
+                .attr("class", "modifyApplyBtn")
+                .css("display", "none");
+
+            let originalText = $("<div>")
+                .css("display", "none");
+
+            deleteBtn.on("click", function () {
+                $(this).closest(".comment").remove();
+            });
+
+            modifyBtn.on("click", function () {
+                deleteBtn.css("display", "none");
+                modifyBtn.css("display", "none");
+                modifyCancelBtn.css("display", "inline-block");
+                modifyApplyBtn.css("display", "inline-block");
+
+                originalText.html(contentsText.html());
+                contentsText.attr("contenteditable", true);
+            });
+
+            modifyCancelBtn.on("click", function () {
+                deleteBtn.css("display", "inline-block");
+                modifyBtn.css("display", "inline-block");
+                modifyCancelBtn.css("display", "none");
+                modifyApplyBtn.css("display", "none");
+
+                contentsText.html(originalText.html());
+                contentsText.attr("contenteditable", false);
+            });
+
+            modifyApplyBtn.on("click", function () {
+                deleteBtn.css("display", "inline-block");
+                modifyBtn.css("display", "inline-block");
+                modifyCancelBtn.css("display", "none");
+                modifyApplyBtn.css("display", "none");
+
+                contentsText.attr("contenteditable", false);
+            });
+
+            // assemble----------------------------
+            comment.append(main);
+            comment.append(side);
+            main.append(title);
+            main.append(contents);
+            contents.append(contentsText);
+            side.append(deleteBtn);
+            side.append(originalText);
+            side.append(modifyBtn);
+            side.append(modifyCancelBtn);
+            side.append(modifyApplyBtn);
+
+            $(".comments").append(comment);
+
+            $("#author").val("");
+            $("#contents").html("");
+        });
+    </script>
+</body>
+
+</html>

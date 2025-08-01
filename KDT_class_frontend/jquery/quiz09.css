@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 400px;
+    height: 700px;
+    margin: auto;
+    /* border: 2px solid rgb(142, 142, 142); */
+
+    background-color: rgb(143, 186, 255);
+    border-radius: 10px;
+
+    
+    position: relative;
+    /* border: 1px solid rgb(177, 177, 177); */
+    /* overflow: hidden; */
+}
+
+.chatList {
+    width: 100%;
+    height: 91%;
+
+    padding: 10px;
+
+    overflow: auto;
+    /* border-bottom: 2px solid rgb(142, 142, 142); */
+}
+
+.chatList div {
+    word-wrap: break-word;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.514);
+    max-width: 80%;
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+
+.chatList img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.chatInput {
+    width: 100%;
+    height: 9%;
+    overflow: hidden;
+}
+
+.chatInput #chatText {
+    width: 85%;
+    height: 100%;
+    float: left;
+
+    padding: 5px;
+
+    overflow: auto;
+
+    background-color: rgba(255, 255, 255, 0.76);
+}
+
+.chatInput #chatText img {
+    width: 50px;
+    height: 50px;
+}
+
+.chatInput #icon {
+    width: 15%;
+    height: 100%;
+    float: left;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    /* border-left: 2px solid rgb(142, 142, 142); */
+
+    transition-duration: 150ms;
+}
+
+.chatInput #icon:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.chatInput #icon:active {
+    background-color: rgb(224, 224, 224);
+}
+
+.chatInput #icon i{
+    font-size: 30px;
+    color: rgb(113, 167, 255);
+}
+
+.emojiContainer {
+    width: 400px;
+    height: 300px;
+    display:block;
+    position: absolute;
+    bottom: 9%;
+    left: 0;
+    overflow: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.496);
+}
+
+.emojiContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.emojiContainer img {
+    width: 25%;
+    margin: 3%;
+    height: 35%;
+
+    border-radius: 5px;
+}
