@@ -3,11 +3,17 @@
 
 # IntelliJ IDEA
 /.idea/
+/KDT_class_backend/Day01/.idea/
 /*.iml
 /target/
 /*.class
 # visual code ide setting
 /.vscode/
+
+# Eclipse
+/KDT_class_backend_eclipse/.metadata/
+/KDT_class_backend_eclipse/Servers/
+/KDT_class_backend_eclipse/.project
 
 # OS별 파일 무시
 .DS_Store
@@ -21,3 +27,21 @@ Thumbs.db
 
 # iml 파일 무시
 *.iml
+
+KDT_class_backend/Day01/target/
+!KDT_class_backend/Day01/.mvn/wrapper/maven-wrapper.jar
+!KDT_class_backend/Day01/**/src/main/**/target/
+!KDT_class_backend/Day01/**/src/test/**/target/
+
+### NetBeans ###
+KDT_class_backend/Day01/nbproject/private/
+KDT_class_backend/Day01/nbbuild/
+KDT_class_backend/Day01/dist/
+KDT_class_backend/Day01/nbdist/
+KDT_class_backend/Day01/.nb-gradle/
+KDT_class_backend/Day01/build/
+!KDT_class_backend/Day01/**/src/main/**/build/
+!KDT_class_backend/Day01/**/src/test/**/build/
+
+### VS Code ###
+KDT_class_backend/Day01/.vscode/
