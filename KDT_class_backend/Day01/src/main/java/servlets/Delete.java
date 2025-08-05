@@ -8,25 +8,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/Exam01")
-public class Exam01 extends HttpServlet {
-    MessagesDAO dao = new MessagesDAO();
+@WebServlet("/Delete")
+public class Delete extends HttpServlet {
+    MessagesDAO dao = MessagesDAO.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ip = request.getRemoteAddr();
-        String writer = request.getParameter("writer");
-        String contact = request.getParameter("contact");
-
         try {
-            dao.insMsg(writer, contact);
-        } catch(Exception e) {
+            dao.deleteMsg(Integer.parseInt(request.getParameter("target")));
+            response.sendRedirect("/Output");
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/error.html");
         }
-
-        response.sendRedirect("/");
     }
 
     @Override

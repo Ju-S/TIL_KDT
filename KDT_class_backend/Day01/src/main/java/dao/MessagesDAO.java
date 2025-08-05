@@ -1,58 +1,84 @@
 package dao;
 
 import dto.MessagesDTO;
+import org.apache.commons.dbcp2.BasicDataSource;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesDAO {
+    private static MessagesDAO instance;
+
+    public synchronized static MessagesDAO getInstance() {
+        if(instance == null) {
+            instance = new MessagesDAO();
+        }
+        return instance;
+    }
+
+    private Connection getConnection() throws Exception {
+        Context ctx = new InitialContext();
+        DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+        return ds.getConnection();
+    }
+    // ioc: inversion of control
 
     public void insMsg(String writer, String contact) throws Exception {
-        Class.forName("oracle.jdbc.OracleDriver");
-
-        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kedu", "kedu");
-
         String sql = "INSERT INTO messages values(messages_seq.nextval, ?, ?)";
-        PreparedStatement pstat = con.prepareStatement(sql);
 
-        pstat.setString(1, writer);
-        pstat.setString(2, contact);
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, writer);
+            pstat.setString(2, contact);
 
-        pstat.executeUpdate();
-
-        con.close();
-        pstat.close();
+            pstat.executeUpdate();
+        }
     }
 
     public List<MessagesDTO> getMsg() throws Exception {
-        Class.forName("oracle.jdbc.OracleDriver");
-
-        Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kedu", "kedu");
-
         String sql = "SELECT * FROM messages";
-        PreparedStatement pstat = con.prepareStatement(sql);
 
-        ResultSet rs = pstat.executeQuery();
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql);
+             ResultSet rs = pstat.executeQuery()) {
+            List<MessagesDTO> messageList = new ArrayList<>();
 
-        List<MessagesDTO> messageList = new ArrayList<>();
+            while (rs.next()) {
+                String seq = rs.getString("seq");
+                String writer = rs.getString("writer");
+                String message = rs.getString("message");
 
-
-        while(rs.next()) {
-            String seq = rs.getString("seq");
-            String writer = rs.getString("writer");
-            String message = rs.getString("message");
-
-            messageList.add(new MessagesDTO(Integer.parseInt(seq), writer, message));
+                messageList.add(new MessagesDTO(Integer.parseInt(seq), writer, message));
+            }
+            return messageList;
         }
+    }
 
-        con.close();
-        pstat.close();
-        rs.close();
+    public void deleteMsg(int target) throws Exception {
+        String sql = "DELETE FROM messages WHERE seq=?";
 
-        return messageList;
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setInt(1, target);
+            pstat.executeUpdate();
+        }
+    }
+
+    public void updateMsg(int target, String writer, String contact) throws Exception {
+        String sql = "UPDATE messages SET writer = ?, message = ? WHERE seq = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, writer);
+            pstat.setString(2, contact);
+            pstat.setInt(3, target);
+            pstat.executeUpdate();
+        }
     }
 }

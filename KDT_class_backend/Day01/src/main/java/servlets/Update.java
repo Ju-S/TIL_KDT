@@ -1,31 +1,31 @@
 package servlets;
+
 import dao.MessagesDAO;
-import dto.MessagesDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet("/Output")
-public class Output extends HttpServlet {
+import java.io.IOException;
+
+@WebServlet("/Update")
+public class Update extends HttpServlet {
     MessagesDAO dao = MessagesDAO.getInstance();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            System.setProperty("file.encoding", "UTF-8");
-
-            List<MessagesDTO> messageList = dao.getMsg();
-            request.setAttribute("list", messageList);
-            request.getRequestDispatcher("/output.jsp").forward(request, response);
+            int target = Integer.parseInt(request.getParameter("target"));
+            String writer = request.getParameter("writer");
+            String contact = request.getParameter("contact");
+            dao.updateMsg(target, writer, contact);
+            response.sendRedirect("/Output");
         } catch(Exception e) {
             e.printStackTrace();
             response.sendRedirect("/error.html");
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

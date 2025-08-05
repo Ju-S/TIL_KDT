@@ -3,8 +3,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class main {
-
-    private static final String TARGET_URL = "http://10.5.5.8/Exam01?writer=1234?&message=1234";
     private static final int THREAD_COUNT = 100000;
 
     public static void main(String[] args) {
@@ -15,11 +13,17 @@ public class main {
 
     private static void sendRequest() {
         try {
-            String encodedWriter = URLEncoder.encode("밍뭉", "UTF-8");
+            String encodedWriter = URLEncoder.encode("뭉밍", "UTF-8");
             String encodedMessage = URLEncoder.encode("맹몽", "UTF-8");
 
-            String targetUrl = "http://10.5.5.19/Quiz01?name=" + encodedWriter + "&contact=" + encodedMessage;
-
+//            String targetUrl = "http://10.5.5.8/Exam01?name=" + encodedWriter + "&message=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.19/Quiz01?name=" + encodedWriter + "&contact=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.7/Exam01?writer=" + encodedWriter + "&message=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.9/Exam01?writer=" + encodedWriter + "&message=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.11/Exam01?writer=" + encodedWriter + "&message=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.1/Exam01?name=" + encodedWriter + "&phone=" + encodedMessage;
+//            String targetUrl = "http://10.5.5.2/Servlet01?name=" + encodedWriter + "&phonenum=" + encodedMessage;
+            String targetUrl = "http://10.5.5.8/output.jsp";
             URL url = new URL(targetUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
