@@ -1,0 +1,47 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Message List</title>
+</head>
+<body>
+<table border="1" align="center">
+    <tr>
+        <th>Seq</th>
+        <th>Writer</th>
+        <th>Message</th>
+    </tr>
+    <%--  Expression Language: EL ${} --%>
+    <%--  JSP Standard Tag Library: JSTL  --%>
+    <c:forEach var="item" items="${list}">
+        <tr>
+            <td>${item.seq}</td>
+            <td>${item.writer}</td>
+            <td>${item.message}</td>
+        </tr>
+    </c:forEach>
+    <tr>
+        <td colspan="3">
+            <form action="/delete.messages" method="get">
+                <input type="text" name="target" placeholder="input seq to delete">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center">
+            <form action="/update.messages" method="get">
+                <input type="text" name="target" placeholder="input seq to update" required><br>
+                <input type="text" name="writer" placeholder="input writer to update" required><br>
+                <input type="text" name="contact" placeholder="input message to update" required><br>
+                <input type="submit" value="Update">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center"><a href="/">Back</a></td>
+    </tr>
+</table>
+</body>
+</html>

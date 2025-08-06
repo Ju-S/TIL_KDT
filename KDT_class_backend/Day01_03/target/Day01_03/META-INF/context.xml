@@ -1,0 +1,14 @@
+<Context>
+    <Resource
+            name="jdbc/kedu"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="kedu"
+            password="kedu"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            url="jdbc:oracle:thin:@localhost:1521:xe"
+
+            maxTotal="20"
+            maxIdle="10"
+    />
+</Context>
