@@ -39,6 +39,7 @@
 
         $("#submitBtn").on("click", function () {
             $(window.opener.document.getElementById("checkIdDupl")).css("display", "none");
+            window.opener.setIdDupl(true);
             window.close();
         });
     </script>

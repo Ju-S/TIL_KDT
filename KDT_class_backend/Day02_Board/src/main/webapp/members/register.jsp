@@ -136,10 +136,11 @@
     let passwordRegex = /([^\w\s])|([a-zA-Z])|(\d)/g;
     let nameRegex = /^[가-힣]{2,6}$/;
     let phoneRegex = /^010(-?\d{4}){2}$/;
-    let emailRegex = /^.+@.+(?=\.com|\.co\.kr)$/;
+    let emailRegex = /^.+@.+(\.com|\.co\.kr)$/;
 
     $("[name = id]").on("keypress", function () {
         $("#checkIdDupl").css("display", "flex");
+        setIdDupl(false);
     });
 
     $("[name = pwCheck]").on("keyup", function () {
@@ -207,9 +208,16 @@
         return true;
     }
 
+    let checkIdDupl = false;
+
+    function setIdDupl(val) {
+        checkIdDupl = val;
+    }
+
     $("#registerFrm").on("submit", function checkValidation() {
         if (idRegex.test($("[name = id]").val()) &&
             checkPassword() &&
+            checkIdDupl &&
             nameRegex.test($("[name = name]").val()) &&
             emailRegex.test($("[name = email]").val()) &&
             phoneRegex.test($("[name = phone]").val())) {

@@ -31,7 +31,7 @@ public class MemberDAO {
     }
 
     public boolean insertMember(MemberDTO member) throws Exception {
-        String sql = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 
         try (Connection con = getConnection();
              PreparedStatement pstat = con.prepareStatement(sql)) {
@@ -43,7 +43,6 @@ public class MemberDAO {
             pstat.setString(6, member.getZipcode());
             pstat.setString(7, member.getAddress1());
             pstat.setString(8, member.getAddress2());
-            pstat.setTimestamp(9, Timestamp.from(Instant.now()));
 
             return pstat.executeUpdate() > 0;
         }
@@ -58,6 +57,29 @@ public class MemberDAO {
             try (ResultSet rs = pstat.executeQuery()) {
                 return rs.next();
             }
+        }
+    }
+
+    public boolean login(String id, String pw) throws Exception {
+        String sql = "SELECT * FROM members WHERE id = ? AND pw = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, id);
+            pstat.setString(2, pw);
+            try (ResultSet rs = pstat.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    public boolean withdraw(String id) throws Exception {
+        String sql = "DELETE FROM members WHERE id = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, id);
+            return pstat.executeUpdate() > 0;
         }
     }
 }

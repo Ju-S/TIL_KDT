@@ -1,12 +1,12 @@
 package controller;
 
+import common.CustomEncrypt;
 import dao.MemberDAO;
 import dto.MemberDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
+import oracle.jdbc.driver.JsonWebToken;
 
 import java.io.IOException;
 
@@ -36,11 +36,30 @@ public class MemberController extends HttpServlet {
                 String address1 = request.getParameter("address1");
                 String address2 = request.getParameter("address2");
 
-                dao.insertMember(new MemberDTO(id, pw, name, phone, email, zipCode, address1, address2));
+                dao.insertMember(new MemberDTO(id, CustomEncrypt.encrypt(pw), name, phone, email, zipCode, address1, address2));
 
                 response.sendRedirect("/");
+            } else if (cmd.equals("/login.member")) {
+                String id = request.getParameter("id");
+                String pw = request.getParameter("pw");
+
+                boolean loginState = dao.login(id, CustomEncrypt.encrypt(pw));
+
+                if (loginState) {
+                    //response.addCookie(new Cookie("loginId", id));
+                    request.getSession().setAttribute("loginId", id);
+                }
+                response.sendRedirect("/");
+            } else if (cmd.equals("/logout.member")) {
+                request.getSession().invalidate(); // 현재 접속한 사용자의 세션 값을 전부 무효화 하는 명령
+                response.sendRedirect("/");
+            } else if (cmd.equals("/withdraw.member")) {
+                String id = (String) request.getSession().getAttribute("loginId");
+                dao.withdraw(id);
+                request.getSession().invalidate();
+                response.sendRedirect("/");
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/error.jsp");
         }
