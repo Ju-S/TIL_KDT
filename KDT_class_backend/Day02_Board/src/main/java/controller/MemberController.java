@@ -1,12 +1,11 @@
 package controller;
 
-import common.CustomEncrypt;
+import utils.CustomEncrypt;
 import dao.MemberDAO;
 import dto.MemberDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import oracle.jdbc.driver.JsonWebToken;
 
 import java.io.IOException;
 
@@ -46,7 +45,6 @@ public class MemberController extends HttpServlet {
                 boolean loginState = dao.login(id, CustomEncrypt.encrypt(pw));
 
                 if (loginState) {
-                    //response.addCookie(new Cookie("loginId", id));
                     request.getSession().setAttribute("loginId", id);
                 }
                 response.sendRedirect("/");
@@ -58,6 +56,21 @@ public class MemberController extends HttpServlet {
                 dao.withdraw(id);
                 request.getSession().invalidate();
                 response.sendRedirect("/");
+            } else if (cmd.equals("/mypage.member")) {
+                String id = (String) request.getSession().getAttribute("loginId");
+                request.setAttribute("myInfo", dao.getMemberInfoById(id));
+                request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
+            } else if (cmd.equals("/update.member")) {
+                String id = (String) request.getSession().getAttribute("loginId");
+                String phone = request.getParameter("phone");
+                String email = request.getParameter("email");
+                String zipcode = request.getParameter("zipCode");
+                String address1 = request.getParameter("address1");
+                String address2 = request.getParameter("address2");
+
+                dao.updateMemberInfo(new MemberDTO(id, phone, email, zipcode, address1, address2));
+
+                response.sendRedirect("/mypage.member");
             }
         } catch (Exception e) {
             e.printStackTrace();

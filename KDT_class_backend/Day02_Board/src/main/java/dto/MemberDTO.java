@@ -16,6 +16,16 @@ public class MemberDTO {
     public MemberDTO() {
     }
 
+    public MemberDTO(String id, String phone, String email, String zipcode,
+                     String address1, String address2) {
+        this.id = id;
+        this.phone = phone;
+        this.email = email;
+        this.zipcode = zipcode;
+        this.address1 = address1;
+        this.address2 = address2;
+    }
+
     public MemberDTO(String id, String pw, String name,
                      String phone, String email, String zipcode,
                      String address1, String address2) {

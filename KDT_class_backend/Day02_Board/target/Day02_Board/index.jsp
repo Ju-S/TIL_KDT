@@ -67,7 +67,11 @@
             </tr>
             <tr>
                 <td></td>
-                <td></td>
+                <td>
+                    <a href="/mypage.member">
+                        <button>마이페이지</button>
+                    </a>
+                </td>
                 <td>
                     <a href="/logout.member">
                         <button>로그아웃</button>

@@ -1,0 +1,97 @@
+@font-face {
+    font-family: "MaruBuri-Bold";
+    src: url("/fonts/MaruBuri-Bold.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MaruBuri-Regular";
+    src: url("/fonts/MaruBuri-Regular.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: "MaruBuri-Regular";
+    max-width: 500px;
+
+    margin-top: 10px;
+}
+
+.row.title,
+.row.input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.row.input .col input{
+    width: 100%;
+}
+
+.row.input .col span {
+    margin-left: 20px;
+}
+
+.row.input .col input.btn {
+    margin-left: 5px;
+}
+
+.row.title {
+    height: 60px;
+    font-size: 20px;
+    font-family: "MaruBuri-Bold";
+    color: #0d6dfb;
+}
+
+.modifyBtn,
+.homeBtn,
+.confirmBtn,
+.cancelBtn{
+    display: flex;
+    align-items: center;
+}
+
+.modifyBtn,
+.confirmBtn{
+    justify-content: right;
+}
+
+.homeBtn,
+.cancelBtn{
+    justify-content: left;
+}
+
+.modiHomeBtn {
+    height: 90px;
+}
+
+.modiHomeBtn .col input.btn {
+    width: 120px;
+}
+
+.readonly-disabled[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+#checkIdDupl {
+    display: none;
+    color: red;
+    font-size: 12px;
+}
+
+#passwordDuplicate,
+#passwordRule {
+    display: none;
+    color: red;
+    font-size: 12px;
+}

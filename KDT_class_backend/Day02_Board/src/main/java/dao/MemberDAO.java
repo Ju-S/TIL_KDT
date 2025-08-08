@@ -73,12 +73,50 @@ public class MemberDAO {
         }
     }
 
-    public boolean withdraw(String id) throws Exception {
+    public boolean withdraw(String targetId) throws Exception {
         String sql = "DELETE FROM members WHERE id = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstat = con.prepareStatement(sql)) {
-            pstat.setString(1, id);
+            pstat.setString(1, targetId);
+            return pstat.executeUpdate() > 0;
+        }
+    }
+
+    public MemberDTO getMemberInfoById(String targetId) throws Exception {
+        String sql = "SELECT * FROM members WHERE id = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, targetId);
+            try (ResultSet rs = pstat.executeQuery()) {
+                rs.next();
+                String id = rs.getString("id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String zipcode = rs.getString("zipcode");
+                String address1 = rs.getString("address1");
+                String address2 = rs.getString("address2");
+                Timestamp joinDate = rs.getTimestamp("join_date");
+
+                return new MemberDTO(id, null, name, phone, email, zipcode, address1, address2, joinDate);
+            }
+        }
+    }
+
+    public boolean updateMemberInfo(MemberDTO modifiedInfo) throws Exception {
+        String sql = "UPDATE members SET phone = ?, email = ?, zipcode = ?, address1 = ?, address2 = ? WHERE id = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, modifiedInfo.getPhone());
+            pstat.setString(2, modifiedInfo.getEmail());
+            pstat.setString(3, modifiedInfo.getZipcode());
+            pstat.setString(4, modifiedInfo.getAddress1());
+            pstat.setString(5, modifiedInfo.getAddress2());
+            pstat.setString(6, modifiedInfo.getId());
+
             return pstat.executeUpdate() > 0;
         }
     }
