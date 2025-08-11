@@ -61,12 +61,16 @@
         </div>
     </c:when>
     <c:otherwise>
-        <table border="1">
+        <table border="1" align="center">
             <tr>
                 <th>${loginId}님 안녕하세요.</th>
             </tr>
             <tr>
-                <td></td>
+                <td>
+                    <a href="/list.board">
+                        <button>회원게시판</button>
+                    </a>
+                </td>
                 <td>
                     <a href="/mypage.member">
                         <button>마이페이지</button>

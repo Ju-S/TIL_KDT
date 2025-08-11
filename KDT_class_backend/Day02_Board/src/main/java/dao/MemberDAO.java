@@ -12,6 +12,9 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 public class MemberDAO {
+
+
+    //region initial methods
     private static MemberDAO instance;
 
     private MemberDAO() {
@@ -29,7 +32,9 @@ public class MemberDAO {
         DataSource ds = (DataSource) cxt.lookup("java:comp/env/jdbc/study");
         return ds.getConnection();
     }
+    //endregion
 
+    //region insert
     public boolean insertMember(MemberDTO member) throws Exception {
         String sql = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 
@@ -47,7 +52,9 @@ public class MemberDAO {
             return pstat.executeUpdate() > 0;
         }
     }
+    //endregion
 
+    //region select
     public boolean idDuplcheck(String id) throws Exception {
         String sql = "SELECT * FROM members WHERE id = ?";
 
@@ -73,16 +80,6 @@ public class MemberDAO {
         }
     }
 
-    public boolean withdraw(String targetId) throws Exception {
-        String sql = "DELETE FROM members WHERE id = ?";
-
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql)) {
-            pstat.setString(1, targetId);
-            return pstat.executeUpdate() > 0;
-        }
-    }
-
     public MemberDTO getMemberInfoById(String targetId) throws Exception {
         String sql = "SELECT * FROM members WHERE id = ?";
 
@@ -104,7 +101,21 @@ public class MemberDAO {
             }
         }
     }
+    //endregion
 
+    //region delete
+    public boolean withdraw(String targetId) throws Exception {
+        String sql = "DELETE FROM members WHERE id = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setString(1, targetId);
+            return pstat.executeUpdate() > 0;
+        }
+    }
+    //endregion
+
+    //region update
     public boolean updateMemberInfo(MemberDTO modifiedInfo) throws Exception {
         String sql = "UPDATE members SET phone = ?, email = ?, zipcode = ?, address1 = ?, address2 = ? WHERE id = ?";
 
@@ -120,4 +131,5 @@ public class MemberDAO {
             return pstat.executeUpdate() > 0;
         }
     }
+    //endregion
 }

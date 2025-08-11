@@ -18,59 +18,76 @@ public class MemberController extends HttpServlet {
 
             String cmd = request.getRequestURI();
 
-            if (cmd.equals("/registerFrm.member")) {
-                response.sendRedirect("/members/register.jsp");
-            } else if (cmd.equals("/idDuplCheck.member")) {
-                String id = request.getParameter("id");
-
-                request.setAttribute("idDupl", dao.idDuplcheck(id));
-                request.getRequestDispatcher("/members/idDuplCheck.jsp").forward(request, response);
-            } else if (cmd.equals("/register.member")) {
-                String id = request.getParameter("id");
-                String pw = request.getParameter("pw");
-                String name = request.getParameter("name");
-                String phone = request.getParameter("phone");
-                String email = request.getParameter("email");
-                String zipCode = request.getParameter("zipCode");
-                String address1 = request.getParameter("address1");
-                String address2 = request.getParameter("address2");
-
-                dao.insertMember(new MemberDTO(id, CustomEncrypt.encrypt(pw), name, phone, email, zipCode, address1, address2));
-
-                response.sendRedirect("/");
-            } else if (cmd.equals("/login.member")) {
-                String id = request.getParameter("id");
-                String pw = request.getParameter("pw");
-
-                boolean loginState = dao.login(id, CustomEncrypt.encrypt(pw));
-
-                if (loginState) {
-                    request.getSession().setAttribute("loginId", id);
+            switch (cmd) {
+                case "/registerFrm.member": {
+                    response.sendRedirect("/members/register.jsp");
+                    break;
                 }
-                response.sendRedirect("/");
-            } else if (cmd.equals("/logout.member")) {
-                request.getSession().invalidate(); // 현재 접속한 사용자의 세션 값을 전부 무효화 하는 명령
-                response.sendRedirect("/");
-            } else if (cmd.equals("/withdraw.member")) {
-                String id = (String) request.getSession().getAttribute("loginId");
-                dao.withdraw(id);
-                request.getSession().invalidate();
-                response.sendRedirect("/");
-            } else if (cmd.equals("/mypage.member")) {
-                String id = (String) request.getSession().getAttribute("loginId");
-                request.setAttribute("myInfo", dao.getMemberInfoById(id));
-                request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
-            } else if (cmd.equals("/update.member")) {
-                String id = (String) request.getSession().getAttribute("loginId");
-                String phone = request.getParameter("phone");
-                String email = request.getParameter("email");
-                String zipcode = request.getParameter("zipCode");
-                String address1 = request.getParameter("address1");
-                String address2 = request.getParameter("address2");
+                case "/idDuplCheck.member": {
+                    String id = request.getParameter("id");
 
-                dao.updateMemberInfo(new MemberDTO(id, phone, email, zipcode, address1, address2));
+                    request.setAttribute("idDupl", dao.idDuplcheck(id));
+                    request.getRequestDispatcher("/members/idDuplCheck.jsp").forward(request, response);
+                    break;
+                }
+                case "/register.member": {
+                    String id = request.getParameter("id");
+                    String pw = request.getParameter("pw");
+                    String name = request.getParameter("name");
+                    String phone = request.getParameter("phone");
+                    String email = request.getParameter("email");
+                    String zipCode = request.getParameter("zipCode");
+                    String address1 = request.getParameter("address1");
+                    String address2 = request.getParameter("address2");
 
-                response.sendRedirect("/mypage.member");
+                    dao.insertMember(new MemberDTO(id, CustomEncrypt.encrypt(pw), name, phone, email, zipCode, address1, address2));
+
+                    response.sendRedirect("/");
+                    break;
+                }
+                case "/login.member": {
+                    String id = request.getParameter("id");
+                    String pw = request.getParameter("pw");
+
+                    boolean loginState = dao.login(id, CustomEncrypt.encrypt(pw));
+
+                    if (loginState) {
+                        request.getSession().setAttribute("loginId", id);
+                    }
+                    response.sendRedirect("/");
+                    break;
+                }
+                case "/logout.member": {
+                    request.getSession().invalidate(); // 현재 접속한 사용자의 세션 값을 전부 무효화 하는 명령
+                    response.sendRedirect("/");
+                    break;
+                }
+                case "/withdraw.member": {
+                    String id = (String) request.getSession().getAttribute("loginId");
+                    dao.withdraw(id);
+                    request.getSession().invalidate();
+                    response.sendRedirect("/");
+                    break;
+                }
+                case "/mypage.member": {
+                    String id = (String) request.getSession().getAttribute("loginId");
+                    request.setAttribute("myInfo", dao.getMemberInfoById(id));
+                    request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
+                    break;
+                }
+                case "/update.member": {
+                    String id = (String) request.getSession().getAttribute("loginId");
+                    String phone = request.getParameter("phone");
+                    String email = request.getParameter("email");
+                    String zipcode = request.getParameter("zipCode");
+                    String address1 = request.getParameter("address1");
+                    String address2 = request.getParameter("address2");
+
+                    dao.updateMemberInfo(new MemberDTO(id, phone, email, zipcode, address1, address2));
+
+                    response.sendRedirect("/mypage.member");
+                    break;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
