@@ -1,5 +1,7 @@
 package controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import commons.BoardConfig;
 import dao.BoardDAO;
 import dto.BoardDTO;
 import jakarta.servlet.ServletException;
@@ -24,31 +26,34 @@ public class BoardController extends HttpServlet {
             switch (cmd) {
                 case "/list.board": {
                     List<BoardDTO> postsList;
-                    int itemPerPage = 10;
-                    List<List<BoardDTO>> tempList = dao.getPostsPagable(itemPerPage);
-                    int maxPage = tempList.size();
-                    try {
-                        int page = Integer.parseInt(request.getParameter("page"));
-                        request.setAttribute("curPage", page);
-                        postsList = tempList.get(page - 1);
-                    } catch (Exception e) {
-                        request.setAttribute("curPage", 1);
-                        postsList = tempList.get(0);
-                    }
-                    request.setAttribute("list", postsList);
-                    request.setAttribute("maxPage", maxPage);
-                    request.getRequestDispatcher("/boards/boardList.jsp").forward(request, response);
-                    break;
-                }
-                case "/search.board": {
+                    int maxPage = dao.getMaxPage(BoardConfig.ITEM_PER_PAGE);
+                    int curPage;
+
                     String searchOpt = request.getParameter("searchOpt");
                     String search = request.getParameter("search");
-                    if (search.isEmpty()) {
-                        response.sendRedirect("/list.board");
-                        break;
+
+                    try {
+                        curPage = Integer.parseInt(request.getParameter("page"));
+                    } catch (Exception e) {
+                        curPage = 1;
                     }
-                    List<BoardDTO> resultList = dao.getPostsByOpt(searchOpt, search);
-                    request.setAttribute("list", resultList);
+
+                    if (search != null) {
+                        if (!search.isEmpty()) {
+                            postsList = dao.getPostsPage(searchOpt, search, curPage, BoardConfig.ITEM_PER_PAGE);
+                            maxPage = dao.getMaxPage(searchOpt, search, BoardConfig.ITEM_PER_PAGE);
+                        } else {
+                            postsList = dao.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
+                        }
+                    } else {
+                        postsList = dao.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
+                    }
+
+                    request.setAttribute("curPage", curPage);
+                    request.setAttribute("list", new ObjectMapper().writeValueAsString(postsList));
+                    request.setAttribute("naviPerPage", BoardConfig.NAVI_PER_PAGE);
+                    request.setAttribute("itemPerPage", BoardConfig.ITEM_PER_PAGE);
+                    request.setAttribute("maxPage", maxPage);
                     request.getRequestDispatcher("/boards/boardList.jsp").forward(request, response);
                     break;
                 }

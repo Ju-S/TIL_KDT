@@ -47,7 +47,6 @@
     <hr>
     <div class="row sideMenu m-0 p-0">
         <div class="col m-0 p-0" align="right">
-            <%--            <div class="btn-group" role="group">--%>
             <c:if test="${post.writer == sessionScope.loginId}">
                 <button id="modifyBtn" type="button" class="btn btn-outline-success">수정</button>
 
@@ -102,9 +101,19 @@
             <button id="backBtn" type="button" class="btn btn-secondary"
                     onclick="location.href='/list.board'">목록으로
             </button>
-            <%--            </div>--%>
         </div>
     </div>
+    <hr>
+    <form action="#" method="post">
+        <div class="row comment">
+            <div class="col-10 comment-contents">
+                <div class="form-control" contenteditable="true" data-placeholder="댓글을 입력하세요."></div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary">등록</button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

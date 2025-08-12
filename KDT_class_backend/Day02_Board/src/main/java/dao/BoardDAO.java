@@ -37,8 +37,7 @@ public class BoardDAO {
     public boolean posting(BoardDTO postInfo) throws Exception {
         String sql = "INSERT INTO board VALUES(board_seq.nextval, ?, ?, ?, default, default)";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql)) {
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
             pstat.setString(1, postInfo.getWriter());
             pstat.setString(2, postInfo.getTitle());
             pstat.setString(3, postInfo.getContents());
@@ -49,90 +48,80 @@ public class BoardDAO {
     //endregion
 
     //region select
-    public List<BoardDTO> getPosts() throws Exception {
-        String sql = "SELECT * FROM board ORDER BY seq DESC";
+    public List<BoardDTO> getPostsPage(int curPage, int itemPerPage) throws Exception {
+        String sql = "SELECT * FROM (SELECT board.*, ROW_NUMBER() OVER(ORDER BY seq DESC) rn FROM board) WHERE rn BETWEEN ? AND ?";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql);
-             ResultSet rs = pstat.executeQuery()) {
-            List<BoardDTO> posts = new ArrayList<>();
-            while (rs.next()) {
-                int seq = rs.getInt("seq");
-                String writer = rs.getString("writer");
-                String title = rs.getString("title");
-                String contents = rs.getString("contents");
-                Timestamp writerDate = rs.getTimestamp("writer_date");
-                int viewCount = rs.getInt("view_count");
-
-                posts.add(new BoardDTO(seq, writer, title, contents, writerDate, viewCount));
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setInt(1, curPage * itemPerPage - (itemPerPage - 1));
+            pstat.setInt(2, curPage * itemPerPage);
+            try (ResultSet rs = pstat.executeQuery()) {
+                return getPostsPageableByResultSet(rs);
             }
-            return posts;
         }
     }
 
-    public List<List<BoardDTO>> getPostsPagable(int itemPerPage) throws Exception {
-        String sql = "SELECT * FROM board ORDER BY seq DESC";
+    public List<BoardDTO> getPostsPage(String searchOpt, String target, int curPage, int itemPerPage) throws Exception {
+        String sql = "SELECT * FROM (SELECT board.*, ROW_NUMBER() OVER(ORDER BY seq DESC) rn FROM board WHERE " + searchOpt + " like ? ORDER BY seq DESC) WHERE rn BETWEEN ? AND ?";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql);
-             ResultSet rs = pstat.executeQuery()) {
-            List<List<BoardDTO>> posts = new ArrayList<>();
-
-            while (true) {
-                List<BoardDTO> temp = new ArrayList<>();
-                for (int i = 0; i < itemPerPage; i++) {
-                    if (!rs.next()) {
-                        posts.add(temp);
-                        return posts;
-                    }
-                    int seq = rs.getInt("seq");
-                    String writer = rs.getString("writer");
-                    String title = rs.getString("title");
-                    String contents = rs.getString("contents");
-                    Timestamp writerDate = rs.getTimestamp("writer_date");
-                    int viewCount = rs.getInt("view_count");
-
-                    temp.add(new BoardDTO(seq, writer, title, contents, writerDate, viewCount));
+        if (!sql.isEmpty()) {
+            try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
+                pstat.setString(1, "%" + target + "%");
+                pstat.setInt(2, curPage * itemPerPage - (itemPerPage - 1));
+                pstat.setInt(3, curPage * itemPerPage);
+                try (ResultSet rs = pstat.executeQuery()) {
+                    return getPostsPageableByResultSet(rs);
                 }
-                posts.add(temp);
             }
+        }
+        return null;
+    }
+
+    private List<BoardDTO> getPostsPageableByResultSet(ResultSet rs) throws Exception {
+        List<BoardDTO> posts = new ArrayList<>();
+        while (rs.next()) {
+            int seq = rs.getInt("seq");
+            String writer = rs.getString("writer");
+            String title = rs.getString("title");
+            String contents = rs.getString("contents");
+            Timestamp writerDate = rs.getTimestamp("writer_date");
+            int viewCount = rs.getInt("view_count");
+            posts.add(new BoardDTO(seq, writer, title, contents, writerDate, viewCount));
+        }
+        return posts;
+    }
+
+    public int getMaxPage(int itemPerPage) throws Exception {
+        String sql = "SELECT count(*) FROM board";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql);
+             ResultSet rs = pstat.executeQuery()) {
+            if (rs.next()) {
+                return (rs.getInt(1) - 1) / itemPerPage + 1;
+            }
+            return 0;
         }
     }
 
-    public List<BoardDTO> getPostsByOpt(String searchOpt, String target) throws Exception {
-        String sql;
-
-        if (searchOpt.equals("title")) {
-            sql = "SELECT * FROM board WHERE title like ? ORDER BY seq DESC";
-        } else {
-            sql = "SELECT * FROM board WHERE writer like ? ORDER BY seq DESC";
-        }
+    public int getMaxPage(String searchOpt, String search, int itemPerPage) throws Exception {
+        String sql = "SELECT count(*) FROM board WHERE " + searchOpt + " like ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstat = con.prepareStatement(sql)) {
-            List<BoardDTO> posts = new ArrayList<>();
-            pstat.setString(1, "%" + target + "%");
+            pstat.setString(1, "%" + search + "%");
             try (ResultSet rs = pstat.executeQuery()) {
-                while (rs.next()) {
-                    int seq = rs.getInt("seq");
-                    String writer = rs.getString("writer");
-                    String title = rs.getString("title");
-                    String contents = rs.getString("contents");
-                    Timestamp writerDate = rs.getTimestamp("writer_date");
-                    int viewCount = rs.getInt("view_count");
-
-                    posts.add(new BoardDTO(seq, writer, title, contents, writerDate, viewCount));
+                if (rs.next()) {
+                    return (rs.getInt(1) - 1) / itemPerPage + 1;
                 }
+                return 0;
             }
-            return posts;
         }
     }
 
     public BoardDTO getPostBySeq(int target) throws Exception {
         String sql = "SELECT * FROM board WHERE seq=?";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql)) {
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
             pstat.setInt(1, target);
             try (ResultSet rs = pstat.executeQuery()) {
                 if (rs.next()) {
@@ -154,8 +143,7 @@ public class BoardDAO {
     public boolean deletePostBySeq(int target) throws Exception {
         String sql = "DELETE FROM board WHERE seq=?";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql)) {
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
             pstat.setInt(1, target);
             return pstat.executeUpdate() > 0;
         }
@@ -166,8 +154,7 @@ public class BoardDAO {
     public boolean updatePostBySeq(BoardDTO target) throws Exception {
         String sql = "UPDATE board SET title=?, contents=? WHERE seq=?";
 
-        try (Connection con = getConnection();
-             PreparedStatement pstat = con.prepareStatement(sql)) {
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
             pstat.setString(1, target.getTitle());
             pstat.setString(2, target.getContents());
             pstat.setInt(3, target.getSeq());

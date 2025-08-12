@@ -75,3 +75,28 @@
 .writer {
     font-family: MaruBuri-Bold;
 }
+
+.comment {
+    height: 100px;
+}
+
+.comment-contents {
+    width: 100%;
+    height: 100%;
+}
+
+.comment-contents div {
+    height: 100%;
+}
+
+.comment div button {
+    width: 100%;
+    height: 100%;
+}
+
+.comment-contents div:empty::before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
+    user-select: none;
+}

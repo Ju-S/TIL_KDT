@@ -29,7 +29,7 @@
                         <a class="nav-link" href="/mypage.member">회원 정보</a>
                     </li>
                 </ul>
-                <form class="d-flex" action="/search.board" method="get">
+                <form class="d-flex" action="/list.board" method="get">
                     <div class="input-group">
                         <select class="form-select" name="searchOpt">
                             <option value="title" selected>제목</option>
@@ -53,70 +53,131 @@
             <th>조회</th>
         </tr>
         </thead>
-        <tbody class="table-group-divider">
-        <c:choose>
-            <c:when test="${empty list}">
-                <tr>
-                    <td colspan="5" align="center">표시할 내용이 없습니다.</td>
-                </tr>
-                <c:forEach begin="1" end="9" var="item">
-                    <tr>
-                        <td colspan="5"><p style="color: transparent"></p></td>
-                    </tr>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <c:forEach begin="0" end="9" var="i">
-                    <c:choose>
-                        <c:when test="${empty list[i]}">
-                            <tr>
-                                <td colspan="5"><p style="color: transparent"></p></td>
-                            </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <tr align="center">
-                                <td width="10%">${list[i].seq}</td>
-                                <td class="title"><a title="${list[i].title}"
-                                                     href="/item.board?seq=${list[i].seq}">${list[i].title}</a></td>
-                                <td width="20%">${list[i].writer}</td>
-                                <td width="30%"><fmt:formatDate value="${list[i].writerDate}"
-                                                                pattern="yyyy-MM-dd hh:mm"/></td>
-                                <td width="10%">${list[i].viewCount}</td>
-                            </tr>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </c:otherwise>
-        </c:choose>
+        <tbody class="table-group-divider item-list-view">
+        <script>
+            let postList = ${list};
+            let itemPerPage = ${itemPerPage};
+
+            if (postList.length === 0) {
+                let emptyAlert = $("<td>").attr({
+                    "colspan": "5",
+                    "align": "center"
+                }).html("표시할 내용이 없습니다.");
+
+                $(".item-list-view").append($("<tr>").append(emptyAlert));
+                for (let i = 0; i < itemPerPage - 1; i++) {
+                    let emptyItem = $("<p>").css("color", "transparent");
+                    let emptyItemTd = $("<td>").attr("colspan", "5");
+                    $(".item-list-view").append($("<tr>").append(emptyItemTd.append(emptyItem)));
+                }
+            } else {
+                for (let post of postList) {
+                    let tr = $("<tr>").attr("align", "center");
+                    let seq = $("<td>").attr("width", "5%").html(post.seq);
+                    let title = $("<td>").attr("width", "30%").addClass("title")
+                        .append($("<a>").attr({
+                            "title": post.title,
+                            "href": "/item.board?seq=" + post.seq
+                        }).html(post.title));
+                    let writer = $("<td>").attr("width", "15%").html(post.writer);
+                    let writerDate = $("<td>").attr("width", "30%").html(milliToDate(post.writerDate));
+                    let viewCount = $("<td>").attr("width", "20%").html(post.viewCount);
+
+                    $(".item-list-view").append(tr
+                        .append(seq)
+                        .append(title)
+                        .append(writer)
+                        .append(writerDate)
+                        .append(viewCount));
+                }
+                if(postList.length % itemPerPage !== 0) {
+                    for (let i = 0; i < itemPerPage - postList.length % itemPerPage; i++) {
+                        let emptyItem = $("<p>").css("color", "transparent");
+                        let emptyItemTd = $("<td>").attr("colspan", "5");
+                        $(".item-list-view").append($("<tr>").append(emptyItemTd.append(emptyItem)));
+                    }
+                }
+            }
+
+            function milliToDate(millis) {
+                let date = new Date(millis);
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+
+                return year + "." + month + "." + day;
+            }
+        </script>
         <tr>
-            <td colspan="3">
-                <c:if test="${maxPage > 1}">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <c:forEach begin="1" end="${maxPage}" var="i">
-                                <c:choose>
-                                    <c:when test="${i == curPage}">
-                                        <li class="page-item active"><a class="page-link" href="?page=${i}">${i}</a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="page-item"><a class="page-link" href="?page=${i}">${i}</a></li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </c:if>
+            <td colspan="3" id="navPos">
+                <script>
+                    let params = new URLSearchParams(window.location.search);
+
+                    let maxPage = ${maxPage};
+                    let curPage = ${curPage};
+                    let naviPerPage = ${naviPerPage};
+
+                    let searchOpt = params.get("searchOpt");
+                    let search = params.get("search");
+
+                    if (maxPage > 1) {
+                        let nav = $("<nav>");
+                        let ul = $("<ul>").addClass("pagination");
+
+                        let prevArrow = $("<li>").addClass("page-item");
+                        let prevArrowLink = $("<a>").addClass("page-link");
+
+                        let nextArrow = $("<li>").addClass("page-item");
+                        let nextArrowLink = $("<a>").addClass("page-link");
+
+                        if (curPage <= naviPerPage) {
+                            prevArrow.addClass("disabled");
+                        }
+
+                        if (curPage > maxPage - naviPerPage) {
+                            nextArrow.addClass("disabled");
+                        }
+
+                        let searchParams = "";
+                        if (search != null) {
+                            params += "&searchOpt=" + searchOpt;
+                            params += "&search=" + search;
+                        }
+
+                        let prevPageLast = Math.floor((curPage - 1) / naviPerPage) * naviPerPage;
+                        let nextPageFirst = prevPageLast + naviPerPage + 1;
+
+                        prevArrowLink.attr("href", "?page=" + prevPageLast + searchParams).html("&laquo;");
+                        nextArrowLink.attr("href", "?page=" + nextPageFirst + searchParams).html("&raquo;");
+
+                        prevArrow.append(prevArrowLink);
+                        nextArrow.append(nextArrowLink);
+
+                        ul.append(prevArrow);
+
+                        let navFirstPage = Math.floor((curPage - 1) / naviPerPage) * naviPerPage + 1;
+                        for (let i = navFirstPage; i < navFirstPage + naviPerPage; i++) {
+                            if (i <= maxPage) {
+                                let navItem = $("<li>").addClass("page-item");
+                                let navLink = $("<a>").addClass("page-link");
+
+                                navLink.attr("href", "?page=" + i + searchParams).html(i);
+                                if (i === curPage) {
+                                    navLink.addClass("active");
+                                }
+                                navItem.append(navLink);
+
+                                ul.append(navItem);
+                            }
+                        }
+
+                        ul.append(nextArrow);
+
+                        nav.append(ul);
+
+                        $("#navPos").append(nav);
+                    }
+                </script>
             </td>
             <td colspan="2" align="right">
                 <div class="btn-group" role="group">
