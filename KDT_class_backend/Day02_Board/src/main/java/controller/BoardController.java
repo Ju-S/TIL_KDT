@@ -61,7 +61,7 @@ public class BoardController extends HttpServlet {
                     break;
                 }
                 case "/postingFrm.board": {
-                    response.sendRedirect("/boards/posting.jsp");
+                    request.getRequestDispatcher("/boards/posting.jsp").forward(request, response);
                     break;
                 }
                 case "/posting.board": {

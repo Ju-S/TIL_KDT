@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="row contents">
-            <div class="col form-control divContents" contenteditable="true"></div>
+            <div class="col form-control divContents" contenteditable="true" data-placeholder="내용을 입력하세요."></div>
             <input type="hidden" name="contents">
         </div>
         <div class="row sideMenu m-0 p-0">

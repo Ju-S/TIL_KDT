@@ -110,8 +110,31 @@
 
 .modifyBtnGroup {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 
-    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.modifyBtnGroup button {
+    width: 50px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+
+    margin-left: 5px;
+}
+
+.replyContents {
+    width: 95%;
+
+    overflow-y: auto;
+
+    word-break: auto-phrase;
+
+    margin-bottom: 5px;
+}
+
+.replyContents div {
+    padding: 0;
 }

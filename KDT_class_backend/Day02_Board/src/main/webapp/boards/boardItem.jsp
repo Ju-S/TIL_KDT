@@ -133,7 +133,7 @@
                 let writer = $("<div>").addClass("row m-0 p-0").html(reply.writer);
                 writer.css("font-family", "Maruburi-Bold");
 
-                let contents = $("<div>").addClass("row p-0").html(reply.contents);
+                let contents = $("<div>").addClass("row p-0 replyContents").html(reply.contents);
                 contents.css({"font-size": "12px", "margin-left": "5px"});
 
                 let footer = $("<div>").addClass("row m-0 p-0");

@@ -66,3 +66,10 @@
 .sideMenu .col a button {
     width: auto;
 }
+
+.divContents:empty::before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
+    user-select: none;
+}
