@@ -161,5 +161,14 @@ public class BoardDAO {
             return pstat.executeUpdate() > 0;
         }
     }
+
+    public boolean updatePostsViewCntBySeq(int target) throws Exception {
+        String sql = "UPDATE board SET view_count = view_count+1 WHERE seq=?";
+
+        try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
+            pstat.setInt(1, target);
+            return pstat.executeUpdate() > 0;
+        }
+    }
     //endregion
 }

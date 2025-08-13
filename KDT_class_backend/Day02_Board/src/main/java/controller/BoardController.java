@@ -3,7 +3,9 @@ package controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import commons.BoardConfig;
 import dao.BoardDAO;
+import dao.ReplyDAO;
 import dto.BoardDTO;
+import dto.ReplyDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,12 +23,13 @@ public class BoardController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String cmd = request.getRequestURI();
-            BoardDAO dao = BoardDAO.getInstance();
+            BoardDAO boardDAO = BoardDAO.getInstance();
+            ReplyDAO replyDAO = ReplyDAO.getInstance();
 
             switch (cmd) {
                 case "/list.board": {
                     List<BoardDTO> postsList;
-                    int maxPage = dao.getMaxPage(BoardConfig.ITEM_PER_PAGE);
+                    int maxPage = boardDAO.getMaxPage(BoardConfig.ITEM_PER_PAGE);
                     int curPage;
 
                     String searchOpt = request.getParameter("searchOpt");
@@ -40,13 +43,13 @@ public class BoardController extends HttpServlet {
 
                     if (search != null) {
                         if (!search.isEmpty()) {
-                            postsList = dao.getPostsPage(searchOpt, search, curPage, BoardConfig.ITEM_PER_PAGE);
-                            maxPage = dao.getMaxPage(searchOpt, search, BoardConfig.ITEM_PER_PAGE);
+                            postsList = boardDAO.getPostsPage(searchOpt, search, curPage, BoardConfig.ITEM_PER_PAGE);
+                            maxPage = boardDAO.getMaxPage(searchOpt, search, BoardConfig.ITEM_PER_PAGE);
                         } else {
-                            postsList = dao.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
+                            postsList = boardDAO.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
                         }
                     } else {
-                        postsList = dao.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
+                        postsList = boardDAO.getPostsPage(curPage, BoardConfig.ITEM_PER_PAGE);
                     }
 
                     request.setAttribute("curPage", curPage);
@@ -66,19 +69,28 @@ public class BoardController extends HttpServlet {
                     String contents = request.getParameter("contents");
                     String writer = (String) request.getSession().getAttribute("loginId");
 
-                    dao.posting(new BoardDTO(writer, title, contents));
+                    boardDAO.posting(new BoardDTO(writer, title, contents));
                     response.sendRedirect("/list.board");
                     break;
                 }
                 case "/item.board": {
                     int seq = Integer.parseInt(request.getParameter("seq"));
-                    request.setAttribute("post", dao.getPostBySeq(seq));
+                    List<ReplyDTO> replyList = replyDAO.selectReplyListByParentSeq(seq);
+
+                    boardDAO.updatePostsViewCntBySeq(seq);
+
+                    request.setAttribute("post", boardDAO.getPostBySeq(seq));
+                    request.setAttribute("reply", new ObjectMapper().writeValueAsString(replyList));
+
                     request.getRequestDispatcher("/boards/boardItem.jsp").forward(request, response);
                     break;
                 }
                 case "/delete.board": {
                     int seq = Integer.parseInt(request.getParameter("seq"));
-                    dao.deletePostBySeq(seq);
+                    String writer = request.getParameter("writer");
+                    if (request.getSession().getAttribute("loginId").equals(writer)) {
+                        boardDAO.deletePostBySeq(seq);
+                    }
                     response.sendRedirect("/list.board");
                     break;
                 }
@@ -86,9 +98,12 @@ public class BoardController extends HttpServlet {
                     int seq = Integer.parseInt(request.getParameter("seq"));
                     String title = request.getParameter("title");
                     String contents = request.getParameter("contents");
+                    String writer = request.getParameter("writer");
 
-                    dao.updatePostBySeq(new BoardDTO(seq, title, contents));
-                    request.getRequestDispatcher("/item.board").forward(request, response);
+                    if(request.getSession().getAttribute("loginId").equals(writer)) {
+                        boardDAO.updatePostBySeq(new BoardDTO(seq, title, contents));
+                    }
+                    response.sendRedirect("/item.board?seq=" + seq);
                     break;
                 }
                 default:

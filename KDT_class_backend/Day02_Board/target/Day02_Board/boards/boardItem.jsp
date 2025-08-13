@@ -19,24 +19,16 @@
     <form id="modifyFrm" action="/update.board" method="post">
         <input type="hidden" name="seq" value="${post.seq}">
         <div class="row title">
-            <div class="col divTitle">
-                ${post.title}
-            </div>
+            <div class="col divTitle">${post.title}</div>
             <input type="hidden" name="title">
         </div>
         <hr>
         <div class="row">
-            <div class="col writer">
-                ${post.writer}
-            </div>
+            <div class="col writer">${post.writer}</div>
         </div>
         <div class="row">
-            <div class="col writeDate">
-                <fmt:formatDate value="${post.writerDate}"
-                                pattern="yyyy-MM-dd hh:mm"/>
-                |
-                조회: ${post.viewCount}
-            </div>
+            <div class="col writeDate"><fmt:formatDate value="${post.writerDate}" pattern="yyyy-MM-dd hh:mm"/>|
+                조회: ${post.viewCount}</div>
         </div>
         <hr>
         <div class="row contents">
@@ -62,7 +54,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
-                                <button type="button" onclick="location.href = '/delete.board?seq=${post.seq}'"
+                                <button type="button"
+                                        onclick="location.href = '/delete.board?seq=${post.seq}&writer=${post.writer}'"
                                         class="btn btn-primary">예
                                 </button>
                             </div>
@@ -93,6 +86,7 @@
                     $("#confirmBtn").on("click", function () {
                         $("[name = title]").val($(".divTitle").html());
                         $("[name = contents]").val($(".divContents").html());
+                        $("<input>").attr({"type": "hidden", "name": "writer"}).val(${post.writer});
                         $("#modifyFrm").submit();
                     });
                 </script>
@@ -104,16 +98,140 @@
         </div>
     </div>
     <hr>
-    <form action="#" method="post">
-        <div class="row comment">
+    <form action="/insert.reply" id="commentFrm" method="post">
+        <div class="row leave-comment">
             <div class="col-10 comment-contents">
                 <div class="form-control" contenteditable="true" data-placeholder="댓글을 입력하세요."></div>
+                <input type="hidden" id="comment-contents" name="comment">
+                <input type="hidden" name="parentSeq">
+                <input type="hidden" name="writer">
             </div>
             <div class="col-2">
-                <button class="btn btn-outline-primary">등록</button>
+                <button class="btn btn-outline-primary" id="comment-submit" type="button">등록</button>
+                <script>
+                    $("#comment-submit").on("click", function () {
+                        $("#comment-contents").val($(".comment-contents div.form-control").html());
+
+                        let params = new URLSearchParams(window.location.search);
+                        $("[name = parentSeq]").val(params.get("seq"));
+                        $("#commentFrm").submit();
+                    });
+                </script>
             </div>
         </div>
     </form>
+    <hr class="mb-1">
+    <div class="row comments m-0">
+        <script>
+            let replyList = ${reply};
+            let loginId = "<c:out value="${sessionScope.loginId}" />";
+
+            for (let reply of replyList) {
+                let row = $("<div>").addClass("row p-0");
+                row.css("margin-left", "10px");
+
+                let writer = $("<div>").addClass("row m-0 p-0").html(reply.writer);
+                writer.css("font-family", "Maruburi-Bold");
+
+                let contents = $("<div>").addClass("row p-0").html(reply.contents);
+                contents.css({"font-size": "12px", "margin-left": "5px"});
+
+                let footer = $("<div>").addClass("row m-0 p-0");
+                let writeDate = $("<div>").addClass("col-6 p-0").html(milliToDate(reply.writeDate));
+                writeDate.css({"font-size": "10px", "margin-bottom": "5px"});
+
+                footer.append(writeDate);
+
+                if (reply.writer === loginId) {
+                    let btnGroup = $("<div>").addClass("col-6 modifyBtnGroup");
+
+                    let modifyBtn = $("<button>").addClass("btn btn-outline-secondary modifyBtn");
+                    modifyBtn.html("수정");
+
+                    let modifyConfirmBtn = $("<button>").addClass("btn btn-outline-success modifyConfirmBtn");
+                    modifyConfirmBtn.attr("type", "button");
+                    modifyConfirmBtn.html("완료");
+
+                    let modifyCancelBtn = $("<button>").addClass("btn btn-outline-danger modifyCancelBtn");
+                    modifyCancelBtn.attr("type", "button");
+                    modifyCancelBtn.html("취소");
+
+                    let deleteBtn = $("<button>").addClass("btn btn-outline-danger deleteBtn");
+                    deleteBtn.html("삭제");
+
+                    modifyBtn.on("click", () => {
+                        modifyCancelBtn.css("display", "inline-block");
+                        modifyConfirmBtn.css("display", "inline-block");
+                        modifyBtn.css("display", "none");
+                        deleteBtn.css("display", "none");
+
+                        contents.attr("contenteditable", "true");
+                        contents.addClass("form-control");
+                    });
+
+                    modifyConfirmBtn.on("click", () => {
+                        updateReply(reply, contents.html());
+                    });
+
+                    modifyCancelBtn.on("click", () => {
+                        location.reload();
+                    });
+
+                    deleteBtn.on("click", () => {
+                        deleteReply(reply);
+                    });
+
+                    btnGroup.append(modifyBtn);
+                    btnGroup.append(modifyConfirmBtn);
+                    btnGroup.append(modifyCancelBtn);
+                    btnGroup.append(deleteBtn);
+
+                    footer.append(btnGroup);
+                }
+
+                row.append(writer);
+                row.append(contents);
+                row.append(footer);
+
+                $(".comments").append(row);
+                $(".comments").append($("<hr>").addClass("mb-1"));
+            }
+
+            function updateReply(reply, modifiedContents) {
+                let params = new URLSearchParams(window.location.search);
+                let seq = $("<input>").attr({"type": "hidden", "name": "seq"}).val(reply.seq);
+                let contents = $("<input>").attr({"type": "hidden", "name": "contents"}).val(modifiedContents);
+                let writer = $("<input>").attr({"type": "hidden", "name": "writer"}).val(reply.writer);
+                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("seq"));
+                let updateFrm = $("<form>").attr({"action": "/update.reply", "method": "post"});
+
+                updateFrm.append(seq, writer, parentSeq, contents);
+                $(document.body).append(updateFrm);
+                updateFrm.submit();
+            }
+
+            function deleteReply(reply) {
+                let params = new URLSearchParams(window.location.search);
+                let seq = $("<input>").attr({"type": "hidden", "name": "seq"}).val(reply.seq);
+                let writer = $("<input>").attr({"type": "hidden", "name": "writer"}).val(reply.writer);
+                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("seq"));
+                let deleteFrm = $("<form>").attr({"action": "/delete.reply", "method": "post"});
+
+                deleteFrm.append(seq, writer, parentSeq);
+                $(document.body).append(deleteFrm);
+                deleteFrm.submit();
+            }
+
+            function milliToDate(millis) {
+                let date = new Date(millis);
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+
+                return year + "." + month + "." + day;
+            }
+        </script>
+    </div>
 </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 
 # IntelliJ IDEA
 /.idea/
-/KDT_class_backend/Day01/.idea/
+/KDT_class_backend/**/.idea/
 /*.iml
 /target/
 /*.class
@@ -28,20 +28,20 @@ Thumbs.db
 # iml 파일 무시
 *.iml
 
-KDT_class_backend/Day01/target/
-!KDT_class_backend/Day01/.mvn/wrapper/maven-wrapper.jar
-!KDT_class_backend/Day01/**/src/main/**/target/
-!KDT_class_backend/Day01/**/src/test/**/target/
+KDT_class_backend/**/target/
+!KDT_class_backend/**/.mvn/wrapper/maven-wrapper.jar
+!KDT_class_backend/**/**/src/main/**/target/
+!KDT_class_backend/**/**/src/test/**/target/
 
 ### NetBeans ###
-KDT_class_backend/Day01/nbproject/private/
-KDT_class_backend/Day01/nbbuild/
-KDT_class_backend/Day01/dist/
-KDT_class_backend/Day01/nbdist/
-KDT_class_backend/Day01/.nb-gradle/
-KDT_class_backend/Day01/build/
-!KDT_class_backend/Day01/**/src/main/**/build/
-!KDT_class_backend/Day01/**/src/test/**/build/
+KDT_class_backend/**/nbproject/private/
+KDT_class_backend/**/nbbuild/
+KDT_class_backend/**/dist/
+KDT_class_backend/**/nbdist/
+KDT_class_backend/**/.nb-gradle/
+KDT_class_backend/**/build/
+!KDT_class_backend/**/**/src/main/**/build/
+!KDT_class_backend/**/**/src/test/**/build/
 
 ### VS Code ###
-KDT_class_backend/Day01/.vscode/
+KDT_class_backend/**/.vscode/

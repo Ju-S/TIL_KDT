@@ -76,20 +76,22 @@
     font-family: MaruBuri-Bold;
 }
 
-.comment {
+.leave-comment {
     height: 100px;
 }
 
 .comment-contents {
-    width: 100%;
     height: 100%;
 }
 
-.comment-contents div {
-    height: 100%;
+.comment-contents div.form-control {
+    height: 100px;
+
+    overflow-y: auto;
+    word-break: auto-phrase;
 }
 
-.comment div button {
+.leave-comment div button {
     width: 100%;
     height: 100%;
 }
@@ -99,4 +101,17 @@
     color: #aaa;
     pointer-events: none;
     user-select: none;
+}
+
+.modifyCancelBtn,
+.modifyConfirmBtn {
+    display: none;
+}
+
+.modifyBtnGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
 }

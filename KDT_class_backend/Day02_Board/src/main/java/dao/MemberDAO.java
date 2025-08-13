@@ -13,7 +13,6 @@ import java.time.Instant;
 
 public class MemberDAO {
 
-
     //region initial methods
     private static MemberDAO instance;
 
