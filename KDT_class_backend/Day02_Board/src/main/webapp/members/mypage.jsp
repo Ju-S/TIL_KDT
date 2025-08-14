@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -84,7 +84,7 @@
                 <input id="modifyBtn" type="button" class="btn btn-primary" value="수정하기">
             </div>
             <div class="col homeBtn">
-                <input type="button" onclick="location.href = '/'" class="btn btn-outline-primary" value="뒤로가기">
+                <input type="button" onclick="history.back();" class="btn btn-outline-primary" value="뒤로가기">
             </div>
             <div class="col confirmBtn" style="display: none">
                 <input id="confirmBtn" type="submit" class="btn btn-primary" value="수정완료">

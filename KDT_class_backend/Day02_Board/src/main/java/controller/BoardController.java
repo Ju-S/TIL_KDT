@@ -1,19 +1,23 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import commons.BoardConfig;
 import dao.BoardDAO;
+import dao.FilesDAO;
 import dao.ReplyDAO;
 import dto.BoardDTO;
+import dto.FilesDTO;
 import dto.ReplyDTO;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("*.board")
@@ -25,6 +29,7 @@ public class BoardController extends HttpServlet {
             String cmd = request.getRequestURI();
             BoardDAO boardDAO = BoardDAO.getInstance();
             ReplyDAO replyDAO = ReplyDAO.getInstance();
+            FilesDAO filesDAO = FilesDAO.getInstance();
 
             switch (cmd) {
                 case "/list.board": {
@@ -65,11 +70,27 @@ public class BoardController extends HttpServlet {
                     break;
                 }
                 case "/posting.board": {
-                    String title = request.getParameter("title");
-                    String contents = request.getParameter("contents");
+                    int maxSize = 1024 * 1024 * 10;
+                    String savePath = request.getServletContext().getRealPath("upload");
+                    File filePath = new File(savePath);
+
+                    if (!filePath.exists()) {
+                        filePath.mkdir();
+                    }
+
+                    MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "utf8", new DefaultFileRenamePolicy());
+
+                    String title = multi.getParameter("title");
+                    String contents = multi.getParameter("contents");
                     String writer = (String) request.getSession().getAttribute("loginId");
 
-                    boardDAO.posting(new BoardDTO(writer, title, contents));
+                    String oriName = multi.getOriginalFileName("files");
+                    String sysName = multi.getFilesystemName("files");
+
+                    int seq = boardDAO.getBoardSeqNextVal();
+
+                    boardDAO.posting(new BoardDTO(seq, writer, title, contents));
+                    filesDAO.uploadFile(new FilesDTO(writer, oriName, sysName, seq));
                     response.sendRedirect("/list.board");
                     break;
                 }

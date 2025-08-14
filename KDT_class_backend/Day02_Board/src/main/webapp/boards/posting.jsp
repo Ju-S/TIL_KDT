@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,10 +15,15 @@
 </head>
 <body>
 <div class="container">
-    <form id="postingFrm" action="/posting.board" method="post">
+    <form id="postingFrm" action="/posting.board" method="post" enctype="multipart/form-data">
         <div class="row title">
             <div class="col">
                 <input type="text" class="form-control" name="title" placeholder="글 제목을 입력하세요.">
+            </div>
+        </div>
+        <div class="row file">
+            <div class="col">
+                <input type="file" class="form-control" name="files" placeholder="파일 선택">
             </div>
         </div>
         <div class="row contents">

@@ -35,12 +35,13 @@ public class BoardDAO {
 
     //region insert
     public boolean posting(BoardDTO postInfo) throws Exception {
-        String sql = "INSERT INTO board VALUES(board_seq.nextval, ?, ?, ?, default, default)";
+        String sql = "INSERT INTO board VALUES(?, ?, ?, ?, default, default)";
 
         try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql)) {
-            pstat.setString(1, postInfo.getWriter());
-            pstat.setString(2, postInfo.getTitle());
-            pstat.setString(3, postInfo.getContents());
+            pstat.setInt(1, postInfo.getSeq());
+            pstat.setString(2, postInfo.getWriter());
+            pstat.setString(3, postInfo.getTitle());
+            pstat.setString(4, postInfo.getContents());
 
             return pstat.executeUpdate() > 0;
         }
@@ -48,6 +49,17 @@ public class BoardDAO {
     //endregion
 
     //region select
+    public int getBoardSeqNextVal() throws Exception {
+        String sql = "SELECT board_seq.nextval FROM dual";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstat = con.prepareStatement(sql);
+             ResultSet rs = pstat.executeQuery()) {
+            rs.next();
+            return rs.getInt(1);
+        }
+    }
+
     public List<BoardDTO> getPostsPage(int curPage, int itemPerPage) throws Exception {
         String sql = "SELECT * FROM (SELECT board.*, ROW_NUMBER() OVER(ORDER BY seq DESC) rn FROM board) WHERE rn BETWEEN ? AND ?";
 

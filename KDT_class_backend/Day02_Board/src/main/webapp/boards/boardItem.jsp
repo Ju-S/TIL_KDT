@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -37,6 +37,11 @@
         </div>
     </form>
     <hr>
+    <div class="row fileContainer">
+        <div class="col">
+            <a href="/download.file">${file.oriName}</a>
+        </div>
+    </div>
     <div class="row sideMenu m-0 p-0">
         <div class="col m-0 p-0" align="right">
             <c:if test="${post.writer == sessionScope.loginId}">
