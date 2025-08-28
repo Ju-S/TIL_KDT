@@ -10,6 +10,7 @@
     <script src="MainScene.js"></script>
     <script src="Exam01.js"></script>
     <script src="Exam02.js"></script>
+    <script src="Exam03.js"></script>
     <script src="Quiz01.js"></script>
     <script src="GameOver.js"></script>
     <style>
@@ -37,10 +38,10 @@
             default: "arcade",
             arcade:{
                 //gravity: {y: 300}
-                debug:false
+                debug:true
             },
         },
-        scene: [Quiz01, GameOver, Exam02, Exam01, MainScene]
+        scene: [Exam03, Quiz01, GameOver, Exam02, Exam01, MainScene]
     };
     let game = new Phaser.Game(config);
 </script>
