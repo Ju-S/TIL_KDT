@@ -61,7 +61,7 @@ class MainScene extends Phaser.Scene {
         // 속도 및 타이머 초기화
         this.speed = 300;
         this.arrowSpeed = 300;
-        this.arrowInterval = 1000;
+        this.obstacleInterval = 1000;
         this.circularInterval = 5000;
 
         // 랜덤 화살
@@ -85,7 +85,7 @@ class MainScene extends Phaser.Scene {
             delay: 5000,
             callback: () => {
                 this.arrowSpeed += 50;
-                this.arrowInterval = Math.max(200, this.arrowInterval - 100);
+                this.obstacleInterval = Math.max(200, this.arrowInterval - 100);
                 this.circularInterval = Math.max(1000, this.circularInterval - 500);
 
                 this.spawnTimer.reset({
