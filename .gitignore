@@ -28,6 +28,7 @@ Thumbs.db
 # iml 파일 무시
 *.iml
 
+target/
 KDT_class_backend/**/target/
 !KDT_class_backend/**/.mvn/wrapper/maven-wrapper.jar
 !KDT_class_backend/**/**/src/main/**/target/
