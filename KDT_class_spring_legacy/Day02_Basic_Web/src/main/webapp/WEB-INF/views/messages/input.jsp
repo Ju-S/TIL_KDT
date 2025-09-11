@@ -16,7 +16,7 @@
     <tr>
         <form action="/messages/inputproc">
             <td><input type="text" name="writer" placeholder="작성자 이름"></td>
-            <td><input type="text" name="contents" placeholder="보낼 메세지 내용"></td>
+            <td><input type="text" name="message" placeholder="보낼 메세지 내용"></td>
             <td>
                 <button>전송</button>
             </td>

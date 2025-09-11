@@ -10,5 +10,5 @@ import lombok.*;
 public class MessagesDTO {
     private int seq;
     private String writer;
-    private String contents;
+    private String message;
 }
