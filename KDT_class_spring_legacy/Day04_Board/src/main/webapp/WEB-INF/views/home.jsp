@@ -13,9 +13,9 @@
 <body>
 
 <c:choose>
-    <c:when test="${loginId == null}">
+    <c:when test="${sessionScope.loginId == null}">
         <div class="container">
-            <form action="/login.member" method="post">
+            <form action="/member/login" method="post">
                 <div class="row title">
                     <div class="col col-12">
                         Login Box
@@ -60,21 +60,21 @@
     <c:otherwise>
         <table border="1" align="center">
             <tr>
-                <th>${loginId}님 안녕하세요.</th>
+                <th>${sessionScope.loginId}님 안녕하세요.</th>
             </tr>
             <tr>
                 <td>
-                    <a href="/list.board">
+                    <a href="/board/list">
                         <button>회원게시판</button>
                     </a>
                 </td>
                 <td>
-                    <a href="/mypage.member">
+                    <a href="/member/mypage">
                         <button>마이페이지</button>
                     </a>
                 </td>
                 <td>
-                    <a href="/logout.member">
+                    <a href="/member/logout">
                         <button>로그아웃</button>
                     </a>
                 </td>
@@ -87,7 +87,7 @@
         <script>
             $("#withdraw").on("click", function () {
                 if (confirm("정말 탈퇴하시겠습니까?")) {
-                    location.href = "/withdraw.member";
+                    location.href = "/member/withdraw";
                 }
             });
         </script>

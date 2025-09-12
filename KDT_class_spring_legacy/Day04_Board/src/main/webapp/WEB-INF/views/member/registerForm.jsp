@@ -29,7 +29,7 @@
                 <input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요." required>
             </div>
             <div class="col col-3">
-                <input type="button" class="btn btn-primary" onclick="" value="중복확인">
+                <input type="button" class="btn btn-primary" onclick="checkIdDupl()" value="중복확인">
             </div>
         </div>
         <div class="row">
@@ -133,9 +133,9 @@
     let phoneRegex = /^010(-?\d{4}){2}$/;
     let emailRegex = /^.+@.+(\.com|\.co\.kr)$/;
 
-    $("[name = id]").on("keypress", function () {
+    $("[name = id]").on("change", function () {
         $("#checkIdDupl").css("display", "flex");
-        setIdDupl(false);
+        checkIdDuplFlg = false;
     });
 
     $("[name = pwCheck]").on("keyup", function () {
@@ -203,16 +203,30 @@
         return true;
     }
 
-    let checkIdDupl = false;
+    let checkIdDuplFlg = false;
 
-    function setIdDupl(val) {
-        checkIdDupl = val;
+    function checkIdDupl() {
+        $.ajax({
+            url: "/member/idduplcheck",
+            data: {"id":$("[name = id]").val()}
+        }).then((res) => {
+            console.log(res);
+            if (!res) {
+                $("#checkIdDupl").css("display", "none");
+                alert("중복확인이 완료되었습니다.");
+            } else {
+                $("#checkIdDupl").css("display", "flex");
+                alert("이미 존재하는 아이디 입니다.");
+                $("[name = id]").val("");
+            }
+            checkIdDuplFlg = !res;
+        });
     }
 
     $("#registerFrm").on("submit", function checkValidation() {
         if (idRegex.test($("[name = id]").val()) &&
             checkPassword() &&
-            // checkIdDupl &&
+            checkIdDuplFlg &&
             nameRegex.test($("[name = name]").val()) &&
             emailRegex.test($("[name = email]").val()) &&
             phoneRegex.test($("[name = phone]").val())) {

@@ -2,6 +2,7 @@ package com.kedu.dao;
 
 import com.kedu.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,13 +34,13 @@ public class MemberDAO {
     }
 
     public boolean login(String id, String pw) {
-        String sql = "SELECT * FROM members WHERE id = ? AND pw = ?";
+        String sql = "SELECT count(*) FROM members WHERE id = ? AND pw = ?";
         return jdbc.queryForObject(sql, Integer.class, id, pw) > 0;
     }
 
     public MemberDTO getMemberInfoById(String targetId) {
         String sql = "SELECT * FROM members WHERE id = ?";
-        return jdbc.queryForObject(sql, MemberDTO.class, targetId);
+        return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(MemberDTO.class), targetId);
     }
     //endregion
 
