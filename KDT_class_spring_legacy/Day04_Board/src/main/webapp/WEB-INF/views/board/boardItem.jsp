@@ -103,7 +103,7 @@
         </div>
     </div>
     <hr>
-    <form action="/insert.reply" id="commentFrm" method="post">
+    <form action="/reply/insert" id="commentFrm" method="post">
         <div class="row leave-comment">
             <div class="col-10 comment-contents">
                 <div class="form-control" contenteditable="true" data-placeholder="댓글을 입력하세요."></div>
@@ -118,7 +118,7 @@
                         $("#comment-contents").val($(".comment-contents div.form-control").html());
 
                         let params = new URLSearchParams(window.location.search);
-                        $("[name = parentSeq]").val(params.get("seq"));
+                        $("[name = parentSeq]").val(params.get("id"));
                         $("#commentFrm").submit();
                     });
                 </script>
@@ -207,8 +207,8 @@
                 let seq = $("<input>").attr({"type": "hidden", "name": "seq"}).val(reply.seq);
                 let contents = $("<input>").attr({"type": "hidden", "name": "contents"}).val(modifiedContents);
                 let writer = $("<input>").attr({"type": "hidden", "name": "writer"}).val(reply.writer);
-                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("seq"));
-                let updateFrm = $("<form>").attr({"action": "/update.reply", "method": "post"});
+                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("id"));
+                let updateFrm = $("<form>").attr({"action": "/reply/update", "method": "post"});
 
                 updateFrm.append(seq, writer, parentSeq, contents);
                 $(document.body).append(updateFrm);
@@ -219,8 +219,8 @@
                 let params = new URLSearchParams(window.location.search);
                 let seq = $("<input>").attr({"type": "hidden", "name": "seq"}).val(reply.seq);
                 let writer = $("<input>").attr({"type": "hidden", "name": "writer"}).val(reply.writer);
-                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("seq"));
-                let deleteFrm = $("<form>").attr({"action": "/delete.reply", "method": "post"});
+                let parentSeq = $("<input>").attr({"type": "hidden", "name": "parentSeq"}).val(params.get("id"));
+                let deleteFrm = $("<form>").attr({"action": "/reply/delete", "method": "post"});
 
                 deleteFrm.append(seq, writer, parentSeq);
                 $(document.body).append(deleteFrm);

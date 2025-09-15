@@ -2,6 +2,7 @@ package com.kedu.controllers;
 
 import com.google.gson.Gson;
 import com.kedu.dao.BoardDAO;
+import com.kedu.dao.ReplyDAO;
 import com.kedu.dto.BoardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ public class BoardController {
 
     @Autowired
     private BoardDAO boardDAO;
+    @Autowired
+    private ReplyDAO replyDAO;
 
     @Autowired
     private Gson gson;
@@ -69,6 +72,7 @@ public class BoardController {
     public String item(int id, Model model) {
         boardDAO.updatePostsViewCntById(id);
         model.addAttribute("post", boardDAO.getPostById(id));
+        model.addAttribute("reply", gson.toJson(replyDAO.selectReplyListByParentSeq(id)));
         return "board/boardItem";
     }
 
