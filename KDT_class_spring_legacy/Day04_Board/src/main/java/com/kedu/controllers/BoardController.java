@@ -2,16 +2,22 @@ package com.kedu.controllers;
 
 import com.google.gson.Gson;
 import com.kedu.dao.BoardDAO;
+import com.kedu.dao.FilesDAO;
 import com.kedu.dao.ReplyDAO;
 import com.kedu.dto.BoardDTO;
+import com.kedu.dto.FilesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/board")
@@ -21,6 +27,8 @@ public class BoardController {
     private BoardDAO boardDAO;
     @Autowired
     private ReplyDAO replyDAO;
+    @Autowired
+    private FilesDAO filesDAO;
 
     @Autowired
     private Gson gson;
@@ -59,12 +67,39 @@ public class BoardController {
     }
 
     @RequestMapping("/posting")
-    public String posting(HttpSession session, String title, String contents) {
+    public String posting(HttpSession session, String title, String contents, MultipartFile[] files) throws Exception {
+        int boardId = boardDAO.getNextSeqVal();
         boardDAO.posting(BoardDTO.builder()
+                .id(boardId)
                 .writer((String) session.getAttribute("loginId"))
                 .title(title)
                 .contents(contents)
                 .build());
+
+        String realPath = session.getServletContext().getRealPath("upload");
+        System.out.println(realPath);
+
+        File realPathFile = new File(realPath);
+
+        if (!realPathFile.exists()) {
+            realPathFile.mkdir();
+        }
+
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                String oriname = file.getOriginalFilename();
+                String sysname = UUID.randomUUID() + "_" + oriname;
+
+                file.transferTo(new File(realPathFile + "/" + sysname));
+
+                filesDAO.insert(FilesDTO.builder()
+                        .writer((String) session.getAttribute("loginId"))
+                        .oriName(oriname)
+                        .sysName(sysname)
+                        .parentSeq(boardId)
+                        .build());
+            }
+        }
         return "redirect:/board/list";
     }
 

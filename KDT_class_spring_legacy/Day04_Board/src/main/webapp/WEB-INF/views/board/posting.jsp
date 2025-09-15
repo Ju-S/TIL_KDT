@@ -11,12 +11,11 @@
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/boards/posting.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/posting.css">
 </head>
 <body>
 <div class="container">
-    <%--    <form id="postingFrm" action="/board/posting" method="post" enctype="multipart/form-data">--%>
-    <form id="postingFrm" action="/board/posting" method="post">
+        <form id="postingFrm" action="/board/posting" method="post" enctype="multipart/form-data">
         <div class="row title">
             <div class="col">
                 <input type="text" class="form-control" name="title" placeholder="글 제목을 입력하세요.">
@@ -24,7 +23,7 @@
         </div>
         <div class="row file">
             <div class="col">
-                <%--                <input type="file" class="form-control" name="files" placeholder="파일 선택">--%>
+                <input type="file" class="form-control" name="files" placeholder="파일 선택" multiple>
             </div>
         </div>
         <div class="row contents">

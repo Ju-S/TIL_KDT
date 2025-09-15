@@ -23,39 +23,10 @@ public class FileController {
     @Autowired
     private FilesDAO dao;
 
-    @RequestMapping("/upload")
-    public String upload(String text, MultipartFile[] files, HttpSession session) throws Exception {
-        String realPath = session.getServletContext().getRealPath("upload");
-        System.out.println(realPath);
-
-        File realPathFile = new File(realPath);
-
-        if (!realPathFile.exists()) {
-            realPathFile.mkdir();
-        }
-
-        for (MultipartFile file : files) {
-            if (!file.isEmpty()) {
-                String oriname = file.getOriginalFilename();
-                String sysname = UUID.randomUUID() + "_" + oriname;
-
-                file.transferTo(new File(realPathFile + "/" + sysname));
-
-                dao.insert(FilesDTO.builder()
-                        .writer("tester")
-                        .oriName(oriname)
-                        .sysName(sysname)
-                        .parentSeq(0)
-                        .build());
-            }
-        }
-        return "redirect:/";
-    }
-
     @ResponseBody
     @RequestMapping("/list")
-    public List<FilesDTO> getList() {
-        return dao.getList();
+    public List<FilesDTO> getList(int parentSeq) {
+        return dao.getListByParentSeq(parentSeq);
     }
 
     @RequestMapping("/download")
@@ -63,7 +34,7 @@ public class FileController {
         String realPath = session.getServletContext().getRealPath("upload");
         File target = new File(realPath + "/" + sysName);
 
-        oriName = new String(oriName.getBytes("utf8"), "ISO-8859-1");
+        oriName = new String(oriName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
         response.setHeader("content-disposition", "attachment;filename=\"" + oriName + "\"");
         System.out.println(oriName);
 

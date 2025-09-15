@@ -19,8 +19,8 @@ public class FilesDAO {
         jdbc.update(sql, dto.getWriter(), dto.getOriName(), dto.getSysName(), dto.getParentSeq());
     }
 
-    public List<FilesDTO> getList() {
-        String sql = "SELECT * FROM files ORDER BY upload_time DESC, seq DESC";
-        return jdbc.query(sql, new BeanPropertyRowMapper<>(FilesDTO.class));
+    public List<FilesDTO> getListByParentSeq(int parentSeq) {
+        String sql = "SELECT * FROM files WHERE parent_seq=? ORDER BY upload_time DESC, seq DESC";
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(FilesDTO.class), parentSeq);
     }
 }

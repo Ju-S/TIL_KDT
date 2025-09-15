@@ -16,12 +16,17 @@ public class BoardDAO {
 
     //region insert
     public void posting(BoardDTO postInfo) {
-        String sql = "INSERT INTO board(id, writer, title, contents) VALUES(board_seq.nextval, ?, ?, ?)";
-        jdbc.update(sql, postInfo.getWriter(), postInfo.getTitle(), postInfo.getContents());
+        String sql = "INSERT INTO board(id, writer, title, contents) VALUES(?, ?, ?, ?)";
+        jdbc.update(sql, postInfo.getId(), postInfo.getWriter(), postInfo.getTitle(), postInfo.getContents());
     }
     //endregion
 
     //region select
+    public int getNextSeqVal() {
+        String sql = "SELECT board_seq.nextval FROM dual";
+        return jdbc.queryForObject(sql, Integer.class);
+    }
+
     public List<BoardDTO> getPostsPage(int curPage, int itemPerPage) {
         String sql = "SELECT * FROM (SELECT board.*, ROW_NUMBER() OVER(ORDER BY id DESC) rn FROM board) WHERE rn BETWEEN ? AND ?";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(BoardDTO.class),

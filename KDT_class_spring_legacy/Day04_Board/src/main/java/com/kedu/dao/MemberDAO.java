@@ -59,7 +59,7 @@ public class MemberDAO {
                 modifiedInfo.getEmail(),
                 modifiedInfo.getZipcode(),
                 modifiedInfo.getAddress1(),
-                modifiedInfo.getAddress1(),
+                modifiedInfo.getAddress2(),
                 modifiedInfo.getId());
     }
     //endregion

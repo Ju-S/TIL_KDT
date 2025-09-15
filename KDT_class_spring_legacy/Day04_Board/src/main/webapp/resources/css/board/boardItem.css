@@ -1,0 +1,140 @@
+@font-face {
+    font-family: "MaruBuri-Bold";
+    src: url("/fonts/MaruBuri-Bold.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MaruBuri-Regular";
+    src: url("/fonts/MaruBuri-Regular.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: "MaruBuri-Regular";
+    max-width: 600px;
+
+    margin-top: 10px;
+
+}
+
+.title {
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title .col {
+    padding: 0;
+    width: 100%;
+
+    font-size: 20px;
+    font-family: MaruBuri-Bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contents {
+    height: 300px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    word-break: auto-phrase;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.contents .divContents {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sideMenu {
+    height: auto;
+    width: 100%;
+}
+
+.writeDate {
+    font-size: 12px;
+}
+
+.writer {
+    font-family: MaruBuri-Bold;
+}
+
+.leave-comment {
+    height: 100px;
+}
+
+.comment-contents {
+    height: 100%;
+}
+
+.comment-contents div.form-control {
+    height: 100px;
+
+    overflow-y: auto;
+    word-break: auto-phrase;
+}
+
+.leave-comment div button {
+    width: 100%;
+    height: 100%;
+}
+
+.comment-contents div:empty::before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
+    user-select: none;
+}
+
+.modifyCancelBtn,
+.modifyConfirmBtn {
+    display: none;
+}
+
+.modifyBtnGroup {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    margin-bottom: 5px;
+}
+
+.modifyBtnGroup button {
+    width: 50px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+
+    margin-left: 5px;
+}
+
+.replyContents {
+    width: 95%;
+
+    overflow-y: auto;
+
+    word-break: auto-phrase;
+
+    margin-bottom: 5px;
+}
+
+.replyContents div {
+    padding: 0;
+}

@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "MaruBuri-Bold";
+    src: url("/fonts/MaruBuri-Bold.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MaruBuri-Regular";
+    src: url("/fonts/MaruBuri-Regular.otf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: "MaruBuri-Regular";
+    max-width: 600px;
+
+    margin-top: 10px;
+
+}
+
+.title {
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title .col {
+    padding: 0;
+}
+
+.title .col input {
+    width: 100%;
+}
+
+.contents {
+    height: 500px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    word-break: auto-phrase;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.contents .divContents {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sideMenu {
+    height: auto;
+    width: 100%;
+}
+
+.sideMenu .col a button {
+    width: auto;
+}
+
+.divContents:empty::before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
+    user-select: none;
+}

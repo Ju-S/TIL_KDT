@@ -12,7 +12,7 @@
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/boards/boardItem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board/boardItem.css">
 </head>
 <body>
 <div class="container">
@@ -39,9 +39,24 @@
     <hr>
     <div class="row fileContainer">
         <div class="col">
-            <a href="/download.file">${file.oriName}</a>
+
         </div>
     </div>
+    <hr>
+    <script>
+        $(document).ready(() => {
+            $.ajax({
+                url: "/file/list",
+                data: {"parentSeq":"${post.id}"}
+            }).done((res) => {
+                $(".fileContainer").html("");
+                for (let item of res) {
+                    let fileLink = $("<a>").attr("href", "/file/download?sysName=" + item.sysName + "&oriName=" + item.oriName).html(item.oriName);
+                    $(".fileContainer").append(fileLink);
+                }
+            })
+        })
+    </script>
     <div class="row sideMenu m-0 p-0">
         <div class="col m-0 p-0" align="right">
             <c:if test="${post.writer == sessionScope.loginId}">
