@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="File">
+    <insert id="insert">
+        INSERT INTO files(seq, writer, ori_name, sys_name, parent_seq) VALUES(files_seq.nextval, #{writer}, #{oriName}, #{sysName}, #{parentSeq})
+    </insert>
+
+    <select id="getListByParentSeq" resultType="com.kedu.dto.FilesDTO">
+        SELECT * FROM files WHERE parent_seq=#{parentSeq} ORDER BY upload_time DESC, seq DESC
+    </select>
+</mapper>

@@ -12,8 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/input.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/registerForm.css">
+    <link rel="stylesheet" href="/css/common/input.css">
+    <link rel="stylesheet" href="/css/member/registerForm.css">
 </head>
 <body>
 <div class="container">

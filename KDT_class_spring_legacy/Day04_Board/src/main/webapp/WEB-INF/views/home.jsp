@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/input.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home.css">
+    <link rel="stylesheet" href="/css/common/input.css">
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
 
@@ -54,6 +54,7 @@
                         <div class="form-label">ID기억하기</div>
                     </div>
                 </div>
+                <img id="logo" src="/img/logo.png">
             </form>
         </div>
     </c:when>

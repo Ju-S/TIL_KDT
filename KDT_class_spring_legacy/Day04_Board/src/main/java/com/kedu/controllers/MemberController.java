@@ -2,6 +2,7 @@ package com.kedu.controllers;
 
 import com.kedu.dao.MemberDAO;
 import com.kedu.dto.MemberDTO;
+import com.kedu.services.MemberService;
 import com.kedu.utils.CustomEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class MemberController {
     @Autowired
     private MemberDAO dao;
 
+    @Autowired
+    private MemberService memberService;
+
     @RequestMapping("/toregistry")
     public String registryForm() {
         return "member/registerForm";
@@ -26,15 +30,14 @@ public class MemberController {
 
     @PostMapping("/register")
     public String registry(MemberDTO dto) {
-        dto.setPw(CustomEncrypt.encrypt(dto.getPw()));
-        dao.insertMember(dto);
+        memberService.insertMember(dto);
         return "redirect:/";
     }
 
     @ResponseBody
     @RequestMapping("/idduplcheck")
     public boolean idDuplCheck(String id) {
-        return dao.idDuplcheck(id);
+        return memberService.idDuplcheck(id);
     }
 
     @RequestMapping("/login")

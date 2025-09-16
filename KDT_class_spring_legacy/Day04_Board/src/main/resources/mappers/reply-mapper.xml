@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Reply">
+    <insert id="insert">
+        INSERT INTO reply(seq, writer, contents, parent_seq) VALUES(reply_seq.nextval, #{writer}, #{contents}, #{parentSeq})
+    </insert>
+
+    <select id="select" resultType="com.kedu.dto.ReplyDTO">
+        SELECT * FROM reply WHERE parent_seq=#{parentSeq} ORDER BY seq DESC
+    </select>
+
+    <update id="update">
+        UPDATE reply SET contents=#{contents} WHERE seq=#{seq}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM reply WHERE seq=#{target}
+    </delete>
+</mapper>

@@ -2,6 +2,7 @@ package com.kedu.controllers;
 
 import com.kedu.dao.FilesDAO;
 import com.kedu.dto.FilesDTO;
+import com.kedu.services.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +22,12 @@ import java.util.UUID;
 public class FileController {
 
     @Autowired
-    private FilesDAO dao;
+    private FilesService filesService;
 
     @ResponseBody
     @RequestMapping("/list")
     public List<FilesDTO> getList(int parentSeq) {
-        return dao.getListByParentSeq(parentSeq);
+        return filesService.list(parentSeq);
     }
 
     @RequestMapping("/download")

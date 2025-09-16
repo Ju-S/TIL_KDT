@@ -10,10 +10,10 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 public class BoardDTO {
-    private long id;
+    private int id;
     private String title;
     private String writer;
     private String contents;
-    private long viewCount;
+    private int viewCount;
     private Timestamp writeDate;
 }
