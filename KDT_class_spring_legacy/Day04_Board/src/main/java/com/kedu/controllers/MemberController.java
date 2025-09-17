@@ -18,9 +18,6 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
 
     @Autowired
-    private MemberDAO dao;
-
-    @Autowired
     private MemberService memberService;
 
     @RequestMapping("/toregistry")
@@ -42,7 +39,7 @@ public class MemberController {
 
     @RequestMapping("/login")
     public String login(String id, String pw, HttpSession session) {
-        if (dao.login(id, CustomEncrypt.encrypt(pw))) {
+        if (memberService.login(id, pw)) {
             session.setAttribute("loginId", id);
         }
         return "redirect:/";
@@ -57,19 +54,19 @@ public class MemberController {
     @RequestMapping("/update")
     public String update(HttpSession session, MemberDTO dto) {
         dto.setId((String) session.getAttribute("loginId"));
-        dao.updateMemberInfo(dto);
+        memberService.updateMemberInfo(dto);
         return "redirect:/member/mypage";
     }
 
     @RequestMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
-        model.addAttribute("myInfo", dao.getMemberInfoById((String) session.getAttribute("loginId")));
+        model.addAttribute("myInfo", memberService.getMemberInfoById((String) session.getAttribute("loginId")));
         return "member/mypage";
     }
 
     @RequestMapping("/withdraw")
     public String withdraw(HttpSession session) {
-        dao.withdraw((String)session.getAttribute("loginId"));
+        memberService.withdraw((String)session.getAttribute("loginId"));
         return "redirect:/";
     }
 }

@@ -6,6 +6,9 @@ import com.kedu.utils.CustomEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class MemberService {
     @Autowired
@@ -18,5 +21,26 @@ public class MemberService {
 
     public boolean idDuplcheck(String id) {
         return memberDAO.idDuplcheck(id);
+    }
+
+    public boolean login(String id, String pw) {
+        Map<String, String> param = new HashMap<>();
+
+        param.put("id", id);
+        param.put("pw", CustomEncrypt.encrypt(pw));
+
+        return memberDAO.login(param);
+    }
+
+    public void updateMemberInfo(MemberDTO dto) {
+        memberDAO.updateMemberInfo(dto);
+    }
+
+    public MemberDTO getMemberInfoById(String targetId) {
+        return memberDAO.getMemberInfoById(targetId);
+    }
+
+    public void withdraw(String targetId) {
+        memberDAO.withdraw(targetId);
     }
 }

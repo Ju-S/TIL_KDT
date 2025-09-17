@@ -130,6 +130,10 @@
                 <button class="btn btn-outline-primary" id="comment-submit" type="button">등록</button>
                 <script>
                     $("#comment-submit").on("click", function () {
+                        if($(".comment-contents div.form-control").html() === '') {
+                            return;
+                        }
+
                         $("#comment-contents").val($(".comment-contents div.form-control").html());
 
                         let params = new URLSearchParams(window.location.search);

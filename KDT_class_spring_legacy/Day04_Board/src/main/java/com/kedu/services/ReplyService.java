@@ -15,4 +15,16 @@ public class ReplyService {
     public List<ReplyDTO> selectReplyListByParentSeq(int target){
         return replyDAO.selectReplyListByParentSeq(target);
     }
+
+    public void insertReply(ReplyDTO dto) {
+        replyDAO.insertReply(dto);
+    }
+
+    public void deleteBySeq(int target) {
+        replyDAO.deleteBySeq(target);
+    }
+
+    public void updateBySeq(ReplyDTO dto) {
+        replyDAO.updateBySeq(dto);
+    }
 }

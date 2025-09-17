@@ -37,7 +37,6 @@ public class FileController {
 
         oriName = new String(oriName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
         response.setHeader("content-disposition", "attachment;filename=\"" + oriName + "\"");
-        System.out.println(oriName);
 
         try (DataInputStream dis = new DataInputStream(new FileInputStream(target));
              DataOutputStream dos = new DataOutputStream(response.getOutputStream())) {

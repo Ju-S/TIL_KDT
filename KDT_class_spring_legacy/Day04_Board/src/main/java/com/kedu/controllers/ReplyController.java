@@ -2,6 +2,7 @@ package com.kedu.controllers;
 
 import com.kedu.dao.ReplyDAO;
 import com.kedu.dto.ReplyDTO;
+import com.kedu.services.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,13 @@ import javax.servlet.http.HttpSession;
 public class ReplyController {
 
     @Autowired
-    private ReplyDAO dao;
+    private ReplyService replyService;
 
     @RequestMapping("/insert")
     public String insert(String comment,
                          int parentSeq,
                          HttpSession session) {
-        dao.insertReply(ReplyDTO.builder()
+        replyService.insertReply(ReplyDTO.builder()
                 .contents(comment)
                 .parentSeq(parentSeq)
                 .writer((String) session.getAttribute("loginId"))
@@ -33,7 +34,7 @@ public class ReplyController {
                          String writer,
                          HttpSession session) {
         if (session.getAttribute("loginId").equals(writer)) {
-            dao.deleteBySeq(seq);
+            replyService.deleteBySeq(seq);
         }
         return "redirect:/board/item?id=" + parentSeq;
     }
@@ -45,7 +46,7 @@ public class ReplyController {
                          String writer,
                          HttpSession session) {
         if (session.getAttribute("loginId").equals(writer)) {
-            dao.updateBySeq(ReplyDTO.builder()
+            replyService.updateBySeq(ReplyDTO.builder()
                     .seq(seq)
                     .contents(contents)
                     .build());

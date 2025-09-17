@@ -1,66 +1,47 @@
 package com.kedu.dao;
 
 import com.kedu.dto.MemberDTO;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Map;
 
 @Repository
 public class MemberDAO {
 
     @Autowired
-    private JdbcTemplate jdbc;
+    private SqlSessionTemplate mybatis;
 
     //region insert
     public void insertMember(MemberDTO member) {
-        String sql = "INSERT INTO members(id, pw, name, phone, email, zipcode, address1, address2) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbc.update(sql,
-                member.getId(),
-                member.getPw(),
-                member.getName(),
-                member.getPhone(),
-                member.getEmail(),
-                member.getZipcode(),
-                member.getAddress1(),
-                member.getAddress2());
+        mybatis.insert("Member.registry", member);
     }
     //endregion
 
     //region select
     public boolean idDuplcheck(String id) {
-        String sql = "SELECT count(*) FROM members WHERE id = ?";
-        return jdbc.queryForObject(sql, Integer.class, id) > 0;
+        return mybatis.selectOne("Member.idDuplCheck", id);
     }
 
-    public boolean login(String id, String pw) {
-        String sql = "SELECT count(*) FROM members WHERE id = ? AND pw = ?";
-        return jdbc.queryForObject(sql, Integer.class, id, pw) > 0;
+    public boolean login(Map<String, String> param) {
+        return mybatis.selectOne("Member.login", param);
     }
 
     public MemberDTO getMemberInfoById(String targetId) {
-        String sql = "SELECT * FROM members WHERE id = ?";
-        return jdbc.queryForObject(sql, new BeanPropertyRowMapper<>(MemberDTO.class), targetId);
+        return mybatis.selectOne("Member.findById", targetId);
     }
     //endregion
 
     //region delete
     public void withdraw(String targetId) {
-        String sql = "DELETE FROM members WHERE id = ?";
-        jdbc.update(sql, targetId);
+        mybatis.delete("Member.delete", targetId);
     }
     //endregion
 
     //region update
     public void updateMemberInfo(MemberDTO modifiedInfo) {
-        String sql = "UPDATE members SET phone = ?, email = ?, zipcode = ?, address1 = ?, address2 = ? WHERE id = ?";
-        jdbc.update(sql,
-                modifiedInfo.getPhone(),
-                modifiedInfo.getEmail(),
-                modifiedInfo.getZipcode(),
-                modifiedInfo.getAddress1(),
-                modifiedInfo.getAddress2(),
-                modifiedInfo.getId());
+        mybatis.update("Member.patch", modifiedInfo);
     }
     //endregion
 }
