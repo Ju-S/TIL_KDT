@@ -65,6 +65,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="/chatroom/free">
+                        <button>자유채팅방</button>
+                    </a>
+                </td>
+                <td>
                     <a href="/board/list">
                         <button>회원게시판</button>
                     </a>

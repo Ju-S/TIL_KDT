@@ -1,0 +1,155 @@
+/* 기본 박스 사이징 */
+* {
+    box-sizing: border-box;
+}
+
+/* 채팅 컨테이너 */
+.container {
+    width: 400px;
+    height: 700px;
+    margin: 50px auto;
+    padding: 0;
+    background-color: rgb(143, 186, 255);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 채팅 리스트 */
+.chatList {
+    width: 100%;
+    height: 91%;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* 공통 채팅 아이템 */
+.chatItem {
+    max-width: 80%;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* 내 메시지 */
+.my-message {
+    margin-left: auto;
+    text-align: right;
+}
+
+/* 상대 메시지 */
+.other-message {
+    text-align: left;
+}
+
+/* 메시지 텍스트 */
+.message {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    word-break: break-word;
+}
+
+/* 내 메시지 색상 */
+.message.me {
+    background-color: rgba(134, 144, 255, 0.5);
+}
+
+/* 시간 표시 */
+.time {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.7em;
+    color: gray;
+}
+
+/* 보낸 사람 이름 */
+.sender {
+    font-weight: bold;
+    font-size: 0.85em;
+    margin-bottom: 3px;
+}
+
+.chatList img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatInput {
+    width: 100%;
+    height: 9%;
+    overflow: hidden;
+}
+
+.chatInput #chatText {
+    width: 85%;
+    height: 100%;
+    float: left;
+    padding: 5px;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.76);
+}
+
+.chatInput #chatText img {
+    width: 50px;
+    height: 50px;
+}
+
+.chatInput #icon {
+    width: 15%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(255, 255, 255); /* border-left: 2px solid rgb(142, 142, 142); */
+    transition-duration: 150ms;
+}
+
+.chatInput #icon:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.chatInput #icon:active {
+    background-color: rgb(224, 224, 224);
+}
+
+.chatInput #icon i {
+    font-size: 30px;
+    color: rgb(113, 167, 255);
+}
+
+.emojiContainer {
+    width: 400px;
+    height: 300px;
+    display: block;
+    position: absolute;
+    bottom: 9%;
+    left: 0;
+    overflow: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.496);
+}
+
+.emojiContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.emojiContainer img {
+    width: 25%;
+    margin: 3%;
+    height: 35%;
+    border-radius: 5px;
+}
