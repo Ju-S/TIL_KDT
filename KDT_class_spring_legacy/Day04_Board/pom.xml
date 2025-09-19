@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kedu</groupId>
-    <artifactId>controllers</artifactId>
+    <artifactId>Day04_Board</artifactId>
     <name>Day01</name>
     <packaging>war</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
@@ -97,6 +97,13 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage -->
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>2.57.0</version>
         </dependency>
 
         <!-- AspectJ -->

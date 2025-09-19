@@ -1,5 +1,10 @@
 package com.kedu.controllers;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import com.google.gson.Gson;
 import com.kedu.dto.BoardDTO;
 import com.kedu.dto.FilesDTO;
@@ -16,12 +21,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+
+    private final String bucketName = "kiwii_study";
+    private final String keyFile = "focus-shape-472605-e7-01d62f8a3302.json";
+
+    private Storage storage;
 
     @Autowired
     private BoardService boardService;
@@ -32,6 +43,16 @@ public class BoardController {
 
     @Autowired
     private Gson gson;
+
+    public BoardController() {
+        try {
+            InputStream keyStream = this.getClass().getClassLoader().getResourceAsStream(keyFile);
+            GoogleCredentials credential = GoogleCredentials.fromStream(keyStream);
+            storage = StorageOptions.newBuilder().setCredentials(credential).build().getService();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @RequestMapping("/list")
     public String list(Model model,
@@ -63,19 +84,17 @@ public class BoardController {
                 .contents(contents)
                 .build());
 
-        String realPath = session.getServletContext().getRealPath("upload");
-        File realPathFile = new File(realPath);
-
-        if (!realPathFile.exists()) {
-            realPathFile.mkdir();
-        }
-
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 String oriname = file.getOriginalFilename();
                 String sysname = UUID.randomUUID() + "_" + oriname;
 
-                file.transferTo(new File(realPathFile + "/" + sysname));
+                BlobInfo blobInfo = BlobInfo.newBuilder(BlobId.of(bucketName, sysname))
+                        .setContentType(file.getContentType()).build();
+
+                try (InputStream is = file.getInputStream()) {
+                    storage.createFrom(blobInfo, is);
+                }
 
                 filesService.upload(FilesDTO.builder()
                         .writer((String) session.getAttribute("loginId"))

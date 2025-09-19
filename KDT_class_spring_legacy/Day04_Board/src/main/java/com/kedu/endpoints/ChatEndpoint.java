@@ -12,14 +12,16 @@ import javax.websocket.server.ServerEndpoint;
 import java.sql.Timestamp;
 import java.util.*;
 
+// STOMP <-- WebSocket 통신의 Text 통신만 특화하여, 구독 시스템과 결합한 형태의 라이브러리
+// SockJS <-- WebSocket을 지원하지 않는 브라우저나, WebSocket 프로토콜을 차단하는 네트워크에서 대안으로 사용되는 라이브러리
+
 @ServerEndpoint(value = "/chat", configurator = WebSocketConfigurator.class)
 public class ChatEndpoint {
     public static final Set<Session> clients = Collections.synchronizedSet(new HashSet<>());
-//    private static final EvictingQueue<MessageDTO> history = EvictingQueue.create(300);
+    //    private static final EvictingQueue<MessageDTO> history = EvictingQueue.create(300);
     private static final Gson gson = new Gson();
-    private HttpSession hSession;
-
     private final ChatService chatService = SpringProvider.ctx.getBean(ChatService.class);
+    private HttpSession hSession;
 
     @OnOpen
     public void onConnection(Session session, EndpointConfig config) {
