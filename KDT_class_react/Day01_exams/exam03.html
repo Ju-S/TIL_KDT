@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // ES6 추가문법 3
+    // forEach - 반환값이 없음.
+    const numbers = [2, 7, 3, 0, 5];
+
+    numbers.forEach((e, idx, arr) => console.log(e, idx, arr));
+
+    // map - 반환값이 있음.
+    const arr = numbers.map(e => e);
+    console.log(arr);
+
+    const numbers2 = [1, 2, 3, 4, 5];
+    const result2 = numbers2.map(e => e * e);
+    console.log(...result2);
+
+    const users = [
+        {id: 1, name: 'Alice', salary: 5000000},
+        {id: 2, name: 'Bob', salary: 1000000},
+        {id: 3, name: 'Susan', salary: 1500000},
+    ]
+
+    // 데이터에서 ID와 NAME값만으로 구성된 배열을 생성하세요.
+
+    const usersView = users.map(e=>({id:e.id, name:e.name}));
+    console.log(usersView);
+
+</script>
+</body>
+</html>

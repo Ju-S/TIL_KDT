@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // ES6 버전에서 추가된 신규 문법
+    // 1. 배열 Destruct - 구조 분해 할당
+
+    const numbers = [1, 2, 3, 4, 5];
+    const [a, b, , d, e, f, g = 6] = numbers;
+
+    // 1, 2, 4, 5, undefined, 6 출력됨.
+    console.log(a, b, d, e, f, g);
+
+    function func1([a, b, c]) {
+        console.log(a, b, c);
+    }
+
+    func1(numbers);
+
+    // 2. 객체 Destruct
+    const user = {id: 1, name:'Tom', age: 25};
+    const {age, name} = user;
+
+    // Tome, 25 출력됨.
+    console.log(name, age);
+
+    function func2({id, name}) {
+        // 백틱을 사용하는 문법을 Literal Template라고 말한다.
+        console.log(`${id}`, name);
+    }
+
+    func2(user);
+</script>
+</body>
+</html>
