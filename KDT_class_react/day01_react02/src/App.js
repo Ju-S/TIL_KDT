@@ -1,6 +1,11 @@
 import './App.css';
 import {useState} from "react";
 
+// React의 특징
+// 코드 재사용성 (functional Component)
+// 상태변수 기반 UI 갱신
+// SPA(Single Page Application) 특징으로 인한 UX 개선
+
 export default function App() {
     const [messages, setMessages] = useState([
         {seq: 1, writer: '김철수', message: '오늘 날씨가 참 좋네요!'},
@@ -11,43 +16,54 @@ export default function App() {
     ]);
 
     const [message, setMessage] = useState({seq: '', writer: '', message: ''});
+    const [modifyMessage, setModifyMessage] = useState({seq: '', writer: '', message: ''});
+    const [deleteTarget, setDeleteTarget] = useState('');
 
-    const handleSeqChange = (e) => {
-        if(/^\d*$/.test(e.target.value)) {
-            setMessageWithName('seq', e.target.value);
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        if (name === "seq" && !/^\d*$/.test(value)) {
+            return false;
         }
+        setMessage(prev => ({...prev, [name]: value}));
     }
 
-    const handleWriterChange = (e) => {
-        setMessageWithName('writer', e.target.value);
-    }
-
-    const handleMessageChange = (e) => {
-        setMessageWithName('message', e.target.value);
-    }
-
-    const setMessageWithName = (name, value) => {
-        setMessage({...message, [name]: value});
+    const handleModifyChange = (e) => {
+        const {name, value} = e.target;
+        if (name === "seq" && !/^\d*$/.test(value)) {
+            return false;
+        }
+        setModifyMessage(prev => ({...prev, [name]: value}));
     }
 
     const handleAdd = () => {
-        if (message.writer.trim() !== '' && message.message.trim() !== '') {
-            // let lastSeq = 0;
-
-            // messages.forEach(e => {
-            //     if (e.seq > lastSeq) lastSeq = e.seq;
-            // });
-
-            // setMessages([...messages, {seq: lastSeq + 1, writer: message.writer, message: message.message}]);
-            // setMessages([...messages, {seq: messages.length + 1, writer: message.writer, message: message.message}]);
-            setMessages([...messages, message]);
+        if (message.seq.trim() !== '' && message.writer.trim() !== '' && message.message.trim() !== '') {
+            setMessages(prev => [...prev, {...message}]);
             setMessage({seq: '', writer: '', message: ''});
+        }
+    }
+
+    const handleModify = () => {
+        if (modifyMessage.seq.trim() !== '' && modifyMessage.writer.trim() !== '' && modifyMessage.message.trim() !== '') {
+            setMessages(prev => prev.map(e => {
+                if(e.seq == modifyMessage.seq) {
+                    return modifyMessage;
+                }
+                return e;
+            }));
+            setModifyMessage({seq: '', writer: '', message: ''});
+        }
+    }
+
+    const handleDelete = () => {
+        if (deleteTarget !== '') {
+            setMessages(prev => prev.filter(e => e.seq != deleteTarget));
+            setDeleteTarget('');
         }
     }
 
     return (
         <div className="container">
-            <table border="1">
+            <table border="1" align="center">
                 <thead>
                 <tr>
                     <th>seq</th>
@@ -65,31 +81,51 @@ export default function App() {
                         </tr>
                     );
                 })}
+                <tr>
+                    <td colSpan={3}>
+                        {["seq", "writer", "message"].map(e => {
+                            return (
+                                <input
+                                    type="text"
+                                    placeholder={`${e} 입력...`}
+                                    value={message[e]}
+                                    name={e}
+                                    onChange={handleChange}
+                                />
+                            );
+                        })}
+                        <button onClick={handleAdd}>추가</button>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colSpan={3}>
+                        <input
+                            type="text"
+                            placeholder="글번호 입력..."
+                            value={deleteTarget}
+                            onChange={(e) => setDeleteTarget(e.target.value)}
+                        />
+                        <button onClick={handleDelete}>삭제</button>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colSpan={3}>
+                        {["seq", "writer", "message"].map(e => {
+                            return (
+                                <input
+                                    type="text"
+                                    placeholder={`${e} 입력...`}
+                                    value={modifyMessage[e]}
+                                    name={e}
+                                    onChange={handleModifyChange}
+                                />
+                            );
+                        })}
+                        <button onClick={handleModify}>수정</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
-            <hr/>
-            <input
-                type="text"
-                placeholder="글번호 입력..."
-                onChange={handleSeqChange}
-                value={message.seq}
-            />
-            <br/>
-            <input
-                type="text"
-                placeholder="작성자 입력..."
-                onChange={handleWriterChange}
-                value={message.writer}
-            />
-            <br/>
-            <input
-                type="text"
-                placeholder="메세지 입력..."
-                onChange={handleMessageChange}
-                value={message.message}
-            />
-            <br/>
-            <button onClick={handleAdd}>추가</button>
         </div>
     );
 }

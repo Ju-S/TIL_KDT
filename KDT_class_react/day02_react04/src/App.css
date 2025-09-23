@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+div{
+    border: 1px solid black;
+}
+
+.container {
+    width: 600px;
+    height: 300px;
+    margin: auto;
+}
+
+.container div {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.listBox table {
+    width: 100%;
+}
+
+.listBox {
+    overflow-y: scroll;
+}
+
+table, tr, td, th {
+    text-align: center;
+    border: 1px solid black;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
