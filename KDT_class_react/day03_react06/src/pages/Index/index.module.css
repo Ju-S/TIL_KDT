@@ -1,0 +1,23 @@
+.container {
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    flex: 2;
+}
+
+.nav button {
+    margin: auto 30px auto 30px;
+    flex: 3;
+}
+
+.content {
+    width: 100%;
+    flex: 8;
+}

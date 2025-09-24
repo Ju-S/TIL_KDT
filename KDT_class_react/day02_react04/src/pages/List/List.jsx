@@ -1,6 +1,8 @@
-import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-export default function ListBox({menus}) {
+const List = ({menus}) => {
+    const navigate = useNavigate();
+
     return (
         <div className="listBox">
             <table>
@@ -19,6 +21,9 @@ export default function ListBox({menus}) {
                 )}
                 </tbody>
             </table>
+            <button onClick={() => navigate("/")}>홈으로</button>
         </div>
     );
 }
+
+export default List;

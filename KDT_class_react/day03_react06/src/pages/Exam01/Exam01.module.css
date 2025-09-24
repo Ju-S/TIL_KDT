@@ -1,0 +1,21 @@
+.container {
+    width: 94%;
+    height: 90%;
+    margin: 3%;
+    display: flex;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 2;
+}
+.sideBar button {
+    margin: 5px;
+}
+
+.content {
+    flex: 8;
+}

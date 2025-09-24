@@ -1,6 +1,8 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-export default function InputBox({setMenus}) {
+const Input = ({setMenus}) => {
+    const navigate = useNavigate();
     const [newMenu, setNewMenu] = useState({id: "", name: "", price: ""});
 
     const handleChange = (e) => {
@@ -16,6 +18,7 @@ export default function InputBox({setMenus}) {
         if (newMenu.id.trim() !== "" && newMenu.name.trim() !== "" && newMenu.price.trim() !== "") {
             setMenus(prev => [...prev, newMenu]);
             setNewMenu({id: "", name: "", price: ""});
+            navigate("/list");
         }
     }
 
@@ -34,6 +37,9 @@ export default function InputBox({setMenus}) {
                 </>
             )}
             <button onClick={handleAdd}>등록</button>
+            <button onClick={() => navigate("/")}>취소</button>
         </div>
     );
 }
+
+export default Input;

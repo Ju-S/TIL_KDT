@@ -1,7 +1,9 @@
 import './App.css';
-import InputBox from "./components/InputBox";
-import ListBox from "./components/ListBox";
+import Index from "./pages/Index/Index";
 import {useState} from "react";
+import Input from "./pages/Input/Input";
+import List from "./pages/List/List";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
     const [menus, setMenus] = useState([
@@ -13,10 +15,15 @@ function App() {
     ]);
 
     return (
-        <div className="container">
-            <InputBox setMenus={setMenus}/>
-            <ListBox menus={menus}/>
-        </div>
+        <BrowserRouter>
+            <div className="container">
+                <Routes>
+                    <Route path="/" element={<Index/>}/>
+                    <Route path="/input" element={<Input setMenus={setMenus}/>}/>
+                    <Route path="/list" element={<List menus={menus}/>}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
