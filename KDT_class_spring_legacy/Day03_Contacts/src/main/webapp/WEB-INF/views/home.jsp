@@ -13,7 +13,7 @@
 <table align="center" border="1">
     <tr>
         <th colspan="2">
-            Contact Home
+            Contact HomePage
         </th>
     </tr>
     <tr>

@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" aria-current="page" href="/" style="color: #0d6dfb;">Home</a>
+            <a class="navbar-brand" aria-current="page" href="/" style="color: #0d6dfb;">HomePage</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
