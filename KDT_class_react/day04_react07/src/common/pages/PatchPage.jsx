@@ -5,7 +5,7 @@ import DataInputForm from "../components/DataInputForm";
 export default function PatchPage({setData, dataHead}) {
     const [modifyData, setModifyData] = useState(
         dataHead.reduce((prev, key) => ({
-            ...prev, [key]: ""
+            ...prev, [key.key]: ""
         }), {})
     );
 
@@ -16,7 +16,7 @@ export default function PatchPage({setData, dataHead}) {
         }));
         setModifyData(
             dataHead.reduce((prev, key) => ({
-                ...prev, [key]: ""
+                ...prev, [key.key]: ""
             }), {})
         );
     }
@@ -27,7 +27,7 @@ export default function PatchPage({setData, dataHead}) {
             <br/>
             <div className={styles.input}>
                 {dataHead.map(e =>
-                    <DataInputForm name={e} data={modifyData} setData={setModifyData}/>
+                    <DataInputForm dataHead={e} data={modifyData} setData={setModifyData}/>
                 )}
             </div>
             <div className={styles.button}>

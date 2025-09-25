@@ -15,7 +15,7 @@ export default function DeletePage({setData}) {
             <h1>삭제</h1>
             <br/>
             <div className={styles.input}>
-                <DataInputForm name="id" data={target} setData={setTarget}/>
+                <DataInputForm dataHead={{key: "id", name: "ID"}} data={target} setData={setTarget}/>
             </div>
             <div className={styles.button}>
                 <button

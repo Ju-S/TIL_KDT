@@ -5,7 +5,7 @@ import DataInputForm from "../components/DataInputForm";
 export default function InputPage({setData, dataHead}) {
     const [newData, setNewData] = useState(
         dataHead.reduce((prev, key) => ({
-            ...prev, [key]: ""
+            ...prev, [key.key]: ""
         }), {})
     );
 
@@ -13,7 +13,7 @@ export default function InputPage({setData, dataHead}) {
         setData(prev => [...prev, newData])
         setNewData(() =>
             dataHead.reduce((prev, key) => ({
-                ...prev, [key]: ""
+                ...prev, [key.key]: ""
             }), {})
         );
     }
@@ -24,7 +24,7 @@ export default function InputPage({setData, dataHead}) {
             <br/>
             <div className={styles.input}>
                 {dataHead.map(e =>
-                    <DataInputForm name={e} data={newData} setData={setNewData}/>
+                    <DataInputForm dataHead={e} data={newData} setData={setNewData}/>
                 )}
             </div>
             <div className={styles.button}>

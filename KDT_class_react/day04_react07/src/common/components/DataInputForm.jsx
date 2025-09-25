@@ -1,16 +1,16 @@
 import styles from './DataInputForm.module.css'
 
-export default function DataInputForm({name, data, setData}) {
+export default function DataInputForm({dataHead, data, setData}) {
     const handleChange = (e) => {
-        setData(prev => ({...prev, [name]:e.target.value}))
+        setData(prev => ({...prev, [dataHead.key]:e.target.value}))
     }
 
     return (
         <input
             type="text"
-            placeholder={`${name} 입력...`}
+            placeholder={`${dataHead.name} 입력...`}
             onChange={handleChange}
-            value={data[name]}
+            value={data[dataHead.key]}
         />
     );
 }
