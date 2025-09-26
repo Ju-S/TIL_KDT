@@ -10,7 +10,7 @@ export default function InputPage({setData, dataHead}) {
     );
 
     const handleAdd = () => {
-        setData(prev => [...prev, newData])
+        setData(newData);
         setNewData(() =>
             dataHead.reduce((prev, key) => ({
                 ...prev, [key.key]: ""

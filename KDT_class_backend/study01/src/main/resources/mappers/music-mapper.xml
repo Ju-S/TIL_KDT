@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Music">
+    <select id="selectAll" resultType="com.kedu.study01.dto.MusicDTO">
+        SELECT * FROM music
+    </select>
+
+    <insert id="insert">
+        INSERT INTO music(id, title, singer) VALUES(music_seq.nextval, #{title}, #{singer})
+    </insert>
+
+    <update id="update">
+        UPDATE music SET title = #{title}, singer = #{singer} WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM music WHERE id = #{id}
+    </delete>
+</mapper>

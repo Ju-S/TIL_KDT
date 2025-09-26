@@ -1,8 +1,11 @@
 import styles from './index.module.css'
 import PageHeader from "../common/components/PageHeader";
 import CommonRoutes from "../common/components/CommonRoutes";
+import useMovieStore from "./store/movieStore";
 
-export default function MoviePage({movies, setMovies}) {
+export default function MoviePage() {
+    const store = useMovieStore();
+
     const dataHead = [
         {key: "id", name: "ID"},
         {key: "name", name: "제목"},
@@ -21,7 +24,7 @@ export default function MoviePage({movies, setMovies}) {
                 <PageHeader header={header}/>
             </div>
             <div className={styles.content}>
-                <CommonRoutes data={movies} setData={setMovies} dataHead={dataHead}/>
+                <CommonRoutes store={store} data={store.movies} dataHead={dataHead}/>
             </div>
         </div>
     );

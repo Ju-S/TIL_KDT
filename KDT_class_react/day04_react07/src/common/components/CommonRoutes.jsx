@@ -4,14 +4,14 @@ import InputPage from "../pages/InputPage";
 import PatchPage from "../pages/PatchPage";
 import DeletePage from "../pages/DeletePage";
 
-export default function CommonRoutes({data, setData, dataHead}) {
+export default function CommonRoutes({store, data, dataHead}) {
     return (
         <Routes>
             <Route path="" element={<ListPage dataList={data} dataHead={dataHead}/>}/>
             <Route path="list" element={<ListPage dataList={data} dataHead={dataHead}/>}/>
-            <Route path="input" element={<InputPage dataHead={dataHead} setData={setData}/>}/>
-            <Route path="patch" element={<PatchPage dataHead={dataHead} setData={setData}/>}/>
-            <Route path="delete" element={<DeletePage setData={setData}/>}/>
+            <Route path="input" element={<InputPage dataHead={dataHead} setData={store.insert}/>}/>
+            <Route path="patch" element={<PatchPage dataHead={dataHead} setData={store.patch}/>}/>
+            <Route path="delete" element={<DeletePage setData={store.delete}/>}/>
         </Routes>
     );
 }

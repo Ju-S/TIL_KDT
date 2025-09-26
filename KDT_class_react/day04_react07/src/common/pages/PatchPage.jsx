@@ -10,10 +10,7 @@ export default function PatchPage({setData, dataHead}) {
     );
 
     const handlePatch = () => {
-        setData(prev => prev.map(e => {
-            if (e.id == modifyData.id) return modifyData;
-            return e;
-        }));
+        setData(modifyData);
         setModifyData(
             dataHead.reduce((prev, key) => ({
                 ...prev, [key.key]: ""

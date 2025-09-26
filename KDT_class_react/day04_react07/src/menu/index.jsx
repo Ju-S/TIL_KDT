@@ -1,8 +1,11 @@
 import styles from './index.module.css'
 import PageHeader from "../common/components/PageHeader";
 import CommonRoutes from "../common/components/CommonRoutes";
+import useMenuStore from "./store/menuStore";
 
-export default function MenuPage({menus, setMenus}) {
+export default function MenuPage() {
+    const store = useMenuStore();
+
     const dataHead = [
         {key: "id", name: "ID"},
         {key: "name", name: "메뉴"},
@@ -21,7 +24,7 @@ export default function MenuPage({menus, setMenus}) {
                 <PageHeader header={header}/>
             </div>
             <div className={styles.content}>
-                <CommonRoutes data={menus} setData={setMenus} dataHead={dataHead}/>
+                <CommonRoutes store={store} data={store.menus} dataHead={dataHead}/>
             </div>
         </div>
     );

@@ -6,7 +6,7 @@ export default function DeletePage({setData}) {
     const [target, setTarget] = useState({id: ""});
 
     const handleDelete = () => {
-        setData(prev => prev.filter(e => e.id != target.id));
+        setData(target.id);
         setTarget({id: ""});
     }
 

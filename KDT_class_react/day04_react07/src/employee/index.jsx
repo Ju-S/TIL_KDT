@@ -1,8 +1,11 @@
 import styles from './index.module.css'
 import PageHeader from "../common/components/PageHeader";
 import CommonRoutes from "../common/components/CommonRoutes";
+import useEmployeeStore from "./store/employeeStore";
 
-export default function EmployeePage({employees, setEmployees}) {
+export default function EmployeePage() {
+    const store = useEmployeeStore();
+
     const dataHead = [
         {key: "id", name: "ID"},
         {key: "name", name: "이름"},
@@ -21,7 +24,7 @@ export default function EmployeePage({employees, setEmployees}) {
                 <PageHeader header={header}/>
             </div>
             <div className={styles.content}>
-                <CommonRoutes data={employees} setData={setEmployees} dataHead={dataHead}/>
+                <CommonRoutes store={store} data={store.employees} dataHead={dataHead}/>
             </div>
         </div>
     );
