@@ -6,6 +6,9 @@
     <select id="selectAll" resultType="com.kedu.study01.dto.MusicDTO">
         SELECT * FROM music
     </select>
+    <select id="findByTitle" resultType="com.kedu.study01.dto.MusicDTO">
+        SELECT * FROM music WHERE title like '%'||#{searchQuery}||'%'
+    </select>
 
     <insert id="insert">
         INSERT INTO music(id, title, singer) VALUES(music_seq.nextval, #{title}, #{singer})

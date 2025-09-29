@@ -8,24 +8,35 @@ function App() {
     const [newMusics, setNewMusics] = useState({title: "", singer: ""});
     const [modifyMusics, setModifyMusics] = useState({id: "", title: "", singer: ""});
     const [deleteTarget, setDeleteTarget] = useState("");
+    const [searchItem, setSearchItem] = useState("");
 
     const handleDefaultGet = () => {
-        axios.get(baseURL + "/music").then((res) => setMusics(res.data));
+        axios.get(baseURL + "/music")
+            .then((res) => setMusics(res.data));
     }
 
     const handleAdd = () => {
-        axios.post(baseURL + "/music", newMusics).then(handleDefaultGet);
-        setNewMusics({title: "", singer: ""});
+        axios.post(baseURL + "/music", newMusics)
+            .then(handleDefaultGet)
+            .finally(() => setNewMusics({title: "", singer: ""}));
     }
 
     const handleUpdate = () => {
-        axios.put(baseURL + `/music/${modifyMusics.id}`, modifyMusics).then(handleDefaultGet);
-        setModifyMusics({id: "", title: "", singer: ""});
+        axios.put(baseURL + `/music/${modifyMusics.id}`, modifyMusics)
+            .then(handleDefaultGet)
+            .finally(() => setModifyMusics({id: "", title: "", singer: ""}));
     }
 
     const handleDelete = () => {
-        axios.delete(baseURL + `/music/${deleteTarget}`).then(handleDefaultGet);
-        setDeleteTarget("");
+        axios.delete(baseURL + `/music/${deleteTarget}`)
+            .then(handleDefaultGet)
+            .finally(() => setDeleteTarget(""));
+    }
+
+    const handleSearch = () => {
+        axios.get(baseURL + `/music?searchQuery=${searchItem}`)
+            .then((res) => setMusics(res.data))
+            .finally(() => setSearchItem(""));
     }
 
     useEffect(() =>
@@ -102,6 +113,14 @@ function App() {
                 />
                 <button onClick={handleDelete}>삭제</button>
             </div>
+            <hr/>
+            <input
+                type="text"
+                placeholder="검색할 제목을 입력하세요.."
+                onChange={(e) => setSearchItem(e.target.value)}
+                value={searchItem}
+            />
+            <button onClick={handleSearch}>검색</button>
         </div>
     );
 }

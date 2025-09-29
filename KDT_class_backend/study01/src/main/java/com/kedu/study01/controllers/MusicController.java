@@ -3,10 +3,8 @@ package com.kedu.study01.controllers;
 import com.kedu.study01.dto.MusicDTO;
 import com.kedu.study01.services.MusicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +21,12 @@ public class MusicController {
     private final MusicService musicService;
 
     @GetMapping
-    public ResponseEntity<List<MusicDTO>> getAll() {
-        return ResponseEntity.ok(musicService.selectAll());
+    public ResponseEntity<List<MusicDTO>> getAll(String searchQuery) {
+        if(searchQuery == null) {
+            return ResponseEntity.ok(musicService.selectAll());
+        } else {
+            return ResponseEntity.ok(musicService.findByTitle(searchQuery));
+        }
     }
 
     @PostMapping

@@ -3,7 +3,6 @@ package com.kedu.study01.dao;
 import com.kedu.study01.dto.MusicDTO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +12,10 @@ import java.util.List;
 public class MusicDAO {
 
     private final SqlSession mybatis;
+
+    public List<MusicDTO> findByTitle(String searchQuery) {
+        return mybatis.selectList("Music.findByTitle", searchQuery);
+    }
 
     public List<MusicDTO> selectAll() {
         return mybatis.selectList("Music.selectAll");

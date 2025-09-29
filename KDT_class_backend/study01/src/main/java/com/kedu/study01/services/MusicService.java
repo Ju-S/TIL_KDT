@@ -13,6 +13,10 @@ public class MusicService {
 
     private final MusicDAO musicDAO;
 
+    public List<MusicDTO> findByTitle(String searchQuery) {
+        return musicDAO.findByTitle(searchQuery);
+    }
+
     public List<MusicDTO> selectAll() {
         return musicDAO.selectAll();
     }
