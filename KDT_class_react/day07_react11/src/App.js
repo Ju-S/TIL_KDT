@@ -1,6 +1,7 @@
 import './App.css';
 import axios from "axios";
 import useAuthStore from "./store/authStore";
+import {useEffect} from "react";
 
 function App() {
     const login = useAuthStore(state => state.login);
@@ -25,6 +26,13 @@ function App() {
                 alert(resp.response.data);
             });
     }
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+        if(token != null) {
+            login(token);
+        }
+    }, []);
 
     return (
         <div className="container">
